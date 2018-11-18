@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ゲストブック</title>
+	</head>
+	<body>
+	<form action="/post">
+		<input type="text" name="name" placeholder="お名前">
+		<input type="text" name="message" placeholder="メッセージ">
+		<input type="submit">
+	</form>
+	<div class="messages">{{range .}}
+		<div class="message">
+			<h2 class="message-name">{{.Name}}</h2>
+			<p class="message-text">{{.Message}}</p>
+		</div>
+	{{end}}</div>
+	</body>
+</html>
