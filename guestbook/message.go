@@ -6,6 +6,5 @@ import "time"
 type Message struct {
 	Name      string    `datastore:"name"`
 	Message   string    `datastore:"message"`
-	Created   string    `datastore:"created"`
 	CreatedAt time.Time `datastore:"createdAt"`
 }

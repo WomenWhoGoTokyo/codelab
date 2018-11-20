@@ -11,7 +11,12 @@ import (
 var indexTmpl = template.Must(template.ParseFiles("./view/index.html"))
 
 func index(w http.ResponseWriter, r *http.Request) {
-	ctx := appengine.NewContext(r)
+	c := appengine.NewContext(r)
+	ctx, err := appengine.Namespace(c, r.Host)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
 	var msgs []*Message
 	q := datastore.NewQuery("Message").Order("-createdAt").Limit(10)

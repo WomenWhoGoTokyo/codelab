@@ -9,7 +9,13 @@ import (
 )
 
 func post(w http.ResponseWriter, r *http.Request) {
-	ctx := appengine.NewContext(r)
+	c := appengine.NewContext(r)
+	ctx, err := appengine.Namespace(c, r.Host)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
 	name := r.FormValue("name")
 	if name == "" {
 		name = "NO NAME"
@@ -23,7 +29,6 @@ func post(w http.ResponseWriter, r *http.Request) {
 	msg := &Message{
 		Name:      name,
 		Message:   message,
-		Created:   "",
 		CreatedAt: time.Now(),
 	}
 
