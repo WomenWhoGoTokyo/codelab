@@ -8,3 +8,5 @@
 # コードラボ一覧
 
 文法などを学びたい方は、まずは[A Tour of Go](https://go-tour-jp.appspot.com/)で学ぶことをオススメします。
+
+- [Go Conference 2018 Autumn のための準備](./gocon-2018-autumn-setup?index=codelab) by micchie
