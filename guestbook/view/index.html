@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ゲストブック</title>
+    <title>{{.Title}}</title>
     <style type="text/css">
       html {
         font-size: 625%;
@@ -9,12 +9,28 @@
       body {
         font-size: .16em;
       }
+      .description {
+        font-size: .12rem;
+        margin-bottom: 1.0em;
+      }
+      .count {
+        font-size: .10rem;
+        margin: 1.0em 0;
+      }
       .messages {
         display: table;
-        margin-top: 1.0em, 0;
+        margin-top: 1.0em;
       }
       .messages .message {
         display: table-row;
+      }
+      .messages .message-header {
+        font-size: .12rem;
+        font-weight: bold;
+        display: table-cell;
+        padding: 0.5em;
+        background-color: #f8f8ff;
+        border-bottom: .05em solid #ccc;
       }
       .messages .message-name,
       .messages .message-text {
@@ -26,16 +42,30 @@
     </style>
   </head>
   <body>
-  <form action="/post" method="post">
-    <input type="text" name="name" placeholder="お名前">
-    <input type="text" name="message" placeholder="メッセージ">
-    <input type="submit">
-  </form>
-  <div class="messages">{{range .}}
-    <div class="message">
-      <h2 class="message-name">{{.Name}}</h2>
-      <p class="message-text">{{.Message}}</p>
+    <h1>{{.Title}}</h1>
+    <div class="description">{{.Description}}</div>
+
+    <form action="/post" method="post">
+      <input type="text" name="name" placeholder="お名前">
+      <input type="text" name="message" placeholder="メッセージ">
+      <input type="submit">
+    </form>
+
+    <div class="count">{{.Count}}件のメッセージがあります。</div>
+
+    <div class="messages">
+      {{if lt 0 .Count}}
+      <div class="message">
+        <div class="message-header">お名前</div>
+        <div class="message-header">メッセージ</div>
+      </div>
+      {{end}}
+      {{range .Messages}}
+      <div class="message">
+        <h2 class="message-name">{{.Name}}</h2>
+        <p class="message-text">{{.Message}}</p>
+      </div>
+      {{end}}
     </div>
-  {{end}}</div>
   </body>
 </html>
