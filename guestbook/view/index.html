@@ -1,19 +1,41 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>ゲストブック</title>
-	</head>
-	<body>
-	<form action="/post" method="post">
-		<input type="text" name="name" placeholder="お名前">
-		<input type="text" name="message" placeholder="メッセージ">
-		<input type="submit">
-	</form>
-	<div class="messages">{{range .}}
-		<div class="message">
-			<h2 class="message-name">{{.Name}}</h2>
-			<p class="message-text">{{.Message}}</p>
-		</div>
-	{{end}}</div>
-	</body>
+  <head>
+    <title>ゲストブック</title>
+    <style type="text/css">
+      html {
+        font-size: 625%;
+      }
+      body {
+        font-size: .16em;
+      }
+      .messages {
+        display: table;
+        margin-top: 1.0em, 0;
+      }
+      .messages .message {
+        display: table-row;
+      }
+      .messages .message-name,
+      .messages .message-text {
+        font-size: .12rem;
+        display: table-cell;
+        padding: 0.5em;
+        border-bottom: .05em solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+  <form action="/post" method="post">
+    <input type="text" name="name" placeholder="お名前">
+    <input type="text" name="message" placeholder="メッセージ">
+    <input type="submit">
+  </form>
+  <div class="messages">{{range .}}
+    <div class="message">
+      <h2 class="message-name">{{.Name}}</h2>
+      <p class="message-text">{{.Message}}</p>
+    </div>
+  {{end}}</div>
+  </body>
 </html>
