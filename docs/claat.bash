@@ -2,7 +2,7 @@
 
 declare -a codelabs;
 codelabs=(
-    #"go-greeting"          "1TwbojRvp4r28KceQQHTlSdN4lsRzL9bqB0diS2Xm39I"
+    "gocon-2018-autumn-setup" "1nBB9Sl-mnKE5htc_Fbx_-Q3VUY1YIfF_C3Wi_HFgzoo"
 )
 
 for ((i = 0; i < ${#codelabs[@]}; i+=2)) {

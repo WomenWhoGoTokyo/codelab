@@ -1,0 +1,26 @@
+{
+  "environment": "web",
+  "source": "1nBB9Sl-mnKE5htc_Fbx_-Q3VUY1YIfF_C3Wi_HFgzoo",
+  "format": "html",
+  "prefix": "/codelab/",
+  "mainga": "UA-49880327-14",
+  "updated": "2018-11-20T11:41:09Z",
+  "id": "gocon-2018-autumn-setup",
+  "duration": 0,
+  "title": "Go Conference 2018 Autumn のための準備",
+  "author": "mi-bear",
+  "summary": "Go Conference 2018 Autumn で実施するコードラボのための準備をします。",
+  "theme": "web",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "Web"
+  ],
+  "tags": [
+    "gocon 2018 autumn",
+    "women who go tokyo"
+  ],
+  "feedback": "https://github.com/WomenWhoGoTokyo/codelab/issues",
+  "url": "gocon-2018-autumn-setup"
+}
