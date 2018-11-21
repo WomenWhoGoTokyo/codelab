@@ -10,4 +10,5 @@
 文法などを学びたい方は、まずは[A Tour of Go](https://go-tour-jp.appspot.com/)で学ぶことをオススメします。
 
 - [Go Conference 2018 Autumn のための準備](./gocon-2018-autumn-setup?index=codelab) by micchie
+- [Google Cloud Shell で Go の開発をはじめよう](./google-cloud-shell-go?index=codelab) by micchie
 - [Google App Engine で Go を動かしてみよう](./google-app-engine-go?index=codelab) by micchie
