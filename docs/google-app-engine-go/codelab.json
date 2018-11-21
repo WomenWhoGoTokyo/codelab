@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "source": "1AjOewYLEtWy-x8RGQtxQe1vMCTKia15CK3iKczmfoQM",
+  "format": "html",
+  "prefix": "/codelab/",
+  "mainga": "UA-49880327-14",
+  "updated": "2018-11-21T11:00:17Z",
+  "id": "google-app-engine-go",
+  "duration": 0,
+  "title": "Google App Engine で Go を動かしてみよう",
+  "author": "mi-bear",
+  "summary": "実際に動く Go のソースコードを触ってみることで, Google App Engine 上でのアプリケーションの仕組みを知ることができます。",
+  "theme": "web",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "Web"
+  ],
+  "tags": [
+    "women who go tokyo"
+  ],
+  "feedback": "https://github.com/WomenWhoGoTokyo/codelab/issues",
+  "url": "google-app-engine-go"
+}
