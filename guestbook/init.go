@@ -5,6 +5,5 @@ import "net/http"
 func init() {
 	http.HandleFunc("/", index)
 	http.HandleFunc("/post", post)
-	//	http.HandleFunc("/edit", edit)
-	//	http.HandleFunc("/put", put)
+	http.HandleFunc("/edit", edit)
 }

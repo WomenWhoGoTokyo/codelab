@@ -12,10 +12,10 @@
     </style>
   </head>
   <body>
-    <h1>{{.Title}}</h1>
+    <h1>{{.Title}} 編集</h1>
 
-    <form action="/put" method="post">
-      <input type="hiddne" name="id" value="{{.ID}}">
+    <form action="/post" method="post">
+      <input type="hidden" name="key" value="{{.KeyID}}">
       <input type="text" name="name" value="{{.Name}}" placeholder="お名前">
       <input type="text" name="message" value="{{.Message}}" placeholder="メッセージ">
       <input type="submit">
