@@ -38,36 +38,47 @@
 <p>Google Cloud Console を利用したことがない方は, 以下の規約同意画面が表示されます。</p>
 <p>選択肢を &#34;はい&#34; に選択し, &#34;同意して続行&#34; をクリックしてください。</p>
 <p><img style="max-width: 624.00px" src="img/953d5a41a9bce423.png"></p>
-<p>利用するプロジェクトを選択します。</p>
+<p>&#34;プロジェクトの選択&#34; をクリックします。</p>
 <p><img style="max-width: 624.00px" src="img/f4a4bc99e3a77b5e.png"></p>
+<p>プロジェクトを選択する画面が表示されます。</p>
+<p>利用するプロジェクトを選択して, &#34;開く&#34; をクリックしましょう。</p>
+<p><img style="max-width: 624.00px" src="img/5a3590cb612ba058.png"></p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Google Cloud Shell でコードを取得する" duration="0">
-        <p>Cloud Shell をアクティブにする ボタンを押下します。</p>
+      <google-codelab-step label="Google Cloud Shell で Go のプログラムを取得する" duration="0">
+        <p>&#34;Cloud Shell をアクティブにする&#34; ボタンを押下します。</p>
 <p><img style="max-width: 624.00px" src="img/c02d73b1a77a82b.png"></p>
-<p>黒い画面が立ち上がります。</p>
-<p><img style="max-width: 624.00px" src="img/6c99d963428a1c4.png"></p>
-<p>黒い画面で, コードを取得するコマンドを入力します。</p>
+<p>コンソールが立ち上がります。</p>
+<p><img style="max-width: 624.00px" src="img/dd9133c439681f86.png"></p>
+<p>コンソールで, Go のプログラムを取得するコマンドを入力します。</p>
 <pre><code>$ git clone https://github.com/WomenWhoGoTokyo/codelab.git</code></pre>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Google Cloud Shell でコードを公開する" duration="0">
-        <p>Cloud Shell をアクティブにする ボタンを押下します。</p>
+      <google-codelab-step label="Google Cloud Shell で Go のプログラムを公開する" duration="0">
+        <p>&#34;Cloud Shell をアクティブにする&#34; ボタンを押下します。</p>
 <p><img style="max-width: 624.00px" src="img/c02d73b1a77a82b.png"></p>
-<p>黒い画面が立ち上がります。</p>
-<p><img style="max-width: 624.00px" src="img/6c99d963428a1c4.png"></p>
-<p>黒い画面で, コードを取得するコマンドを入力します。</p>
+<p>コンソールが立ち上がります。</p>
+<p><img style="max-width: 624.00px" src="img/dd9133c439681f86.png"></p>
+<p>コンソールで, Go のプログラムを公開するコマンドを入力します。</p>
 <pre><code>$ goapp deploy --application {アプリケーションID} --version {バージョン} .</code></pre>
+<aside class="special"><h3><strong>アプリケーションIDについて</strong></h3>
+<p>Google Cloud Console にアクセスしたときに表示されるダッシュボードに書いてある, プロジェクトIDをアプリケーションIDとして利用します。</p>
+<p><img style="max-width: 610.00px" src="img/e8654d2873f7db5a.png"></p>
+</aside>
+<aside class="special"><h3><strong>バージョンについて</strong></h3>
+<p>Google  App Engine 上では複数のサービスで構成することができ, さらにそのサービス内では複数のバージョンを公開することができます。</p>
+<p>詳しくは, <a href="https://cloud.google.com/appengine/docs/standard/java/microservices-on-app-engine?hl=ja" target="_blank">Google App Engine 上でのマイクルサービスアーキテクチャ</a> に書いてあります。</p>
+</aside>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Google Cloud Shell のエディタでコードを編集する" duration="0">
-        <p>コードエディタの起動 ボタンを押下します。</p>
+      <google-codelab-step label="Google Cloud Shell のエディタで Go のプログラムを編集する" duration="0">
+        <p>&#34;コードエディタの起動&#34; ボタンを押下します。</p>
 <p><img style="max-width: 624.00px" src="img/cab95b8bef9e729b.png"></p>
 <p>エディタが起動します。</p>
 <p><img style="max-width: 624.00px" src="img/672921121436f732.png"></p>
