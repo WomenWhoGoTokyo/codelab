@@ -31,9 +31,14 @@ func index(w http.ResponseWriter, r *http.Request) {
 
 	var msgs []*Message
 	q := datastore.NewQuery("Message").Order("-createdAt").Limit(15)
-	if _, err := q.GetAll(ctx, &msgs); err != nil {
+	keys, err := q.GetAll(ctx, &msgs)
+	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
+	}
+
+	for i := 0; i < len(msgs); i++ {
+		msgs[i].KeyID = keys[i].IntID()
 	}
 
 	idxt := &IndexTemplate{

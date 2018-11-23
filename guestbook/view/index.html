@@ -33,7 +33,8 @@
         border-bottom: .05em solid #ccc;
       }
       .messages .message-name,
-      .messages .message-text {
+      .messages .message-text,
+      .messages .message-link {
         font-size: .12rem;
         display: table-cell;
         padding: 0.5em;
@@ -58,12 +59,14 @@
       <div class="message">
         <div class="message-header">お名前</div>
         <div class="message-header">メッセージ</div>
+        <div class="message-link">編集</div>
       </div>
       {{end}}
       {{range .Messages}}
       <div class="message">
         <h2 class="message-name">{{.Name}}</h2>
         <p class="message-text">{{.Message}}</p>
+        <div class="message-link"><a href="./edit?key={{.KeyID}}">編集する</a></div>
       </div>
       {{end}}
     </div>
