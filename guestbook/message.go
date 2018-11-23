@@ -1,8 +1,6 @@
 package main
 
-import (
-	"time"
-)
+import "time"
 
 // Message is a structure of messages to be posted to guest book.
 type Message struct {

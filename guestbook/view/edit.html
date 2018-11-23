@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{.Title}}</title>
+    <style type="text/css">
+      html {
+        font-size: 625%;
+      }
+      body {
+        font-size: .16em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>{{.Title}}</h1>
+
+    <form action="/put" method="post">
+      <input type="hiddne" name="id" value="{{.ID}}">
+      <input type="text" name="name" value="{{.Name}}" placeholder="お名前">
+      <input type="text" name="message" value="{{.Message}}" placeholder="メッセージ">
+      <input type="submit">
+    </form>
+  </body>
+</html>
