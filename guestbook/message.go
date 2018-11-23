@@ -7,4 +7,5 @@ type Message struct {
 	Name      string    `datastore:"name"`
 	Message   string    `datastore:"message"`
 	CreatedAt time.Time `datastore:"createdAt"`
+	KeyID     int64
 }
