@@ -15,7 +15,7 @@
     <h1>{{.Title}} 編集</h1>
 
     <form action="/post" method="post">
-      <input type="hidden" name="key" value="{{.KeyID}}">
+      <input type="hidden" name="key" value="{{.ID}}">
       <input type="text" name="name" value="{{.Name}}" placeholder="お名前">
       <input type="text" name="message" value="{{.Message}}" placeholder="メッセージ">
       <input type="submit">
