@@ -25,14 +25,20 @@
                   feedback-link="https://github.com/WomenWhoGoTokyo/codelab/issues">
     
       <google-codelab-step label="はじめに" duration="0">
-        <p>このコードラボでは, 実際に動く Go のソースコードを触ってみることで, Google App Engine でのアプリケーションの仕組みを知ることができます。</p>
+        <p>このコードラボでは, ゲストブックのプログラムを Go で書いて Google App Engine に公開することで, クラウドサービス上で Web アプリケーションを開発することを体験できます。</p>
+<p>下記の流れになります。</p>
+<ol type="1" start="1">
+<li>Go で書かれたサンプルコードを確認する。</li>
+<li>サンプルコードを Google App Engine に公開する。</li>
+<li>公開したアプリケーションを確認する。</li>
+<li>サンプルコードを変更して 2. と 3. を行う。</li>
+</ol>
 <p><img style="max-width: 624.00px" src="img/dabe202a9b3d608b.png"></p>
-<p>ゲストブックの仕組みを利用して, 一般的な入出力を体験します。</p>
 <h2><strong>Google App Engine とは</strong></h2>
-<p>Google App Engine は Google が Google Cloud Platform 上で提供しているインフラ上でアプリケーションを実行できる PaaS です。</p>
-<p>サーバの運用・構築の手間がかからず, ニーズに合わせたスケーリングが容易であることが利点です。</p>
+<p>Google App Engine は Google が <a href="https://cloud.google.com/" target="_blank">Google Cloud Platform</a> 上で提供しているインフラ上でアプリケーションを実行できるサービスです。</p>
+<p>サーバの運用・構築の手間がかからず, ニーズに合わせて規模を拡大・縮小しやすいことが利点です。</p>
 <h2>Go の開発環境は必要でしょうか？</h2>
-<p>このコードラボではGoogle Cloud Shell を利用するため, 手元でGo の開発環境を用意する必要はありません。</p>
+<p>このコードラボでは Google Cloud Shell というクラウド上の開発環境を利用します。お使いのコンピューター上で Go の開発環境を用意する必要はありません。</p>
 <p>Google Cloud Shell の詳しい説明と使い方は, <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a>  を参照してください。</p>
 
 
@@ -47,12 +53,16 @@
     
       <google-codelab-step label="サンプルコードを取得する" duration="0">
         <p>GitHubからコードラボで利用するサンプルコードを取得しましょう。</p>
-<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って,  <code>git clone</code> します。</p>
+<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って,  <code>git clone</code> というコマンドを実行します。</p>
 <pre><code>$ git clone https://github.com/WomenWhoGoTokyo/codelab.git</code></pre>
-<p><code>codelab/guestbook</code> というディレクトリが作られていることを, Google Cloud Shell で確認しましょう。</p>
+<p><code>codelab/guestbook</code> というディレクトリが作られていることを, Google Cloud Shell のコンソールで確認しましょう。</p>
 <pre><code>$ cd codelab/guestbook
 $ ls
 README.md  app.yaml   index.go   init.go    message.go post.go    view</code></pre>
+<aside class="special"><h3><strong>コマンドの説明</strong></h3>
+<p><code>cd</code> : 作業しているディレクトリを移動するコマンドです。<code>cd codelab/guestbook</code> は, <code>codelab</code> ディレクトリのさらに下の <code>guestbook</code> というディレクトリに移動します。</p>
+<p><code>ls</code>: ファイルやディレクトリの情報を表示するコマンドです。ここでは, <code>guestbook</code> ディレクトリに入っているファイルを表示します。</p>
+</aside>
 
 
       </google-codelab-step>
@@ -68,19 +78,14 @@ handlers:
   url: /*
   script: _go_app
   secure: always</code></pre>
-<p>利用する言語やそのバージョン等を設定することができます。</p>
+<p>利用する開発言語やそのバージョン等を設定することができます。</p>
+<p>このコードラボでは, 開発言語は Go , バージョンは 1.9 を設定します。</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Google App Engine に公開する" duration="0">
-        <p>取得した Go のプログラムを Google App Engine に公開してみましょう。</p>
-<ul>
-<li><code>app.yaml</code> が配置されている場所でコマンドを実行します。</li>
-<li>アプリケーションIDとバージョンは, コマンド引数で指定します。</li>
-<li>今回, バージョンには各々異なる ID を利用します。異なるバージョンでアプリケーションを公開することで, お互いのアプリケーションの上書きを避けます。</li>
-</ul>
-<p>なお, バージョンには, アルファベット小文字, 数字, ハイフンのみが利用可能です。</p>
+        <p>取得した Go のプログラムを <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の <a href="https://womenwhogotokyo.github.io/codelab/google-app-engine-go/?index=codelab#4" target="_blank">Google App Engine に公開する</a> の手順に従って, Google App Engine に公開してみましょう。</p>
 <pre><code>$ goapp deploy --application {アプリケーションID} --version {バージョン} .</code></pre>
 <aside class="special"><p>アプリケーションやバージョンについては,  <a href="https://cloud.google.com/appengine/docs/standard/java/microservices-on-app-engine?hl=ja" target="_blank">Google App Engine 上でのマイクロサービスアーキテクチャ</a> のページに詳しく記載されています。</p>
 </aside>
@@ -97,14 +102,14 @@ handlers:
 <p><img style="max-width: 624.00px" src="img/669ab036cecc4b4e.png"></p>
 <p>ブラウザが立ち上がり, 下記のような画面が表示されると成功です。</p>
 <p><img style="max-width: 624.00px" src="img/7d7d5c7b21c9ab31.png"></p>
-<p>お名前, メッセージに適当な文字列を入力して, 送信ボタンを押下してみましょう。</p>
+<p>&#34;お名前&#34;, &#34;メッセージ&#34; に適当な文字列を入力して, 送信ボタンを押下してみましょう。</p>
 <p><img style="max-width: 624.00px" src="img/acb984b830b269ba.png"></p>
-<h2><strong>データを見る</strong></h2>
+<h2>データを見る</h2>
 <p>Google Cloud Platform 上でもデータを確認することができます。</p>
 <p>データストア &gt; エンティティ をクリックしましょう。</p>
 <p><img style="max-width: 624.00px" src="img/ddac3546feaca3ec.png"></p>
-<p>先程入力したデータが格納されていることを確認できます。</p>
-<p><img style="max-width: 624.00px" src="img/662b41ecdc7ca83a.png"></p>
+<p>&#34;名前空間&#34; を選択し, 先程入力したデータが格納されていることを確認できます。</p>
+<p><img style="max-width: 624.00px" src="img/39083fbe3fec6011.png"></p>
 
 
       </google-codelab-step>
@@ -138,12 +143,12 @@ var description = &#34;Gopher &amp; Gopher 2018.11.25&#34;</code></pre>
       </google-codelab-step>
     
       <google-codelab-step label="表示件数を変更してみよう" duration="0">
-        <p>まず, 10件ほど登録してみましょう。</p>
+        <p>まず, &#34;お名前&#34; と &#34;メッセージ&#34; に適当な文字列を入力して, 送信ボタンを押下することを繰り返して, 10件ほど登録してみましょう。</p>
 <p><img style="max-width: 624.00px" src="img/e6d23016247fef1e.png"></p>
-<p>さらにもう1件登録しましょう。</p>
-<p>全部で11件登録していますが, 表示は10件のままで, 一番古いメッセージが表示されなくなりました。</p>
+<p>さらにもう1件の &#34;お名前&#34; と &#34;メッセージ&#34; を登録しましょう。</p>
+<p>全部で11件の &#34;お名前&#34; と &#34;メッセージ&#34; を登録しましたが, 表示は10件で, 一番古いメッセージが表示されなくなりました。</p>
 <p><img style="max-width: 624.00px" src="img/897e09cd2fd04d6e.png"></p>
-<p>これを表示できるようにしましょう。</p>
+<p>登録した11件のの &#34;お名前&#34; と &#34;メッセージ&#34; をすべて一覧で表示できるようにしましょう。</p>
 <h2><strong>文字列が書いてあるファイルを開く</strong></h2>
 <p><code>codelab &gt; guestbook &gt; index.go</code> を開きましょう。</p>
 <p><img style="max-width: 624.00px" src="img/6b9d7b5c7cac691e.png"></p>
@@ -160,15 +165,15 @@ var description = &#34;Gopher &amp; Gopher 2018.11.25&#34;</code></pre>
 <p>コンソールでコマンドを実行して, Go のプログラムを公開しましょう。</p>
 <pre><code>$ goapp deploy --application {アプリケーションID} --version {バージョン} .</code></pre>
 <h2><strong>アプリケーションを確認する</strong></h2>
-<p>ブラウザを更新しましょう。</p>
-<p>11件表示されていることを確認しましょう。15件までは表示できます。</p>
+<p>ブラウザを更新ボタンを押下して, 11件の &#34;お名前&#34; と &#34;メッセージ&#34;  が表示されていることを確認しましょう。</p>
 <p><img style="max-width: 624.00px" src="img/bc1cd730404a1c9a.png"></p>
+<p>15件までは一覧に表示することができます。</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="メッセージを変更できるようにしてみよう" duration="0">
-        <p>お名前とメッセージを変更できるようにします。</p>
+        <p>&#34;お名前&#34; と &#34;メッセージ&#34; を変更できるようにします。</p>
 <p><img style="max-width: 624.00px" src="img/391340524bf2a15c.png"></p>
 <p>あらかじめ, ソースコードの一部は用意されています。</p>
 <ul>
@@ -180,8 +185,8 @@ var description = &#34;Gopher &amp; Gopher 2018.11.25&#34;</code></pre>
 <p><code>codelab &gt; guestbook &gt; view &gt; index.html</code> を開きましょう。</p>
 <p><img style="max-width: 624.00px" src="img/aabd03d18fbe6b10.png"></p>
 <h3><strong>一覧にリンクを足す</strong></h3>
-<p>一覧に編集画面へのリンクを足します。</p>
-<p>リンク先は <code>./edit?key={key}</code> となります。</p>
+<p>一覧に編集画面へのリンクを追加します。</p>
+<p>編集画面のURLを <code>edit</code> ,  1件の &#34;お名前&#34; と &#34;メッセージ&#34; を識別するための変数名を <code>key</code> とします。</p>
 <p><img style="max-width: 624.00px" src="img/874a2e521165f3c8.png"></p>
 <p>Before:</p>
 <pre><code>&lt;div class=&#34;messages&#34;&gt;
@@ -308,7 +313,7 @@ func edit(w http.ResponseWriter, r *http.Request) {
 <p><code>codelab &gt; guestbook &gt; post.go</code> を開きましょう。</p>
 <p><img style="max-width: 624.00px" src="img/845dc4b9a7a4f917.png"></p>
 <h3><strong>更新をできるようにする</strong></h3>
-<p>パラメータがあるときは更新を, ないときには新規追加をするように処理を変更します。</p>
+<p>&#34;お名前&#34; と &#34;メッセージ&#34; を識別するための変数である <code>key</code> があるときは更新を, ないときには新規追加をするように処理を変更します。</p>
 <p><img style="max-width: 624.00px" src="img/7d7dfded44507d2a.png"></p>
 <p>Before:</p>
 <pre><code>key := datastore.NewIncompleteKey(ctx, &#34;Message&#34;, nil)</code></pre>
@@ -340,8 +345,8 @@ if k == &#34;&#34; {
       </google-codelab-step>
     
       <google-codelab-step label="さいごに" duration="0">
-        <p>このコードラボでは, Google App Engine へのアプリケーションの公開や, 実際に動く Go のソースコードをベースとして, データの入力や取り出し, その表示方法に触れました。</p>
-<p>ここで知ったことをきっかけに, Google App Engine と Go を利用したものづくりをもっともっと楽しんでいただけますように！と願っています。</p>
+        <p>このコードラボでは, ゲストブックのプログラムを Go で書いて Google App Engine に公開することで, クラウドサービス上で Web アプリケーションを開発することを体験しました。</p>
+<p>ここで触れたことをきっかけに, Google App Engine と Go を利用したものづくりをもっともっと楽しんでいただけますように！と願っています。</p>
 
 
       </google-codelab-step>

@@ -63,14 +63,17 @@
 <p><img style="max-width: 624.00px" src="img/c02d73b1a77a82b.png"></p>
 <p>コンソールが立ち上がります。</p>
 <p><img style="max-width: 624.00px" src="img/dd9133c439681f86.png"></p>
+<p>Google App Engine へのプログラムの公開は, <code>app.yaml</code> が配置されているディレクトリでコマンドを実行します。</p>
 <p>コンソールで, Go のプログラムを公開するコマンドを入力します。</p>
 <pre><code>$ goapp deploy --application {アプリケーションID} --version {バージョン} .</code></pre>
+<p>アプリケーションIDとバージョンは, コマンドライン引数で指定します。</p>
 <aside class="special"><h3><strong>アプリケーションIDについて</strong></h3>
 <p>Google Cloud Console にアクセスしたときに表示されるダッシュボードに書いてある, プロジェクトIDをアプリケーションIDとして利用します。</p>
 <p><img style="max-width: 610.00px" src="img/e8654d2873f7db5a.png"></p>
 </aside>
 <aside class="special"><h3><strong>バージョンについて</strong></h3>
 <p>Google  App Engine 上では複数のサービスで構成することができ, さらにそのサービス内では複数のバージョンを公開することができます。</p>
+<p>バージョンには, アルファベット小文字, 数字, ハイフンのみが利用可能です。</p>
 <p>詳しくは, <a href="https://cloud.google.com/appengine/docs/standard/java/microservices-on-app-engine?hl=ja" target="_blank">Google App Engine 上でのマイクルサービスアーキテクチャ</a> に書いてあります。</p>
 </aside>
 
