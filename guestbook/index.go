@@ -38,7 +38,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for i := 0; i < len(msgs); i++ {
-		msgs[i].KeyID = keys[i].IntID()
+		msgs[i].ID = keys[i].IntID()
 	}
 
 	idxt := &IndexTemplate{

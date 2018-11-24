@@ -16,7 +16,7 @@ type EditTemplate struct {
 	Title   string
 	Name    string
 	Message string
-	KeyID   int64
+	ID      int64
 }
 
 func edit(w http.ResponseWriter, r *http.Request) {
@@ -45,7 +45,7 @@ func edit(w http.ResponseWriter, r *http.Request) {
 		Title:   title,
 		Name:    msg.Name,
 		Message: msg.Message,
-		KeyID:   keyID,
+		ID:      keyID,
 	}
 
 	if err := editTmpl.Execute(w, edt); err != nil {
