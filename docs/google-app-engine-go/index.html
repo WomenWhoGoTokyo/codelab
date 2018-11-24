@@ -119,10 +119,10 @@ handlers:
 <p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って,  Goolge Cloud Shell のエディタを立ち上げます。</p>
 <h2><strong>文字列が書いてあるファイルを開く</strong></h2>
 <p><code>codelab &gt; guestbook &gt; index.go</code> を開きましょう。</p>
-<p><img style="max-width: 624.00px" src="img/6b9d7b5c7cac691e.png"></p>
+<p><img style="max-width: 624.00px" src="img/6d9fad155c88c51e.png"></p>
 <h2><strong>文字列を変更する</strong></h2>
 <p><code>index.go</code> の下記の部分を好きな文字列に変更します。</p>
-<p><img style="max-width: 624.00px" src="img/41e696e836972931.png"></p>
+<p><img style="max-width: 624.00px" src="img/aec2493bb15d4ef1.png"></p>
 <p>Before:</p>
 <pre><code>var title = &#34;ゲストブック&#34;
 var description = &#34;結婚式などの受付で名前や住所, メッセージを記帳してもらうためのノートのことです。&#34;</code></pre>
@@ -130,7 +130,7 @@ var description = &#34;結婚式などの受付で名前や住所, メッセー�
 <pre><code>var title = &#34;Wedding Guest Book&#34;
 var description = &#34;Gopher &amp; Gopher 2018.11.25&#34;</code></pre>
 <p><code>File &gt; Save</code> を選択して, 保存します。</p>
-<p><img style="max-width: 624.00px" src="img/e4863a03729b58c2.png"></p>
+<p><img style="max-width: 624.00px" src="img/7129833e15494a89.png"></p>
 <h2><strong>変更したプログラムを公開する</strong></h2>
 <p>コンソールでコマンドを実行して, Go のプログラムを公開しましょう。</p>
 <pre><code>$ goapp deploy --application {アプリケーションID} --version {バージョン} .</code></pre>
@@ -151,16 +151,16 @@ var description = &#34;Gopher &amp; Gopher 2018.11.25&#34;</code></pre>
 <p>登録した11件のの &#34;お名前&#34; と &#34;メッセージ&#34; をすべて一覧で表示できるようにしましょう。</p>
 <h2><strong>文字列が書いてあるファイルを開く</strong></h2>
 <p><code>codelab &gt; guestbook &gt; index.go</code> を開きましょう。</p>
-<p><img style="max-width: 624.00px" src="img/6b9d7b5c7cac691e.png"></p>
+<p><img style="max-width: 624.00px" src="img/866b44928218bfc1.png"></p>
 <h2><strong>件数を変更する</strong></h2>
 <p><code>index.go</code> の下記の部分を, 15件まで取得するように変更します。</p>
-<p><img style="max-width: 624.00px" src="img/3cf671faf5e80ef.png"></p>
+<p><img style="max-width: 624.00px" src="img/6bb7750b4def632a.png"></p>
 <p>Before:</p>
 <pre><code>q := datastore.NewQuery(&#34;Message&#34;).Order(&#34;-createdAt&#34;).Limit(10)</code></pre>
 <p>After:</p>
 <pre><code>q := datastore.NewQuery(&#34;Message&#34;).Order(&#34;-createdAt&#34;).Limit(15)</code></pre>
 <p><code>File &gt; Save</code> を選択して, 保存します。</p>
-<p><img style="max-width: 624.00px" src="img/e4863a03729b58c2.png"></p>
+<p><img style="max-width: 624.00px" src="img/7129833e15494a89.png"></p>
 <h2><strong>変更したプログラムを公開する</strong></h2>
 <p>コンソールでコマンドを実行して, Go のプログラムを公開しましょう。</p>
 <pre><code>$ goapp deploy --application {アプリケーションID} --version {バージョン} .</code></pre>
@@ -187,7 +187,7 @@ var description = &#34;Gopher &amp; Gopher 2018.11.25&#34;</code></pre>
 <h3><strong>一覧にリンクを足す</strong></h3>
 <p>一覧に編集画面へのリンクを追加します。</p>
 <p>編集画面のURLを <code>edit</code> ,  1件の &#34;お名前&#34; と &#34;メッセージ&#34; を識別するための変数名を <code>key</code> とします。</p>
-<p><img style="max-width: 624.00px" src="img/874a2e521165f3c8.png"></p>
+<p><img style="max-width: 624.00px" src="img/b99f378783a15ede.png"></p>
 <p>Before:</p>
 <pre><code>&lt;div class=&#34;messages&#34;&gt;
   {{if lt 0 .Count}}
@@ -236,7 +236,7 @@ var description = &#34;Gopher &amp; Gopher 2018.11.25&#34;</code></pre>
 <p><img style="max-width: 624.00px" src="img/97711e156dc0e3c7.png"></p>
 <h3><strong>編集画面のコードを書く</strong></h3>
 <p>下記のように書きましょう。</p>
-<p><img style="max-width: 624.00px" src="img/d2056ee1bc2cc12b.png"></p>
+<p><img style="max-width: 624.00px" src="img/7834d82b1f3d00fe.png"></p>
 <pre><code>package main
 
 import (
@@ -255,7 +255,7 @@ type EditTemplate struct {
         Title   string
         Name    string
         Message string
-        KeyID   int64
+        ID      int64
 }
 
 func edit(w http.ResponseWriter, r *http.Request) {
@@ -284,7 +284,7 @@ func edit(w http.ResponseWriter, r *http.Request) {
                 Title:   title,
                 Name:    msg.Name,
                 Message: msg.Message,
-                KeyID:   keyID,
+                ID:      keyID,
         }
 
         if err := editTmpl.Execute(w, edt); err != nil {
@@ -311,13 +311,30 @@ func edit(w http.ResponseWriter, r *http.Request) {
 <h2><strong>編集画面で送信ボタンを押下すると変更を更新する</strong></h2>
 <h3><strong>変更箇所のファイルを開く</strong></h3>
 <p><code>codelab &gt; guestbook &gt; post.go</code> を開きましょう。</p>
-<p><img style="max-width: 624.00px" src="img/845dc4b9a7a4f917.png"></p>
+<p><img style="max-width: 624.00px" src="img/36678cd9064cd04.png"></p>
 <h3><strong>更新をできるようにする</strong></h3>
 <p>&#34;お名前&#34; と &#34;メッセージ&#34; を識別するための変数である <code>key</code> があるときは更新を, ないときには新規追加をするように処理を変更します。</p>
-<p><img style="max-width: 624.00px" src="img/7d7dfded44507d2a.png"></p>
-<p>Before:</p>
+<p><img style="max-width: 624.00px" src="img/540c1fca9d4b625a.png"></p>
+<p>① Before:</p>
+<pre><code>import (
+        &#34;net/http&#34;
+        &#34;time&#34;
+
+        &#34;google.golang.org/appengine&#34;
+        &#34;google.golang.org/appengine/datastore&#34;
+)</code></pre>
+<p>① After:</p>
+<pre><code>import (
+        &#34;net/http&#34;
+        &#34;strconv&#34;
+        &#34;time&#34;
+
+        &#34;google.golang.org/appengine&#34;
+        &#34;google.golang.org/appengine/datastore&#34;
+)</code></pre>
+<p>② Before:</p>
 <pre><code>key := datastore.NewIncompleteKey(ctx, &#34;Message&#34;, nil)</code></pre>
-<p>After:</p>
+<p>② After:</p>
 <pre><code>var key *datastore.Key
 k := r.FormValue(&#34;key&#34;)
         
