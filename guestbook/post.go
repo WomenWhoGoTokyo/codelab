@@ -1,4 +1,4 @@
-package main
+package guestbook
 
 import (
 	"net/http"
@@ -8,9 +8,9 @@ import (
 	"google.golang.org/appengine/datastore"
 )
 
-func post(w http.ResponseWriter, r *http.Request) {
+func Post(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
-	ctx, err := appengine.Namespace(c, r.Host)
+	ctx, err := appengine.Namespace(c, appengine.VersionID(c))
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

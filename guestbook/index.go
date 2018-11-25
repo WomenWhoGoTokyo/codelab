@@ -1,4 +1,4 @@
-package main
+package guestbook
 
 import (
 	"html/template"
@@ -8,7 +8,7 @@ import (
 	"google.golang.org/appengine/datastore"
 )
 
-var indexTmpl = template.Must(template.ParseFiles("./view/index.html"))
+var indexTmpl = template.Must(template.ParseFiles("./guestbook/view/index.html"))
 
 var title = "ゲストブック"
 var description = "結婚式などの受付で名前や住所, メッセージを記帳してもらうためのノートのことです。"
@@ -21,9 +21,9 @@ type IndexTemplate struct {
 	Messages    []*Message
 }
 
-func index(w http.ResponseWriter, r *http.Request) {
+func Index(w http.ResponseWriter, r *http.Request) {
 	c := appengine.NewContext(r)
-	ctx, err := appengine.Namespace(c, r.Host)
+	ctx, err := appengine.Namespace(c, appengine.VersionID(c))
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
