@@ -45,7 +45,7 @@
 <p class="image-container"><img style="width: 624.00px" src="img/f4a4bc99e3a77b5e.png"></p>
 <p>プロジェクトを選択する画面が表示されます。</p>
 <p>利用するプロジェクトを選択して「開く」をクリックしましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/5a3590cb612ba058.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/515c058c2edfb641.png"></p>
 
 
       </google-codelab-step>
@@ -53,14 +53,18 @@
       <google-codelab-step label="Google Cloud Shell で Go のプログラムを取得する" duration="0">
         <p>Google Cloud Shell で Go のプログラムを取得するときは、コンソールを利用します。</p>
 <p>「Cloud Shell をアクティブにする」ボタンを押下します。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/c02d73b1a77a82b.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/934ff2301eeb7ff8.png"></p>
 <p>コンソールが立ち上がります。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/dd9133c439681f86.png"></p>
-<p>すでに、他のプロジェクトで利用したことがある場合、下記のように表示されることがあります。</p>
-<pre><code>Use &#34;gcloud config set project [PROJECT_ID]&#34; to change to a different project.</code></pre>
-<p>その場合は、利用するプロジェクトの ID を設定しましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/ca4d68655d49fac9.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/5ba0e7c4bc5ad6c8.png"></p>
+<p>異なるプロジェクトに切り替えたいときは、利用するプロジェクトの ID を設定しましょう。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/ae105826413d6306.png"></p>
 <pre><code>$ gcloud config set project {プロジェクトID}</code></pre>
+<p>自分のホームディレクトリ直下には、<code>gopath</code> ディレクトリがあります。</p>
+<pre><code>$ cd ~ &amp;&amp; ls</code></pre>
+<p>上記のコマンドで確認することができます。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/a3cee7ce47a3fa45.png"></p>
+<p>取得するプログラムを配置する場所は自由に設定できます。(ここでは <code>develop</code> ディレクトリを作成して、そこに Go のプログラムを取得しています。)</p>
+<pre><code>$ mkdir develop &amp;&amp; cd develop</code></pre>
 <p>コンソールで Go のプログラムを取得するコマンドを入力します。</p>
 <pre><code>$ git clone https://github.com/WomenWhoGoTokyo/codelab.git</code></pre>
 
@@ -76,7 +80,7 @@
 <p>アプリケーションIDとバージョンは、コマンドライン引数で指定します。</p>
 <aside class="special"><h3 is-upgraded><strong>アプリケーションIDについて</strong></h3>
 <p>Google Cloud Console にアクセスしたときに表示されるダッシュボードに書いてある、プロジェクトIDをアプリケーションIDとして利用します。</p>
-<p class="image-container"><img style="width: 610.00px" src="img/e8654d2873f7db5a.png"></p>
+<p class="image-container"><img style="width: 602.46px" src="img/c00c7b6d8de7fc69.png"></p>
 </aside>
 <aside class="special"><h3 is-upgraded><strong>バージョンについて</strong></h3>
 <p>Google  App Engine 上では複数のサービスで構成することができ、さらにそのサービス内では複数のバージョンを公開することができます。</p>
@@ -84,16 +88,24 @@
 <p>詳しくは <a href="https://cloud.google.com/appengine/docs/standard/java/microservices-on-app-engine?hl=ja" target="_blank">Google App Engine 上でのマイクルサービスアーキテクチャ</a> に書いてあります。</p>
 </aside>
 <h2 is-upgraded><strong>Google Cloud Functions のプログラムを公開する</strong></h2>
-<p>(T.B.D)</p>
+<p>プログラムが配置されているディレクトリでコマンドを実行することで、Google Cloud Functions へのプログラムの公開が行われます。</p>
+<p>コンソールで Go のプログラムを公開するコマンドを入力します。</p>
+<pre><code>$ gcloud functions deploy {Cloud Functions の名前} \
+--runtime go111 \
+--trigger-http</code></pre>
+<aside class="special"><h3 is-upgraded><strong>Cloud Functions の名前について</strong></h3>
+<p>名前は、英数字とハイフンのみ使用できます。<br>この名前が Go のプログラムの関数名になりますが、--entry-point オプションを指定すると、Cloud Functions の名前と関数名を異なるように設定することができます。</p>
+<p>デプロイ時のオプションの詳細は <a href="https://cloud.google.com/sdk/gcloud/reference/beta/functions/deploy" target="_blank">gcloud beta functions deploy</a> に書いてあります。</p>
+</aside>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Google Cloud Shell のエディタで Go のプログラムを編集する" duration="0">
         <p>「コードエディタの起動」ボタンを押下します。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/cab95b8bef9e729b.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/3370a78df3284d5f.png"></p>
 <p>エディタが起動します。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/672921121436f732.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/3ea62c52b4bdec08.png"></p>
 <p>左側がファイルの一覧、右側がエディタです。</p>
 
 
