@@ -1,15 +1,15 @@
 {
   "environment": "web",
-  "source": "1AjOewYLEtWy-x8RGQtxQe1vMCTKia15CK3iKczmfoQM",
   "format": "html",
   "prefix": "/codelab/",
   "mainga": "UA-49880327-14",
-  "updated": "2018-11-25T05:04:45Z",
+  "updated": "2019-05-05T06:05:24Z",
   "id": "google-app-engine-go",
   "duration": 0,
   "title": "Google App Engine で Go を動かしてみよう",
-  "author": "mi-bear",
+  "authors": "mi-bear",
   "summary": "実際に動く Go のソースコードを触ってみることで, Google App Engine 上でのアプリケーションの仕組みを知ることができます。",
+  "source": "1AjOewYLEtWy-x8RGQtxQe1vMCTKia15CK3iKczmfoQM",
   "theme": "web",
   "status": [
     "draft"

@@ -1,14 +1,14 @@
 {
   "environment": "web",
   "format": "html",
-  "prefix": "https://storage.googleapis.com",
+  "prefix": "/codelab/",
   "mainga": "UA-49880327-14",
-  "updated": "2019-05-11T05:31:25Z",
+  "updated": "2019-05-11T05:47:21Z",
   "id": "google-cloud-shell-go",
   "duration": 0,
   "title": "Google Cloud Shell で Go の開発をはじめよう",
   "authors": "mi-bear",
-  "summary": "Google Cloud Shell を利用して ブラウザ上で Go の開発ができるようになります。",
+  "summary": "Google Cloud Shell を利用してブラウザ上で Go の開発ができるようになります。",
   "source": "1tmQBU8WtUIQ_Yb2STllFCa3lE8DQsMFnkikvcjMjF1c",
   "theme": "web",
   "status": [

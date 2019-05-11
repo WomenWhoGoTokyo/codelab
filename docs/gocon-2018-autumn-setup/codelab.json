@@ -1,6 +1,5 @@
 {
   "environment": "web",
-  "source": "1nBB9Sl-mnKE5htc_Fbx_-Q3VUY1YIfF_C3Wi_HFgzoo",
   "format": "html",
   "prefix": "/codelab/",
   "mainga": "UA-49880327-14",
@@ -8,8 +7,9 @@
   "id": "gocon-2018-autumn-setup",
   "duration": 0,
   "title": "Go Conference 2018 Autumn のための準備",
-  "author": "mi-bear",
+  "authors": "mi-bear",
   "summary": "Go Conference 2018 Autumn で実施するコードラボのための準備をします。",
+  "source": "1nBB9Sl-mnKE5htc_Fbx_-Q3VUY1YIfF_C3Wi_HFgzoo",
   "theme": "web",
   "status": [
     "draft"

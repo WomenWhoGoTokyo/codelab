@@ -1,7 +1,7 @@
 {
   "environment": "web",
   "format": "html",
-  "prefix": "https://storage.googleapis.com",
+  "prefix": "/codelab/",
   "mainga": "UA-49880327-14",
   "updated": "2019-05-11T06:02:25Z",
   "id": "gocon-2019-spring-setup",
