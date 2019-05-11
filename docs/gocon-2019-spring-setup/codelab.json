@@ -1,0 +1,26 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2019-05-11T06:02:25Z",
+  "id": "gocon-2019-spring-setup",
+  "duration": 0,
+  "title": "Go Conference 2019 Spring のための準備",
+  "authors": "mi-bear",
+  "summary": "Go Conference 2019 Spring で実施するコードラボのための準備をします。",
+  "source": "1SBE8eGYPdnZVuMffOA0t4OT_6sxndTjNqmEOv-d61mA",
+  "theme": "web",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "Web"
+  ],
+  "tags": [
+    "gocon 2019 spring",
+    "women who go tokyo"
+  ],
+  "feedback": "https://github.com/WomenWhoGoTokyo/codelab/issues",
+  "url": "gocon-2019-spring-setup"
+}
