@@ -28,7 +28,7 @@ func TaskManagement(w http.ResponseWriter, r *http.Request) {
 			responseWrite(w, http.StatusInternalServerError, e.Error(), e)
 			return
 		}
-		msg := fmt.Sprintf("%v added\n", t.Title)
+		msg := fmt.Sprintf("%v added", t.Title)
 		responseWrite(w, http.StatusOK, msg, nil)
 
 	// 一覧取得
