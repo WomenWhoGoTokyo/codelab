@@ -28,8 +28,20 @@ func TaskManagement(w http.ResponseWriter, r *http.Request) {
 			responseWrite(w, http.StatusInternalServerError, e.Error(), e)
 			return
 		}
-		msg := fmt.Sprintf("%v added", t.Title)
+		msg := fmt.Sprintf("%v added\n", t.Title)
 		responseWrite(w, http.StatusOK, msg, nil)
+
+    // 一覧取得
+    case http.MethodGet:
+
+
+    // ステータス変更
+    case http.MethodPatch:
+
+
+    // 削除
+    case http.MethodDelete:
+
 
 	default:
 		e := errors.New("method not allowed")
