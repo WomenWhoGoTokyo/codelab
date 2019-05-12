@@ -28,20 +28,52 @@ func TaskManagement(w http.ResponseWriter, r *http.Request) {
 			responseWrite(w, http.StatusInternalServerError, e.Error(), e)
 			return
 		}
-		msg := fmt.Sprintf("%v added\n", t.Title)
+		msg := fmt.Sprintf("%v added", t.Title)
 		responseWrite(w, http.StatusOK, msg, nil)
 
-    // 一覧取得
-    case http.MethodGet:
+	// 一覧取得
+	case http.MethodGet:
+		t, err := getAllTicket()
+		if err != nil {
+			e := errors.Errorf("get error: %v", err)
+			responseWrite(w, http.StatusInternalServerError, e.Error(), e)
+			return
+		}
 
+		if len(t) < 1 {
+			responseWrite(w, http.StatusOK, "0 tickets", nil)
+			return
+		}
 
-    // ステータス変更
-    case http.MethodPatch:
+		b, err := json.Marshal(t)
+		if err != nil {
+			e := errors.Errorf("json marshal error: %v", err)
+			responseWrite(w, http.StatusInternalServerError, e.Error(), e)
+			return
+		}
 
+		w.WriteHeader(http.StatusOK)
+		w.Write(b)
 
-    // 削除
-    case http.MethodDelete:
+	// ステータス変更
+	case http.MethodPatch:
+		param, code, err := getJSON(r.Header.Get("Content-Type"), r.Body)
+		if err != nil {
+			responseWrite(w, code, err.Error(), err)
+			return
+		}
 
+		t := setTicket(param.ID, param.Title, param.Status)
+		if err := t.update(); err != nil {
+			e := errors.Errorf("patch error: %v", err)
+			responseWrite(w, http.StatusInternalServerError, e.Error(), e)
+			return
+		}
+		msg := fmt.Sprintf("%v updated", t)
+		responseWrite(w, http.StatusOK, msg, nil)
+
+	// 削除
+	case http.MethodDelete:
 
 	default:
 		e := errors.New("method not allowed")
@@ -56,7 +88,7 @@ func responseWrite(w http.ResponseWriter, code int, msg string, err error) {
 		log.Println(err)
 	}
 	w.WriteHeader(code)
-	w.Write([]byte(msg))
+	w.Write([]byte(fmt.Sprintf("%v\n", msg)))
 }
 
 func getJSON(contentType string, body io.Reader) (Parameter, int, error) {
