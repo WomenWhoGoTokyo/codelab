@@ -31,17 +31,14 @@ func TaskManagement(w http.ResponseWriter, r *http.Request) {
 		msg := fmt.Sprintf("%v added\n", t.Title)
 		responseWrite(w, http.StatusOK, msg, nil)
 
-    // 一覧取得
-    case http.MethodGet:
+	// 一覧取得
+	case http.MethodGet:
 
+	// ステータス変更
+	case http.MethodPatch:
 
-    // ステータス変更
-    case http.MethodPatch:
-
-
-    // 削除
-    case http.MethodDelete:
-
+	// 削除
+	case http.MethodDelete:
 
 	default:
 		e := errors.New("method not allowed")
@@ -56,7 +53,7 @@ func responseWrite(w http.ResponseWriter, code int, msg string, err error) {
 		log.Println(err)
 	}
 	w.WriteHeader(code)
-	w.Write([]byte(msg))
+	w.Write([]byte(fmt.Sprintf("%v\n", msg)))
 }
 
 func getJSON(contentType string, body io.Reader) (Parameter, int, error) {
