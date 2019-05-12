@@ -33,8 +33,6 @@ func (t Ticket) add() error {
 	}
 
 	newKey := datastore.IncompleteKey(os.Getenv("MY_CODE"), nil)
-	if _, err := client.Put(ctx, newKey, &t); err != nil {
-		return err
-	}
-	return nil
+	_, err = client.Put(ctx, newKey, &t)
+	return err
 }
