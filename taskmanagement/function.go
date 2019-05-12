@@ -72,6 +72,10 @@ func TaskManagement(w http.ResponseWriter, r *http.Request) {
 		msg := fmt.Sprintf("%v updated", t)
 		responseWrite(w, http.StatusOK, msg, nil)
 
+	// ステータス変更
+	case http.MethodPatch:
+
+
 	// 削除
 	case http.MethodDelete:
 
