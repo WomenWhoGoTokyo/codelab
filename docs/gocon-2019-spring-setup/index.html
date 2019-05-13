@@ -58,15 +58,22 @@
         <p>同じプロジェクト上で複数人が Google Cloud Functions を作成するとき、お互いのアプリケーションの上書きを避けなければなりません。</p>
 <p>このコードラボを始めるときに、任意の文字列を配布します。任意の文字列を Cloud Functions の名前として利用してください。</p>
 <h2 is-upgraded><strong>Go のプログラムを公開する</strong></h2>
-<p>Go のプログラムを公開するときに、任意の文字列を利用します。</p>
-<pre><code>$ gcloud functions deploy {配布された任意の文字列} \
+<p>Go のプログラムを公開するときに、Cloud Functions 名を使用します。</p>
+<p>{Cloud Functions 名} = {<code>配布された任意の文字列} とします。</code></p>
+<pre><code>$ gcloud functions deploy {</code></pre>
+<p>Cloud Functions 名</p>
+<pre><code>} \
 --runtime go111 \
 --entry-point TaskManagement \
 --trigger-http</code></pre>
 <h2 is-upgraded><strong>Google Cloud Functions の名前を環境変数に格納する</strong></h2>
 <p>Go のプログラムを公開したあと、1度だけ実行します。</p>
-<pre><code>$ gcloud beta functions deploy {配布された任意の文字列} \
---set-env-vars MY_CODE={配布された任意の文字列}</code></pre>
+<pre><code>$ gcloud beta functions deploy {</code></pre>
+<p>Cloud Functions 名</p>
+<pre><code>} \
+--set-env-vars MY_CODE={</code></pre>
+<p>Cloud Functions 名</p>
+<pre><code>}</code></pre>
 
 
       </google-codelab-step>
