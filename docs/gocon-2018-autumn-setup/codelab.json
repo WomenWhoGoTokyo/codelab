@@ -1,7 +1,7 @@
 {
   "environment": "web",
   "format": "html",
-  "prefix": "/codelab/",
+  "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
   "updated": "2018-11-24T10:54:40Z",
   "id": "gocon-2018-autumn-setup",
