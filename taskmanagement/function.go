@@ -72,12 +72,22 @@ func TaskManagement(w http.ResponseWriter, r *http.Request) {
 		msg := fmt.Sprintf("%v updated", t)
 		responseWrite(w, http.StatusOK, msg, nil)
 
-	// ステータス変更
-	case http.MethodPatch:
-
-
 	// 削除
 	case http.MethodDelete:
+		param, code, err := getJSON(r.Header.Get("Content-Type"), r.Body)
+		if err != nil {
+			responseWrite(w, code, err.Error(), err)
+			return
+		}
+
+		t := setTicket(param.ID, "", 0)
+		if err := t.delete(); err != nil {
+			e := errors.Errorf("delete error: %v", err)
+			responseWrite(w, http.StatusInternalServerError, e.Error(), e)
+			return
+		}
+		msg := fmt.Sprintf("%v deleted", t)
+		responseWrite(w, http.StatusOK, msg, nil)
 
 	default:
 		e := errors.New("method not allowed")

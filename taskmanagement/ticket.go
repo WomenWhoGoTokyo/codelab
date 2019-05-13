@@ -100,3 +100,14 @@ func (t Ticket) update() error {
 	})
 	return err
 }
+
+func (t Ticket) delete() error {
+	ctx := context.Background()
+
+	client, err := datastore.NewClient(ctx, "wwgt-codelabs")
+	if err != nil {
+		return err
+	}
+
+	return client.Delete(ctx, datastore.IDKey(os.Getenv("MY_CODE"), t.ID, nil))
+}
