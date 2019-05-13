@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "/codelab/",
+  "mainga": "UA-49880327-14",
+  "updated": "2019-05-13T13:20:51Z",
+  "id": "google-cloud-functions-go",
+  "duration": 0,
+  "title": "Google Cloud Functions で Go を動かしてみよう",
+  "authors": "mi-bear",
+  "summary": "実際に動く Go のソースコードを触ってみることで、Google Cloud Functions 上でのアプリケーションの仕組みを知ることができます。",
+  "source": "1uwGLNnjLfFky0mvQuAKu7CIVTt6jO2rIMD4AkxrRUj4",
+  "theme": "web",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "Web"
+  ],
+  "tags": [
+    "women who go tokyo"
+  ],
+  "feedback": "https://github.com/WomenWhoGoTokyo/codelab/issues",
+  "url": "google-cloud-functions-go"
+}

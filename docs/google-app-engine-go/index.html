@@ -7,20 +7,23 @@
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
   <title>Google App Engine で Go を動かしてみよう</title>
-  <script src="/codelab/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="/codelab/elements/codelab.html">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
-  <style is="custom-style">
-    body {
-      font-family: "Roboto",sans-serif;
-      background: var(--google-codelab-background, #F8F9FA);
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/codelab//codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
     }
   </style>
-  
 </head>
-<body unresolved class="fullbleed">
-
-  <google-codelab title="Google App Engine で Go を動かしてみよう"
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="google-app-engine-go"
+                  title="Google App Engine で Go を動かしてみよう"
                   environment="web"
                   feedback-link="https://github.com/WomenWhoGoTokyo/codelab/issues">
     
@@ -33,11 +36,11 @@
 <li>公開したアプリケーションを確認する。</li>
 <li>サンプルコードを変更して 2. と 3. を行う。</li>
 </ol>
-<p><img style="max-width: 624.00px" src="img/dabe202a9b3d608b.png"></p>
-<h2><strong>Google App Engine とは</strong></h2>
+<p class="image-container"><img style="width: 624.00px" src="img/dabe202a9b3d608b.png"></p>
+<h2 is-upgraded><strong>Google App Engine とは</strong></h2>
 <p>Google App Engine は Google が <a href="https://cloud.google.com/" target="_blank">Google Cloud Platform</a> 上で提供しているインフラ上でアプリケーションを実行できるサービスです。</p>
 <p>サーバの運用・構築の手間がかからず, ニーズに合わせて規模を拡大・縮小しやすいことが利点です。</p>
-<h2>Go の開発環境は必要でしょうか？</h2>
+<h2 is-upgraded>Go の開発環境は必要でしょうか？</h2>
 <p>このコードラボでは Google Cloud Shell というクラウド上の開発環境を利用します。お使いのコンピューター上で Go の開発環境を用意する必要はありません。</p>
 <p>Google Cloud Shell の詳しい説明と使い方は, <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a>  を参照してください。</p>
 
@@ -45,7 +48,7 @@
       </google-codelab-step>
     
       <google-codelab-step label="Google Cloud Console にアクセスする" duration="0">
-        <h2><strong>プロジェクトにアクセスする</strong></h2>
+        <h2 is-upgraded><strong>プロジェクトにアクセスする</strong></h2>
 <p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って, Google Cloud Console にアクセスしましょう。</p>
 
 
@@ -59,7 +62,7 @@
 <pre><code>$ cd codelab/guestbook
 $ ls
 README.md  app.yaml   index.go   init.go    message.go post.go    view</code></pre>
-<aside class="special"><h3><strong>コマンドの説明</strong></h3>
+<aside class="special"><h3 is-upgraded><strong>コマンドの説明</strong></h3>
 <p><code>cd</code> : 作業しているディレクトリを移動するコマンドです。<code>cd codelab/guestbook</code> は, <code>codelab</code> ディレクトリのさらに下の <code>guestbook</code> というディレクトリに移動します。</p>
 <p><code>ls</code>: ファイルやディレクトリの情報を表示するコマンドです。ここでは, <code>guestbook</code> ディレクトリに入っているファイルを表示します。</p>
 </aside>
@@ -70,7 +73,7 @@ README.md  app.yaml   index.go   init.go    message.go post.go    view</code></p
       <google-codelab-step label="設定ファイルを確認する" duration="0">
         <p><code>git clone</code> したファイルの中に, <code>app.yaml</code> があります。これは Google App Engine上で動かす アプリケーションの設定ファイルです。</p>
 <p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って,  Goolge Cloud Shell のエディタで <code>codelab &gt; guestbook &gt; app.yaml</code> を開いてみましょう。</p>
-<p><img style="max-width: 624.00px" src="img/3e8e8c98f2904373.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/3e8e8c98f2904373.png"></p>
 <pre><code>runtime: go
 api_version: go1.9
 
@@ -95,34 +98,34 @@ handlers:
     
       <google-codelab-step label="アプリケーションを確認する" duration="0">
         <p>公開したアプリケーションを確認しましょう。</p>
-<h2><strong>アクセスする</strong></h2>
+<h2 is-upgraded><strong>アクセスする</strong></h2>
 <p>Google Cloud Platform の AppEngine &gt; バージョン をクリックすると, 公開するコマンドのコマンドライン引数で利用したバージョンを一覧で確認できます。</p>
-<p><img style="max-width: 624.00px" src="img/19608e29c9ccad40.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/19608e29c9ccad40.png"></p>
 <p>一覧で, バージョン名をクリックします。</p>
-<p><img style="max-width: 624.00px" src="img/669ab036cecc4b4e.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/669ab036cecc4b4e.png"></p>
 <p>ブラウザが立ち上がり, 下記のような画面が表示されると成功です。</p>
-<p><img style="max-width: 624.00px" src="img/7d7d5c7b21c9ab31.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/7d7d5c7b21c9ab31.png"></p>
 <p>&#34;お名前&#34;, &#34;メッセージ&#34; に適当な文字列を入力して, 送信ボタンを押下してみましょう。</p>
-<p><img style="max-width: 624.00px" src="img/acb984b830b269ba.png"></p>
-<h2>データを見る</h2>
+<p class="image-container"><img style="width: 624.00px" src="img/acb984b830b269ba.png"></p>
+<h2 is-upgraded>データを見る</h2>
 <p>Google Cloud Platform 上でもデータを確認することができます。</p>
 <p>データストア &gt; エンティティ をクリックしましょう。</p>
-<p><img style="max-width: 624.00px" src="img/ddac3546feaca3ec.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/ddac3546feaca3ec.png"></p>
 <p>&#34;名前空間&#34; を選択し, 先程入力したデータが格納されていることを確認できます。</p>
-<p><img style="max-width: 624.00px" src="img/39083fbe3fec6011.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/39083fbe3fec6011.png"></p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="表示している文字を変更してみよう" duration="0">
-        <p><img style="max-width: 624.00px" src="img/d0192f21765b9cd.png"></p>
+        <p class="image-container"><img style="width: 624.00px" src="img/d0192f21765b9cd.png"></p>
 <p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って,  Goolge Cloud Shell のエディタを立ち上げます。</p>
-<h2><strong>文字列が書いてあるファイルを開く</strong></h2>
+<h2 is-upgraded><strong>文字列が書いてあるファイルを開く</strong></h2>
 <p><code>codelab &gt; guestbook &gt; index.go</code> を開きましょう。</p>
-<p><img style="max-width: 624.00px" src="img/6d9fad155c88c51e.png"></p>
-<h2><strong>文字列を変更する</strong></h2>
+<p class="image-container"><img style="width: 624.00px" src="img/6d9fad155c88c51e.png"></p>
+<h2 is-upgraded><strong>文字列を変更する</strong></h2>
 <p><code>index.go</code> の下記の部分を好きな文字列に変更します。</p>
-<p><img style="max-width: 624.00px" src="img/aec2493bb15d4ef1.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/aec2493bb15d4ef1.png"></p>
 <p>Before:</p>
 <pre><code>var title = &#34;ゲストブック&#34;
 var description = &#34;結婚式などの受付で名前や住所, メッセージを記帳してもらうためのノートのことです。&#34;</code></pre>
@@ -130,43 +133,43 @@ var description = &#34;結婚式などの受付で名前や住所, メッセー�
 <pre><code>var title = &#34;Wedding Guest Book&#34;
 var description = &#34;Gopher &amp; Gopher 2018.11.25&#34;</code></pre>
 <p><code>File &gt; Save</code> を選択して, 保存します。</p>
-<p><img style="max-width: 624.00px" src="img/7129833e15494a89.png"></p>
-<h2><strong>変更したプログラムを公開する</strong></h2>
+<p class="image-container"><img style="width: 624.00px" src="img/7129833e15494a89.png"></p>
+<h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
 <p>コンソールでコマンドを実行して, Go のプログラムを公開しましょう。</p>
 <pre><code>$ goapp deploy --application {アプリケーションID} --version {バージョン} .</code></pre>
-<h2><strong>アプリケーションを確認する</strong></h2>
+<h2 is-upgraded><strong>アプリケーションを確認する</strong></h2>
 <p>ブラウザを更新しましょう。</p>
 <p>タイトルとその下の文言が変更されていることを確認しましょう。</p>
-<p><img style="max-width: 624.00px" src="img/463f967cd8a8e022.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/463f967cd8a8e022.png"></p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="表示件数を変更してみよう" duration="0">
         <p>まず, &#34;お名前&#34; と &#34;メッセージ&#34; に適当な文字列を入力して, 送信ボタンを押下することを繰り返して, 10件ほど登録してみましょう。</p>
-<p><img style="max-width: 624.00px" src="img/e6d23016247fef1e.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/e6d23016247fef1e.png"></p>
 <p>さらにもう1件の &#34;お名前&#34; と &#34;メッセージ&#34; を登録しましょう。</p>
 <p>全部で11件の &#34;お名前&#34; と &#34;メッセージ&#34; を登録しましたが, 表示は10件で, 一番古いメッセージが表示されなくなりました。</p>
-<p><img style="max-width: 624.00px" src="img/897e09cd2fd04d6e.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/897e09cd2fd04d6e.png"></p>
 <p>登録した11件のの &#34;お名前&#34; と &#34;メッセージ&#34; をすべて一覧で表示できるようにしましょう。</p>
-<h2><strong>文字列が書いてあるファイルを開く</strong></h2>
+<h2 is-upgraded><strong>文字列が書いてあるファイルを開く</strong></h2>
 <p><code>codelab &gt; guestbook &gt; index.go</code> を開きましょう。</p>
-<p><img style="max-width: 624.00px" src="img/866b44928218bfc1.png"></p>
-<h2><strong>件数を変更する</strong></h2>
+<p class="image-container"><img style="width: 624.00px" src="img/866b44928218bfc1.png"></p>
+<h2 is-upgraded><strong>件数を変更する</strong></h2>
 <p><code>index.go</code> の下記の部分を, 15件まで取得するように変更します。</p>
-<p><img style="max-width: 624.00px" src="img/6bb7750b4def632a.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/6bb7750b4def632a.png"></p>
 <p>Before:</p>
 <pre><code>q := datastore.NewQuery(&#34;Message&#34;).Order(&#34;-createdAt&#34;).Limit(10)</code></pre>
 <p>After:</p>
 <pre><code>q := datastore.NewQuery(&#34;Message&#34;).Order(&#34;-createdAt&#34;).Limit(15)</code></pre>
 <p><code>File &gt; Save</code> を選択して, 保存します。</p>
-<p><img style="max-width: 624.00px" src="img/7129833e15494a89.png"></p>
-<h2><strong>変更したプログラムを公開する</strong></h2>
+<p class="image-container"><img style="width: 624.00px" src="img/7129833e15494a89.png"></p>
+<h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
 <p>コンソールでコマンドを実行して, Go のプログラムを公開しましょう。</p>
 <pre><code>$ goapp deploy --application {アプリケーションID} --version {バージョン} .</code></pre>
-<h2><strong>アプリケーションを確認する</strong></h2>
+<h2 is-upgraded><strong>アプリケーションを確認する</strong></h2>
 <p>ブラウザを更新ボタンを押下して, 11件の &#34;お名前&#34; と &#34;メッセージ&#34;  が表示されていることを確認しましょう。</p>
-<p><img style="max-width: 624.00px" src="img/bc1cd730404a1c9a.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/bc1cd730404a1c9a.png"></p>
 <p>15件までは一覧に表示することができます。</p>
 
 
@@ -174,69 +177,69 @@ var description = &#34;Gopher &amp; Gopher 2018.11.25&#34;</code></pre>
     
       <google-codelab-step label="メッセージを変更できるようにしてみよう" duration="0">
         <p>&#34;お名前&#34; と &#34;メッセージ&#34; を変更できるようにします。</p>
-<p><img style="max-width: 624.00px" src="img/391340524bf2a15c.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/391340524bf2a15c.png"></p>
 <p>あらかじめ, ソースコードの一部は用意されています。</p>
 <ul>
 <li>一覧に編集画面へのリンクを作成するためのデータの用意</li>
 <li>編集画面のHTML</li>
 </ul>
-<h2><strong>一覧に編集リンクを追加する</strong></h2>
-<h3><strong>変更箇所のファイルを開く</strong></h3>
+<h2 is-upgraded><strong>一覧に編集リンクを追加する</strong></h2>
+<h3 is-upgraded><strong>変更箇所のファイルを開く</strong></h3>
 <p><code>codelab &gt; guestbook &gt; view &gt; index.html</code> を開きましょう。</p>
-<p><img style="max-width: 624.00px" src="img/aabd03d18fbe6b10.png"></p>
-<h3><strong>一覧にリンクを足す</strong></h3>
+<p class="image-container"><img style="width: 624.00px" src="img/aabd03d18fbe6b10.png"></p>
+<h3 is-upgraded><strong>一覧にリンクを足す</strong></h3>
 <p>一覧に編集画面へのリンクを追加します。</p>
 <p>編集画面のURLを <code>edit</code> ,  1件の &#34;お名前&#34; と &#34;メッセージ&#34; を識別するための変数名を <code>key</code> とします。</p>
-<p><img style="max-width: 624.00px" src="img/b99f378783a15ede.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/b99f378783a15ede.png"></p>
 <p>Before:</p>
 <pre><code>&lt;div class=&#34;messages&#34;&gt;
-  {{if lt 0 .Count}}
+  &#123;&#123;if lt 0 .Count}}
   &lt;div class=&#34;message&#34;&gt;
     &lt;div class=&#34;message-header&#34;&gt;お名前&lt;/div&gt;
     &lt;div class=&#34;message-header&#34;&gt;メッセージ&lt;/div&gt;
   &lt;/div&gt;
-  {{end}}
-  {{range .Messages}}
+  &#123;&#123;end}}
+  &#123;&#123;range .Messages}}
   &lt;div class=&#34;message&#34;&gt;
-    &lt;h2 class=&#34;message-name&#34;&gt;{{.Name}}&lt;/h2&gt;
-    &lt;p class=&#34;message-text&#34;&gt;{{.Message}}&lt;/p&gt;
+    &lt;h2 class=&#34;message-name&#34;&gt;&#123;&#123;.Name}}&lt;/h2&gt;
+    &lt;p class=&#34;message-text&#34;&gt;&#123;&#123;.Message}}&lt;/p&gt;
   &lt;/div&gt;
-  {{end}}
+  &#123;&#123;end}}
 &lt;/div&gt;</code></pre>
 <p>After:</p>
 <pre><code>&lt;div class=&#34;messages&#34;&gt;
-  {{if lt 0 .Count}}
+  &#123;&#123;if lt 0 .Count}}
   &lt;div class=&#34;message&#34;&gt;
     &lt;div class=&#34;message-header&#34;&gt;お名前&lt;/div&gt;
     &lt;div class=&#34;message-header&#34;&gt;メッセージ&lt;/div&gt;
     &lt;div class=&#34;message-header&#34;&gt;編集&lt;/div&gt;
   &lt;/div&gt;
-  {{end}}
-  {{range .Messages}}
+  &#123;&#123;end}}
+  &#123;&#123;range .Messages}}
   &lt;div class=&#34;message&#34;&gt;
-    &lt;h2 class=&#34;message-name&#34;&gt;{{.Name}}&lt;/h2&gt;
-    &lt;p class=&#34;message-text&#34;&gt;{{.Message}}&lt;/p&gt;
-    &lt;div class=&#34;message-link&#34;&gt;&lt;a href=&#34;./edit?key={{.ID}}&#34;&gt;編集する&lt;/a&gt;&lt;/div&gt;
+    &lt;h2 class=&#34;message-name&#34;&gt;&#123;&#123;.Name}}&lt;/h2&gt;
+    &lt;p class=&#34;message-text&#34;&gt;&#123;&#123;.Message}}&lt;/p&gt;
+    &lt;div class=&#34;message-link&#34;&gt;&lt;a href=&#34;./edit?key=&#123;&#123;.ID}}&#34;&gt;編集する&lt;/a&gt;&lt;/div&gt;
   &lt;/div&gt;
-  {{end}}
+  &#123;&#123;end}}
 &lt;/div&gt;</code></pre>
 <p><code>File &gt; Save</code> を選択して, 保存します。</p>
-<h3><strong>変更したプログラムを公開する</strong></h3>
+<h3 is-upgraded><strong>変更したプログラムを公開する</strong></h3>
 <p>コンソールでコマンドを実行して, Go のプログラムを公開しましょう。</p>
 <pre><code>$ goapp deploy --application {アプリケーションID} --version {バージョン} .</code></pre>
-<h3><strong>アプリケーションを確認する</strong></h3>
+<h3 is-upgraded><strong>アプリケーションを確認する</strong></h3>
 <p>まだリンク先のページはありませんが, 一覧にリンクが追加されました。</p>
-<p><img style="max-width: 624.00px" src="img/21171ff747ade5f1.png"></p>
-<h2><strong>編集リンクをクリックしたら編集画面に遷移する</strong></h2>
-<h3><strong>ファイルを新規作成する</strong></h3>
+<p class="image-container"><img style="width: 624.00px" src="img/21171ff747ade5f1.png"></p>
+<h2 is-upgraded><strong>編集リンクをクリックしたら編集画面に遷移する</strong></h2>
+<h3 is-upgraded><strong>ファイルを新規作成する</strong></h3>
 <p><code>codelab &gt; guestbook &gt; edit.go</code> を新規作成しましょう。</p>
 <p><code>File &gt; New &gt; File</code> をクリックします。</p>
-<p><img style="max-width: 624.00px" src="img/9abb1850bee42f06.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/9abb1850bee42f06.png"></p>
 <p><code>edit.go</code> と入力します。</p>
-<p><img style="max-width: 624.00px" src="img/97711e156dc0e3c7.png"></p>
-<h3><strong>編集画面のコードを書く</strong></h3>
+<p class="image-container"><img style="width: 624.00px" src="img/97711e156dc0e3c7.png"></p>
+<h3 is-upgraded><strong>編集画面のコードを書く</strong></h3>
 <p>下記のように書きましょう。</p>
-<p><img style="max-width: 624.00px" src="img/7834d82b1f3d00fe.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/7834d82b1f3d00fe.png"></p>
 <pre><code>package main
 
 import (
@@ -292,29 +295,29 @@ func edit(w http.ResponseWriter, r *http.Request) {
         }
 }</code></pre>
 <p><code>File &gt; Save</code> を選択して, 保存します。</p>
-<h3><strong>変更箇所のファイルを開く</strong></h3>
+<h3 is-upgraded><strong>変更箇所のファイルを開く</strong></h3>
 <p><code>/edit</code> にアクセスすると画面が表示されるようにします。</p>
 <p><code>codelab &gt; guestbook &gt; init.go</code> を開きましょう。</p>
-<p><img style="max-width: 624.00px" src="img/91a845e69e57d75a.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/91a845e69e57d75a.png"></p>
 <p><code>/edit にアクセスすると, edit.go の func edit(...) が呼ばれるようにします。</code></p>
-<p><img style="max-width: 624.00px" src="img/c1923bf13e405726.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/c1923bf13e405726.png"></p>
 <p>下記を追記しましょう。</p>
 <pre><code>http.HandleFunc(&#34;/edit&#34;, edit)</code></pre>
 <p><code>File &gt; Save</code> を選択して, 保存します。</p>
-<h3><strong>変更したプログラムを公開する</strong></h3>
+<h3 is-upgraded><strong>変更したプログラムを公開する</strong></h3>
 <p>コンソールでコマンドを実行して, Go のプログラムを公開しましょう。</p>
 <pre><code>$ goapp deploy --application {アプリケーションID} --version {バージョン} .</code></pre>
-<h3><strong>アプリケーションを確認する</strong></h3>
-<p>一覧から編集リンクをクリックすると...<img style="max-width: 624.00px" src="img/25b9d51c9f41636e.png"></p>
+<h3 is-upgraded><strong>アプリケーションを確認する</strong></h3>
+<p>一覧から編集リンクをクリックすると...<img style="width: 624.00px" src="img/25b9d51c9f41636e.png"></p>
 <p>編集画面に遷移します。</p>
-<p><img style="max-width: 624.00px" src="img/72d28f980ece92ec.png"></p>
-<h2><strong>編集画面で送信ボタンを押下すると変更を更新する</strong></h2>
-<h3><strong>変更箇所のファイルを開く</strong></h3>
+<p class="image-container"><img style="width: 624.00px" src="img/72d28f980ece92ec.png"></p>
+<h2 is-upgraded><strong>編集画面で送信ボタンを押下すると変更を更新する</strong></h2>
+<h3 is-upgraded><strong>変更箇所のファイルを開く</strong></h3>
 <p><code>codelab &gt; guestbook &gt; post.go</code> を開きましょう。</p>
-<p><img style="max-width: 624.00px" src="img/36678cd9064cd04.png"></p>
-<h3><strong>更新をできるようにする</strong></h3>
+<p class="image-container"><img style="width: 624.00px" src="img/36678cd9064cd04.png"></p>
+<h3 is-upgraded><strong>更新をできるようにする</strong></h3>
 <p>&#34;お名前&#34; と &#34;メッセージ&#34; を識別するための変数である <code>key</code> があるときは更新を, ないときには新規追加をするように処理を変更します。</p>
-<p><img style="max-width: 624.00px" src="img/540c1fca9d4b625a.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/540c1fca9d4b625a.png"></p>
 <p>① Before:</p>
 <pre><code>import (
         &#34;net/http&#34;
@@ -349,14 +352,14 @@ if k == &#34;&#34; {
         key = datastore.NewKey(ctx, &#34;Message&#34;, &#34;&#34;, keyID, nil)
 }</code></pre>
 <p><code>File &gt; Save</code> を選択して, 保存します。</p>
-<h3><strong>変更したプログラムを公開する</strong></h3>
+<h3 is-upgraded><strong>変更したプログラムを公開する</strong></h3>
 <p>コンソールでコマンドを実行して, Go のプログラムを公開しましょう。</p>
 <pre><code>$ goapp deploy --application {アプリケーションID} --version {バージョン} .</code></pre>
-<h3><strong>アプリケーションを確認する</strong></h3>
+<h3 is-upgraded><strong>アプリケーションを確認する</strong></h3>
 <p>編集画面でフォームの中身を変更すると...</p>
-<p><img style="max-width: 624.00px" src="img/a3b47dab04f7c029.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/a3b47dab04f7c029.png"></p>
 <p>変更された内容が一覧に反映されます。</p>
-<p><img style="max-width: 624.00px" src="img/1efb144cd135a843.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/1efb144cd135a843.png"></p>
 
 
       </google-codelab-step>
@@ -369,7 +372,7 @@ if k == &#34;&#34; {
       </google-codelab-step>
     
       <google-codelab-step label="Appendix" duration="0">
-        <aside class="special"><h3>Cloud Datastore について</h3>
+        <aside class="special"><h3 is-upgraded>Cloud Datastore について</h3>
 <p>Cloud Datastore とは, Google が提供するスケーラビリティの高い NoSQL データベースです。</p>
 <p>RESTful インターフェースを利用することで, データに簡単にアクセスすることができます。</p>
 <p><strong>RDB用語との対比:</strong></p>
@@ -402,33 +405,10 @@ if k == &#34;&#34; {
     
   </google-codelab>
 
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-49880327-14', 'auto');
-
-    (function() {
-      var gaCodelab = '';
-      if (gaCodelab) {
-        ga('create', gaCodelab, 'auto', {name: 'codelab'});
-      }
-
-      var gaView;
-      var parts = location.search.substring(1).split('&');
-      for (var i = 0; i < parts.length; i++) {
-        var param = parts[i].split('=');
-        if (param[0] === 'viewga') {
-          gaView = param[1];
-          break;
-        }
-      }
-      if (gaView && gaView !== gaCodelab) {
-        ga('create', gaView, 'auto', {name: 'view'});
-      }
-    })();
-  </script>
+  <script src="/codelab//codelab-elements/native-shim.js"></script>
+  <script src="/codelab//codelab-elements/custom-elements.min.js"></script>
+  <script src="/codelab//codelab-elements/prettify.js"></script>
+  <script src="/codelab//codelab-elements/codelab-elements.js"></script>
 
 </body>
 </html>
