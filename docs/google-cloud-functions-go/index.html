@@ -58,13 +58,13 @@
         <p>GitHub からコードラボで利用するサンプルコードを取得しましょう。</p>
 <p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って、<code>git clone</code> というコマンドを実行します。</p>
 <pre>$ git clone https://github.com/WomenWhoGoTokyo/codelab.git</pre>
-<p><code>codelab/taskmanagement</code> というディレクトリが作られていることを Google Cloud Shell のコンソールで確認しましょう。</p>
-<pre>$ cd codelab/taskmanagement
+<p><code>codelab/taskmanager</code> というディレクトリが作られていることを Google Cloud Shell のコンソールで確認しましょう。</p>
+<pre>$ cd codelab/taskmanager
 $ ls
-function.go  go.mod  go.sum  parameter.go  status.go  ticket.go</pre>
+function.go  go.mod  go.sum  parameter.go  status.go  task.go</pre>
 <aside class="special"><h3 is-upgraded><strong>コマンドの説明</strong></h3>
-<p><code>cd</code><strong> </strong>: 作業ディレクトリを移動するコマンドです。<code>cd codelab/taskmanagement</code> は、<code>codelab</code> ディレクトリのさらに下の <code>taskmanagement</code> というディレクトリに移動します。</p>
-<p><code>ls</code>: ファイルやディレクトリの情報を表示するコマンドです。ここでは <code>taskmanagement</code> ディレクトリに入っているファイルを表示します。</p>
+<p><code>cd</code><strong> </strong>: 作業ディレクトリを移動するコマンドです。<code>cd codelab/taskmanager</code> は、<code>codelab</code> ディレクトリのさらに下の <code>taskmanager</code> というディレクトリに移動します。</p>
+<p><code>ls</code>: ファイルやディレクトリの情報を表示するコマンドです。ここでは <code>taskmanager</code> ディレクトリに入っているファイルを表示します。</p>
 </aside>
 
 
@@ -72,9 +72,9 @@ function.go  go.mod  go.sum  parameter.go  status.go  ticket.go</pre>
     
       <google-codelab-step label="設定ファイルを確認する" duration="0">
         <p><code>git clone</code> したファイルの中に <code>go.mod</code> があります。Google Cloud Functions で Go のプログラムを動かすためには、<a href="https://github.com/golang/go/wiki/Modules" target="_blank">Go Modules</a> が必要です。</p>
-<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って,  Goolge Cloud Shell のエディタで <code>codelab &gt; taskmanagement &gt; go.mod</code> を開いてみましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/28745c084f700422.png"></p>
-<pre><code>module functions/taskmanagement
+<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って,  Goolge Cloud Shell のエディタで <code>codelab &gt; taskmanager &gt; go.mod</code> を開いてみましょう。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/d389a9c482963599.png"></p>
+<pre><code>module functions/taskmanager
 
 go 1.11
 
@@ -93,7 +93,7 @@ require (
         <p>取得した Go のプログラムを <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go/?index=codelab#3" target="_blank">Google Cloud Shell で Go のプログラムを公開する</a> の手順に従って、Google Cloud Functions に公開してみましょう。</p>
 <pre>$ gcloud functions deploy {Cloud Functions 名} \
 --runtime go111 \
---entry-point TaskManagement \
+--entry-point TaskManager \
 --trigger-http</pre>
 <p><code>--entry-point</code> は省略することが可能ですが、その場合は、Cloud Functions 名と同じになります。</p>
 <p>公開コマンドを実行の後、このようにコンソールに表示されたら、うまく公開ができています。</p>
@@ -115,7 +115,7 @@ versionId: &#39;1&#39;</pre>
 <p>Google Cloud Platform の Cloud Functions をクリックすると、Cloud Functions の一覧が表示されます。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/a43482d1034518c0.png"></p>
 <p>一覧で、公開した Cloud Functions 名をクリックします。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/eee62251ef7ff8f2.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/504ff8c493e2fa48.png"></p>
 <p>トリガーをクリックし、HTTP トリガーの URL を確認しましょう。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/976e4480965a9d91.png"></p>
 <h2 is-upgraded>タスクを追加する</h2>
@@ -161,26 +161,26 @@ versionId: &#39;1&#39;</pre>
 <p class="image-container"><img style="width: 624.00px" src="img/7bf5f83a664d487a.png"></p>
 <p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って、Goolge Cloud Shell のエディタを立ち上げます。</p>
 <h2 is-upgraded><strong>タスクを取得するプログラムを書く</strong></h2>
-<p><code>codelab &gt; taskmanagement &gt; ticket.go</code> を開きましょう。</p>
+<p><code>codelab &gt; taskmanager &gt; task.go</code> を開きましょう。</p>
 <p>下記の場所にプログラムを追加します。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/4c78a5f721e66589.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/c1278a56869d20bc.png"></p>
 <p>書き換える箇所は、このように変更します。</p>
 <h4 is-upgraded>Before:</h4>
-<pre><code>type Ticket struct {
+<pre><code>type Task struct {
     ID        int64     `datastore:&#34;-&#34;`
     Title     string    `datastore:&#34;title&#34;`
     Status    Status    `datastore:&#34;status&#34;`
     CreatedAt time.Time `datastore:&#34;createdAt&#34;`
 }</code></pre>
 <h4 is-upgraded>After:</h4>
-<pre><code>type Ticket struct {
+<pre><code>type Task struct {
     ID        int64     `datastore:&#34;-&#34; json:&#34;id&#34;`
     Title     string    `datastore:&#34;title&#34; json:&#34;title&#34;`
     Status    Status    `datastore:&#34;status&#34; json:&#34;status&#34;`
     CreatedAt time.Time `datastore:&#34;createdAt&#34; json:&#34;createdAt&#34;`
 }</code></pre>
 <p>また、ファイルの最後に、この関数を追加しましょう。</p>
-<pre><code>func getAllTicket() ([]Ticket, error) {
+<pre><code>func getAllTask() ([]Task, error) {
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, &#34;wwgt-codelabs&#34;)
@@ -188,7 +188,7 @@ versionId: &#39;1&#39;</pre>
         return nil, err
     }
 
-   var t []Ticket
+   var t []Task
 
     q := datastore.NewQuery(os.Getenv(&#34;MY_CODE&#34;))
     keys, err := client.GetAll(ctx, q, &amp;t)
@@ -202,16 +202,16 @@ versionId: &#39;1&#39;</pre>
     return t, nil
 }</code></pre>
 <h2 is-upgraded><strong>タスクを取得する処理を呼び出すプログラムを書く</strong></h2>
-<p><code>codelab &gt; taskmanagement &gt; function.go</code> を開きましょう。</p>
+<p><code>codelab &gt; taskmanager &gt; function.go</code> を開きましょう。</p>
 <p>下記の場所にプログラムを追加します。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/67fa23fd06e2bcdc.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/bc491f71e083b1dd.png"></p>
 <p>タスクを取得するプログラムの呼び出しは、下記のように書きます。</p>
 <pre><code>.
 .
 .
     // 一覧取得
     case http.MethodGet:
-        t, err := getAllTicket()
+        t, err := getAllTask()
        if err != nil {
             e := errors.Errorf(&#34;get error: %v&#34;, err)
             responseWrite(w, http.StatusInternalServerError, e.Error(), e)
@@ -219,7 +219,7 @@ versionId: &#39;1&#39;</pre>
         }
 
        if len(t) &lt; 1 {
-           responseWrite(w, http.StatusOK, &#34;0 tickets&#34;, nil)
+           responseWrite(w, http.StatusOK, &#34;0 tasks&#34;, nil)
            return
        }
 
@@ -239,12 +239,12 @@ versionId: &#39;1&#39;</pre>
 .
 .</code></pre>
 <p><code>File &gt; SaveAll</code> を選択して、保存します。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/cb8505a816fdaff8.png"></p>
+<p class="image-container"><img style="width: 559.00px" src="img/863b992f688b42ba.png"></p>
 <h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
 <p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
 <pre>$ gcloud functions deploy {Cloud Functions 名} \
 --runtime go111 \
---entry-point TaskManagement \
+--entry-point TaskManager \
 --trigger-http</pre>
 <h2 is-upgraded><strong>アプリケーションを確認する</strong></h2>
 <p>コンソールで curl コマンドを実行して、タスクを取得してみましょう。</p>
@@ -277,13 +277,11 @@ versionId: &#39;1&#39;</pre>
 </table>
 <p>取得したタスクを確認し、ステータスを更新できるようにします。</p>
 <h2 is-upgraded><strong>タスクを更新するプログラムを書く</strong></h2>
-<p><code>codelab &gt; taskmanagement &gt; ticket.go</code> を開きましょう。</p>
-<p>下記の場所にプログラムを追加します。</p>
-<h2 is-upgraded><img style="width: 624.00px" src="img/b307ea549e7c8a39.png"></h2>
+<p><code>codelab &gt; taskmanager &gt; task.go</code> を開きましょう。</p>
 <p>ファイルの末尾に関数を2つ追加します。</p>
 <h4 is-upgraded>1つ目:</h4>
-<pre><code>func setTicket(id int64, title string, status Status) *Ticket {
-    return &amp;Ticket{
+<pre><code>func setTask(id int64, title string, status Status) *Task {
+    return &amp;Task{
         ID:        id,
         Title:     title,
         Status:    status,
@@ -291,7 +289,7 @@ versionId: &#39;1&#39;</pre>
     }
 }</code></pre>
 <h4 is-upgraded>2つ目:</h4>
-<pre><code>func (t Ticket) update() error {
+<pre><code>func (t Task) update() error {
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, &#34;wwgt-codelabs&#34;)
@@ -302,7 +300,7 @@ versionId: &#39;1&#39;</pre>
     key := datastore.IDKey(os.Getenv(&#34;MY_CODE&#34;), t.ID, nil)
 
     _, err = client.RunInTransaction(ctx, func(tx *datastore.Transaction) error {
-        var gt Ticket
+        var gt Task
 
         if err := tx.Get(key, &amp;gt); err != nil {
             return err
@@ -324,9 +322,9 @@ versionId: &#39;1&#39;</pre>
     return err
 }</code></pre>
 <h2 is-upgraded><strong>タスクを更新する処理を呼び出すプログラムを書く</strong></h2>
-<p><code>codelab &gt; taskmanagement &gt; function.go</code> を開きましょう。</p>
+<p><code>codelab &gt; taskmanager &gt; function.go</code> を開きましょう。</p>
 <p>下記の場所にプログラムを追加します。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/a47ede1f5f173855.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/ead7d4f9176b3102.png"></p>
 <p>タスクを更新するプログラムの呼び出しは、下記のように書きます。</p>
 <pre><code>.
 .
@@ -339,7 +337,7 @@ versionId: &#39;1&#39;</pre>
             return
         }
 
-        t := setTicket(param.ID, param.Title, param.Status)
+        t := setTask(param.ID, param.Title, param.Status)
         if err := t.update(); err != nil {
             e := errors.Errorf(&#34;patch error: %v&#34;, err)
             responseWrite(w, http.StatusInternalServerError, e.Error(), e)
@@ -358,7 +356,7 @@ versionId: &#39;1&#39;</pre>
 <p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
 <pre>$ gcloud functions deploy {Cloud Functions 名} \
 --runtime go111 \
---entry-point TaskManagement \
+--entry-point TaskManager \
 --trigger-http</pre>
 <h2 is-upgraded><strong>アプリケーションを確認する</strong></h2>
 <p>コンソールで curl コマンドを実行して、任意のタスクのステータスを更新してみましょう。</p>
@@ -381,11 +379,9 @@ versionId: &#39;1&#39;</pre>
         <p>ID を指定して削除する処理を追加しましょう。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/657d9d7f69ffa920.png"></p>
 <h2 is-upgraded><strong>タスクを削除するプログラムを書く</strong></h2>
-<p><code>codelab &gt; taskmanagement &gt; ticket.go</code> を開きましょう。</p>
-<p>下記の場所にプログラムを追加します。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/18b01086d971a03b.png"></p>
-<p>追加する箇所は、このように変更します。</p>
-<pre><code>func (t Ticket) delete() error {
+<p><code>codelab &gt; taskmanager &gt; task.go</code> を開きましょう。</p>
+<p>ファイルの末尾にプログラムを追加します。</p>
+<pre><code>func (t Task) delete() error {
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, &#34;wwgt-codelabs&#34;)
@@ -396,9 +392,9 @@ versionId: &#39;1&#39;</pre>
     return client.Delete(ctx, datastore.IDKey(os.Getenv(&#34;MY_CODE&#34;), t.ID, nil))
 }</code></pre>
 <h2 is-upgraded><strong>タスクを削除する処理を呼び出すプログラムを書く</strong></h2>
-<p><code>codelab &gt; taskmanagement &gt; function.go</code> を開きましょう。</p>
+<p><code>codelab &gt; taskmanager &gt; function.go</code> を開きましょう。</p>
 <p>下記の場所にプログラムを追加します。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/335dffde562e806e.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/8defad99e83509ce.png"></p>
 <p>タスクを削除するプログラムの呼び出しは、下記のように書きます。</p>
 <pre><code>.
 .
@@ -411,7 +407,7 @@ versionId: &#39;1&#39;</pre>
             return
         }
 
-        t := setTicket(param.ID, &#34;&#34;, 0)
+        t := setTask(param.ID, &#34;&#34;, 0)
         if err := t.delete(); err != nil {
             e := errors.Errorf(&#34;delete error: %v&#34;, err)
             responseWrite(w, http.StatusInternalServerError, e.Error(), e)
@@ -429,7 +425,7 @@ versionId: &#39;1&#39;</pre>
 <p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
 <pre>$ gcloud functions deploy {Cloud Functions 名} \
 --runtime go111 \
---entry-point TaskManagement \
+--entry-point TaskManager \
 --trigger-http</pre>
 <h2 is-upgraded><strong>アプリケーションを確認する</strong></h2>
 <p>コンソールで curl コマンドを実行して、任意のタスクを削除してみましょう。</p>
