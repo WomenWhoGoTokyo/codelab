@@ -33,12 +33,61 @@ func TaskManager(w http.ResponseWriter, r *http.Request) {
 
 	// 一覧取得
 	case http.MethodGet:
+		t, err := getAllTask()
+		if err != nil {
+			e := errors.Errorf("get error: %v", err)
+			responseWrite(w, http.StatusInternalServerError, e.Error(), e)
+			return
+		}
+
+		if len(t) < 1 {
+			responseWrite(w, http.StatusOK, "0 tickets", nil)
+			return
+		}
+
+		b, err := json.Marshal(t)
+		if err != nil {
+			e := errors.Errorf("json marshal error: %v", err)
+			responseWrite(w, http.StatusInternalServerError, e.Error(), e)
+			return
+		}
+
+		w.WriteHeader(http.StatusOK)
+		w.Write(b)
 
 	// ステータス変更
 	case http.MethodPatch:
+		param, code, err := getJSON(r.Header.Get("Content-Type"), r.Body)
+		if err != nil {
+			responseWrite(w, code, err.Error(), err)
+			return
+		}
+
+		t := setTask(param.ID, param.Title, param.Status)
+		if err := t.update(); err != nil {
+			e := errors.Errorf("patch error: %v", err)
+			responseWrite(w, http.StatusInternalServerError, e.Error(), e)
+			return
+		}
+		msg := fmt.Sprintf("%v updated", t)
+		responseWrite(w, http.StatusOK, msg, nil)
 
 	// 削除
 	case http.MethodDelete:
+		param, code, err := getJSON(r.Header.Get("Content-Type"), r.Body)
+		if err != nil {
+			responseWrite(w, code, err.Error(), err)
+			return
+		}
+
+		t := setTask(param.ID, "", 0)
+		if err := t.delete(); err != nil {
+			e := errors.Errorf("delete error: %v", err)
+			responseWrite(w, http.StatusInternalServerError, e.Error(), e)
+			return
+		}
+		msg := fmt.Sprintf("%v deleted", t)
+		responseWrite(w, http.StatusOK, msg, nil)
 
 	default:
 		e := errors.New("method not allowed")
