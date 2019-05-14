@@ -11,6 +11,6 @@ codelabs=(
 
 for ((i = 0; i < ${#codelabs[@]}; i+=2)) {
     echo "generate ${codelabs[i]}..."
-    echo claat export -prefix="/codelab/" ${codelabs[i+1]}
-    claat export -prefix="/codelab/" ${codelabs[i+1]}
+    echo claat export -prefix="https://storage.googleapis.com" ${codelabs[i+1]}
+    claat export -prefix="https://storage.googleapis.com" ${codelabs[i+1]}
 }

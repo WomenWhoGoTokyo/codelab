@@ -46,7 +46,7 @@
       <google-codelab-step label="Google Cloud Platform のプロジェクトにアクセスする" duration="0">
         <p>下記のURLから Google Cloud Console にアクセスし、プロジェクトを選択しましょう。</p>
 <p><a href="https://console.cloud.google.com/" target="_blank">https://console.cloud.google.com/</a></p>
-<p>用意しているプロジェクトは、下記の通りです。<br>これは、Google Cloud Functions の公開先アプリケーションIDとしても利用します。</p>
+<p>用意しているプロジェクトは、下記の通りです。<br>このプロジェクト名は、Google Cloud Functions の公開先アプリケーションIDとしても利用します。</p>
 <aside class="special"><p><strong>wwgt-codelabs</strong></p>
 </aside>
 <p class="image-container"><img style="width: 624.00px" src="img/b778a455b344a180.png"></p>
@@ -56,10 +56,10 @@
     
       <google-codelab-step label="Google Cloud Functions の名前を設定する" duration="0">
         <p>同じプロジェクト上で複数人が Google Cloud Functions を作成するとき、お互いのアプリケーションの上書きを避けなければなりません。</p>
-<p>このコードラボを始めるときに、任意の文字列を配布します。任意の文字列を Cloud Functions の名前として利用してください。</p>
+<p>このコードラボを始めるときに、ユニークな文字列を配布します。配布された文字列を Cloud Functions の名前として利用してください。</p>
 <h2 is-upgraded><strong>Go のプログラムを公開する</strong></h2>
 <p>Go のプログラムを公開するときに、Cloud Functions 名を使用します。</p>
-<p>{Cloud Functions 名} = {<code>配布された任意の文字列} とします。</code></p>
+<p>{Cloud Functions 名} = {<code>配布された文字列} とします。</code></p>
 <pre><code>$ gcloud functions deploy {</code></pre>
 <p>Cloud Functions 名</p>
 <pre><code>} \
