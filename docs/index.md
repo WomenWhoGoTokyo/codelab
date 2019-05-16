@@ -9,10 +9,12 @@
 
 文法などを学びたい方は、まずは[A Tour of Go](https://go-tour-jp.appspot.com/)で学ぶことをオススメします。
 
-- [Google App Engine で Go を動かしてみよう](./google-app-engine-go?index=codelab) by micchie
+- [Google App Engine で Go を動かしてみよう](./google-app-engine-go?index=codelab) by [micchie](https://twitter.com/micchiebear)
+- [Google Cloud Functions で Go を動かしてみよう](./google-cloud-functions-go?index=codelab) by [micchie](https://twitter.com/micchiebear)
 
 ## サブコンテンツ
 [Google App Engine で Go を動かしてみよう](./google-app-engine-go?index=codelab) を実行するにあたって, 具体的な説明が記載されているコンテンツです。
 
-- [Go Conference 2018 Autumn のための準備](./gocon-2018-autumn-setup?index=codelab) by micchie
-- [Google Cloud Shell で Go の開発をはじめよう](./google-cloud-shell-go?index=codelab) by micchie
+- [Go Conference 2018 Autumn のための準備](./gocon-2018-autumn-setup?index=codelab) by [micchie](https://twitter.com/micchiebear)
+- [Go Conference 2019 Spring のための準備](./gocon-2019-spring-setup?index=codelab) by [micchie](https://twitter.com/micchiebear)
+- [Google Cloud Shell で Go の開発をはじめよう](./google-cloud-shell-go?index=codelab) by [micchie](https://twitter.com/micchiebear)
