@@ -10,7 +10,7 @@ import (
 
 // Task is the structure of the task.
 type Task struct {
-	ID        int64     `datastore:"-" json:"id"`
+	ID        int64     `datastore:"-" json:"ID"`
 	Title     string    `datastore:"title" json:"title"`
 	Status    Status    `datastore:"status" json:"status"`
 	CreatedAt time.Time `datastore:"createdAt" json:"createdAt"`
