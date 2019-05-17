@@ -3,7 +3,7 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2019-05-17T00:08:34Z",
+  "updated": "2019-05-17T00:32:43Z",
   "id": "google-cloud-functions-go",
   "duration": 0,
   "title": "Google Cloud Functions で Go を動かしてみよう",
