@@ -84,27 +84,27 @@ require (
 )</code></pre>
 <p>このように、Go のランタイム (このコードラボでは 1.11) が指定されています。</p>
 <p>また、プログラム内で利用している外部パッケージのバージョンもここで指定します。</p>
-<p>このコードラボでは、<a href="https://github.com/golang/go/wiki/Modules" target="_blank">Go Modules</a> の詳細な仕組みについては触れません。</p>
+<p>このコードラボでは、<a href="https://github.com/golang/go/wiki/Modules" target="_blank">Go Modules</a> の詳細な仕組みについては触れませんが、興味のある方は調べてみてください。</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Google Cloud Functions に公開する" duration="0">
         <p>取得した Go のプログラムを <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go/?index=codelab#3" target="_blank">Google Cloud Shell で Go のプログラムを公開する</a> の手順に従って、Google Cloud Functions に公開してみましょう。</p>
-<pre>$ gcloud functions deploy {Cloud Functions 名} \
+<pre>$ gcloud functions deploy {Cloud Functions Name} \
 --runtime go111 \
 --entry-point TaskManager \
 --trigger-http</pre>
-<p><code>--entry-point</code> は省略することが可能ですが、その場合は、Cloud Functions 名と同じになります。</p>
+<p><code>--entry-point</code> は省略することが可能ですが、その場合は、Cloud Functions Nameと同じになります。</p>
 <p>公開コマンドを実行の後、このようにコンソールに表示されたら、うまく公開ができています。</p>
 <pre>status: ACTIVE
 timeout: 60s
 updateTime: &#39;2019-05-11T08:11:43Z&#39;
 versionId: &#39;1&#39;</pre>
-<p>このコードラボでは、Cloud Functions 名を環境変数にセットしてプログラム内で利用します。</p>
+<p>このコードラボでは、Cloud Functions Nameを環境変数にセットしてプログラム内で利用します。</p>
 <p>環境変数を設定するコマンドを実行しましょう。</p>
-<pre>$ gcloud beta functions deploy {Cloud Functions 名} \
---set-env-vars MY_CODE={Cloud Functions 名}</pre>
+<pre>$ gcloud beta functions deploy {Cloud Functions Name} \
+--set-env-vars MY_CODE={Cloud Functions Name}</pre>
 
 
       </google-codelab-step>
@@ -112,9 +112,10 @@ versionId: &#39;1&#39;</pre>
       <google-codelab-step label="アプリケーションを確認する" duration="0">
         <p>公開したアプリケーションを確認しましょう。</p>
 <h2 is-upgraded>アクセスする</h2>
+<p><a href="https://console.cloud.google.com/?hl=ja" target="_blank">https://console.cloud.google.com/?hl=ja</a> にアクセスしましょう。</p>
 <p>Google Cloud Platform の Cloud Functions をクリックすると、Cloud Functions の一覧が表示されます。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/a43482d1034518c0.png"></p>
-<p>一覧で、公開した Cloud Functions 名をクリックします。</p>
+<p>一覧で、公開した Cloud Functions Nameをクリックします。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/504ff8c493e2fa48.png"></p>
 <p>トリガーをクリックし、HTTP トリガーの URL を確認しましょう。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/976e4480965a9d91.png"></p>
@@ -128,7 +129,7 @@ versionId: &#39;1&#39;</pre>
 <p>Google Cloud Platform 上でデータを確認します。</p>
 <p>データストア &gt; エンティティ をクリックしましょう。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/60a3887db07a5f41.png"></p>
-<p>&#34;種類&#34; を Cloud Functions 名にすると、コマンドで登録した情報が格納されていることが確認できます。</p>
+<p>&#34;種類&#34; を Cloud Functions Nameにすると、コマンドで登録した情報が格納されていることが確認できます。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/50c604a803df1c17.png"></p>
 <h2 is-upgraded><strong>さらにタスクを追加する</strong></h2>
 <p>何回か curl コマンドを実行し、複数のタスクを登録します。</p>
@@ -174,7 +175,7 @@ versionId: &#39;1&#39;</pre>
 }</code></pre>
 <h4 is-upgraded>After:</h4>
 <pre><code>type Task struct {
-    ID        int64     `datastore:&#34;-&#34; json:&#34;id&#34;`
+    ID        int64     `datastore:&#34;-&#34; json:&#34;ID&#34;`
     Title     string    `datastore:&#34;title&#34; json:&#34;title&#34;`
     Status    Status    `datastore:&#34;status&#34; json:&#34;status&#34;`
     CreatedAt time.Time `datastore:&#34;createdAt&#34; json:&#34;createdAt&#34;`
@@ -242,7 +243,7 @@ versionId: &#39;1&#39;</pre>
 <p class="image-container"><img style="width: 559.00px" src="img/863b992f688b42ba.png"></p>
 <h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
 <p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
-<pre>$ gcloud functions deploy {Cloud Functions 名} \
+<pre>$ gcloud functions deploy {Cloud Functions Name} \
 --runtime go111 \
 --entry-point TaskManager \
 --trigger-http</pre>
@@ -354,7 +355,7 @@ versionId: &#39;1&#39;</pre>
 <p><code>File &gt; SaveAll</code> を選択して、保存します。</p>
 <h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
 <p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
-<pre>$ gcloud functions deploy {Cloud Functions 名} \
+<pre>$ gcloud functions deploy {Cloud Functions Name} \
 --runtime go111 \
 --entry-point TaskManager \
 --trigger-http</pre>
@@ -423,7 +424,7 @@ versionId: &#39;1&#39;</pre>
 <p><code>File &gt; SaveAll</code> を選択して、保存します。</p>
 <h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
 <p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
-<pre>$ gcloud functions deploy {Cloud Functions 名} \
+<pre>$ gcloud functions deploy {Cloud Functions Name} \
 --runtime go111 \
 --entry-point TaskManager \
 --trigger-http</pre>

@@ -61,25 +61,21 @@
 <p>このコードラボを始めるときに、ユニークな文字列を配布します。配布された文字列を Cloud Functions の名前として利用してください。</p>
 <h2 is-upgraded><strong>Go のプログラムを公開する</strong></h2>
 <p>Go のプログラムを公開するときに、Cloud Functions 名を使用します。</p>
-<p>{Cloud Functions 名} = {配布された文字列} とします。</p>
-<pre><code>$ gcloud functions deploy {Cloud Functions 名} \
+<p>{Cloud Functions Name} = {配布された文字列} とします。</p>
+<pre><code>$ gcloud functions deploy {Cloud Functions Name} \
 --runtime go111 \
 --entry-point TaskManagement \
 --trigger-http</code></pre>
 <h2 is-upgraded><strong>Google Cloud Functions の名前を環境変数に格納する</strong></h2>
 <p>Go のプログラムを公開したあと、1度だけ実行します。</p>
-<pre><code>$ gcloud beta functions deploy {</code></pre>
-<p>Cloud Functions 名</p>
-<pre><code>} \
---set-env-vars MY_CODE={</code></pre>
-<p>Cloud Functions 名</p>
-<pre><code>}</code></pre>
+<pre><code>$ gcloud beta functions deploy {Cloud Functions Name} \
+--set-env-vars MY_CODE={Cloud Functions Name}</code></pre>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="さいごに" duration="0">
-        <p>それでは、はじめましょう！</p>
+        <p>それでは、はじめましょう！ ｖ</p>
 
 
       </google-codelab-step>
