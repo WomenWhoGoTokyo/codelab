@@ -53,7 +53,7 @@ func responseWrite(w http.ResponseWriter, code int, msg string, err error) {
 		log.Println(err)
 	}
 	w.WriteHeader(code)
-	w.Write([]byte(fmt.Sprintf("%v\n", msg)))
+	w.Write([]byte(msg))
 }
 
 func getJSON(contentType string, body io.Reader) (Parameter, int, error) {
