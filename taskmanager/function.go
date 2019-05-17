@@ -24,7 +24,7 @@ func TaskManager(w http.ResponseWriter, r *http.Request) {
 
 		t := newTask(param.Title)
 		if err := t.add(); err != nil {
-			e := errors.Errorf("post error: %v", err)
+			e := errors.Wrap(err, "post error")
 			responseWrite(w, http.StatusInternalServerError, e.Error(), e)
 			return
 		}
@@ -109,18 +109,19 @@ func getJSON(contentType string, body io.Reader) (Parameter, int, error) {
 	var p Parameter
 
 	if contentType != "application/json" {
-		e := errors.Errorf("bad request Content-Type: %v\n", contentType)
+		cause := errors.New("contentType")
+		e := errors.Wrap(cause, "bad request Content-Type")
 		return p, http.StatusBadRequest, e
 	}
 
 	b, err := ioutil.ReadAll(body)
 	if err != nil {
-		e := errors.Errorf("read error: %v", err)
+		e := errors.Wrap(err, "read error")
 		return p, http.StatusInternalServerError, e
 	}
 
 	if err = json.Unmarshal(b, &p); err != nil {
-		e := errors.Errorf("json parse error: %v", err)
+		e := errors.Wrap(err, "json parse error")
 		return p, http.StatusInternalServerError, e
 	}
 
