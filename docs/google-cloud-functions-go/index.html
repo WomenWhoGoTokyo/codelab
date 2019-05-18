@@ -189,7 +189,7 @@ versionId: &#39;1&#39;</pre>
         return nil, err
     }
 
-   var t []Task
+var t []Task
 
     q := datastore.NewQuery(os.Getenv(&#34;MY_CODE&#34;))
     keys, err := client.GetAll(ctx, q, &amp;t)
@@ -213,26 +213,26 @@ versionId: &#39;1&#39;</pre>
     // 一覧取得
     case http.MethodGet:
         t, err := getAllTask()
-       if err != nil {
+        if err != nil {
             e := errors.Errorf(&#34;get error: %v&#34;, err)
             responseWrite(w, http.StatusInternalServerError, e.Error(), e)
             return
         }
 
-       if len(t) &lt; 1 {
-           responseWrite(w, http.StatusOK, &#34;0 tasks&#34;, nil)
-           return
-       }
+        if len(t) &lt; 1 {
+            responseWrite(w, http.StatusOK, &#34;0 tasks&#34;, nil)
+            return
+        }
 
-       b, err := json.Marshal(t)
+        b, err := json.Marshal(t)
         if err != nil {
             e := errors.Errorf(&#34;json marshal error: %v&#34;, err)
             responseWrite(w, http.StatusInternalServerError, e.Error(), e)
             return
         }
 
-       w.WriteHeader(http.StatusOK)
-       w.Write(b)
+        w.WriteHeader(http.StatusOK)
+        w.Write(b)
 
     // ステータス変更
     case http.MethodPatch:
