@@ -84,7 +84,7 @@ require (
 )</code></pre>
 <p>このように、Go のランタイム (このコードラボでは 1.11) が指定されています。</p>
 <p>また、プログラム内で利用している外部パッケージのバージョンもここで指定します。</p>
-<p>このコードラボでは、<a href="https://github.com/golang/go/wiki/Modules" target="_blank">Go Modules</a> の詳細な仕組みについては触れませんが、興味のある方は調べてみてください。</p>
+<p>このコードラボでは、<a href="https://github.com/golang/go/wiki/Modules" target="_blank">Go Modules</a> の詳細な仕組みについては触れませんが、興味のある方はGocon会場内のエンジニアにぜひ聞いてみてください。</p>
 
 
       </google-codelab-step>
@@ -95,7 +95,8 @@ require (
 --runtime go111 \
 --entry-point TaskManager \
 --trigger-http</pre>
-<p><code>--entry-point</code> は省略することが可能ですが、その場合は、Cloud Functions Nameと同じになります。</p>
+<p>Cloud Functions Name は <a href="https://womenwhogotokyo.github.io/codelab/gocon-2019-autumn-setup/?index=codelab#3" target="_blank">Go Conference 2019 Autumn のための準備</a> で生成した Func から始まる関数名を使います。</p>
+<p><code>また --ent</code>ry-point は省略することが可能ですが、その場合は、Cloud Functions Nameと同じになります。</p>
 <p>公開コマンドを実行の後、このようにコンソールに表示されたら、うまく公開ができています。</p>
 <pre>status: ACTIVE
 timeout: 60s
