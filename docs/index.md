@@ -18,7 +18,7 @@
 
 - [Go Conference 2018 Autumn のための準備](./gocon-2018-autumn-setup?index=codelab) by [micchie](https://twitter.com/micchiebear)
 - [Go Conference 2019 Spring のための準備](./gocon-2019-spring-setup?index=codelab) by [micchie](https://twitter.com/micchiebear)
-- [Go Conference 2019 Autumn のための準備](./gocon-2019-autumn-setup?index=codelab) by [mom0tomo](https://twitter.com/mom0tomo)¬
+- [Go Conference 2019 Autumn のための準備](./gocon-2019-autumn-setup?index=codelab) by [mom0tomo](https://twitter.com/mom0tomo)
 
 クラウド上で Go の開発ができるツールを利用する手順が記載されているコンテンツです。
 
