@@ -1,0 +1,26 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2019-10-22T10:31:52Z",
+  "id": "gocon-2019-autumn-setup",
+  "duration": 0,
+  "title": "Go Conference 2019 Autumn のための準備",
+  "authors": "mom0tomo",
+  "summary": "Go Conference 2019 Autumn で実施するコードラボのための準備をします。",
+  "source": "1y9GR6RntgL7R-Ll3R_LGVy-c_lsibk5-txsbu2R5xQI",
+  "theme": "web",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "Web"
+  ],
+  "tags": [
+    "gocon 2019 autumn",
+    "women who go tokyo"
+  ],
+  "feedback": "https://github.com/WomenWhoGoTokyo/codelab/issues",
+  "url": "gocon-2019-autumn-setup"
+}
