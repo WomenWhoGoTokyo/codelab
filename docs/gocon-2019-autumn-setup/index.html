@@ -28,13 +28,13 @@
                   feedback-link="https://github.com/WomenWhoGoTokyo/codelab/issues">
     
       <google-codelab-step label="はじめに" duration="0">
-        <p><a href="https://gocon.jp/" target="_blank">Go Conference 2019 Autumn</a> に実施する<a href="https://womenwhogotokyo.github.io/codelab/google-app-engine-go/?index=codelab#0" target="_blank">コードラボ</a>のための準備を行います。</p>
+        <p><a href="https://gocon.jp/" target="_blank">Go Conference 2019 Autumn</a> に実施する<a href="https://womenwhogotokyo.github.io/codelab/google-app-engine-go/?index=codelab#0" target="_blank">Google App Engine のコードラボ</a>と<a href="https://womenwhogotokyo.github.io/codelab/google-cloud-functions-go/?index=codelab#2" target="_blank">Google Cloud Functions のコードラボ</a>のための準備を行います。</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Women Who Go Tokyo の Google Groups に参加する" duration="0">
-        <p>Google App Engine を利用するためには、Google Cloud Platform のプロジェクトが必要になります。今回は、Go Conference 2019 Autumn のために用意したプロジェクトを利用します。</p>
+        <p>Google App Engine や Google Cloud Functions を利用するためには、Google Cloud Platform のプロジェクトが必要になります。今回は、Go Conference 2019 Autumn のために用意したプロジェクトを利用します。</p>
 <p>プロジェクトのアクセス制御に Google Groups を利用しているため、お知らせした Group に参加してください。</p>
 <aside class="warning"><p><strong>Important</strong>: Google Groups の SNS 上でのシェアは行わないでください。</p>
 </aside>
@@ -53,18 +53,11 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="Google App Engine のコマンドと確認方法" duration="0">
-        <h2 is-upgraded><strong>Google App Engine にアプリケーションを公開する</strong></h2>
-<p>コードラボの <a href="https://womenwhogotokyo.github.io/codelab/google-app-engine-go/?index=codelab#4" target="_blank">Google App Engine に公開する</a> で必要になります。</p>
-<p>コマンドは下記の通りです。</p>
-<pre><code>$ goapp deploy --application wwgt-gocon2019autumn --version {Twitter ID} .</code></pre>
-<p>バージョンは一意のものを使う必要があります。Twitter IDを使うか、<a href="https://github.com/WomenWhoGoTokyo/create-unique-id" target="_blank">こちらのツール</a>を使って他の人と重複しない文字列を生成してください。</p>
+      <google-codelab-step label="Google App Engine で バージョンを指定してデプロイする" duration="0">
+        <p>コードラボの <a href="https://womenwhogotokyo.github.io/codelab/google-app-engine-go/?index=codelab#4" target="_blank">Google App Engine に公開する</a> で、バージョンを指定してデプロイを行います。</p>
 <p>複数人で同じアプリケーションを用いて開発する場合、異なるバージョンでアプリケーションを公開することで、お互いのアプリケーションの上書きを避けることができます。</p>
-<h2 is-upgraded><strong>Google App Engine に公開したアプリケーションを確認する</strong></h2>
-<p>コードラボの <a href="https://womenwhogotokyo.github.io/codelab/google-app-engine-go/?index=codelab#5" target="_blank">アプリケーションを確認する</a> で必要になります。</p>
-<p>下記のURLを確認してください。</p>
-<aside class="special"><p>https://{version}-dot-wwgt-gocon2019autumn.appspot.com/</p>
-</aside>
+<p>バージョンは一意のものを使う必要があります。Twitter IDを使うか、<a href="https://github.com/WomenWhoGoTokyo/create-unique-id" target="_blank">こちらのツール</a>を使って他の人と重複しない文字列を生成してください。</p>
+<p>また、バージョンは公開したアプリケーションを確認する際にも利用します。</p>
 
 
       </google-codelab-step>
