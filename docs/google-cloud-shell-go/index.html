@@ -45,6 +45,8 @@
 <p class="image-container"><img style="width: 624.00px" src="img/f4a4bc99e3a77b5e.png"></p>
 <p>プロジェクトを選択する画面が表示されます。</p>
 <p>利用するプロジェクトを選択して「開く」をクリックしましょう。</p>
+<aside class="warning"><p>Go Conference  でコードラボを楽しまれる方は、プロジェクト名が「wwgt-codelabs」であることを必ず確認してください。</p>
+</aside>
 <p class="image-container"><img style="width: 624.00px" src="img/515c058c2edfb641.png"></p>
 
 
@@ -67,36 +69,6 @@
 <pre><code>$ mkdir develop &amp;&amp; cd develop</code></pre>
 <p>コンソールで Go のプログラムを取得するコマンドを入力します。</p>
 <pre><code>$ git clone https://github.com/WomenWhoGoTokyo/codelab.git</code></pre>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Google Cloud Shell で Go のプログラムを公開する" duration="0">
-        <p>Google Cloud Shell で Go のプログラムを公開するときは、コンソールを利用します。</p>
-<h2 is-upgraded><strong>Google App Engine のプログラムを公開する</strong></h2>
-<p><code>app.yaml</code> が配置されているディレクトリでコマンドを実行することで、Google App Engine へのプログラムの公開が行われます。</p>
-<p>コンソールで Go のプログラムを公開するコマンドを入力します。</p>
-<pre><code>$ goapp deploy --application {アプリケーションID} --version {バージョン} .</code></pre>
-<p>アプリケーションIDとバージョンは、コマンドライン引数で指定します。</p>
-<aside class="special"><h3 is-upgraded><strong>アプリケーションIDについて</strong></h3>
-<p>Google Cloud Console にアクセスしたときに表示されるダッシュボードに書いてある、プロジェクトIDをアプリケーションIDとして利用します。</p>
-<p class="image-container"><img style="width: 602.46px" src="img/c00c7b6d8de7fc69.png"></p>
-</aside>
-<aside class="special"><h3 is-upgraded><strong>バージョンについて</strong></h3>
-<p>Google  App Engine 上では複数のサービスで構成することができ、さらにそのサービス内では複数のバージョンを公開することができます。</p>
-<p>バージョンには、アルファベット小文字・数字・ハイフンのみが利用可能です。</p>
-<p>詳しくは <a href="https://cloud.google.com/appengine/docs/standard/java/microservices-on-app-engine?hl=ja" target="_blank">Google App Engine 上でのマイクルサービスアーキテクチャ</a> に書いてあります。</p>
-</aside>
-<h2 is-upgraded><strong>Google Cloud Functions のプログラムを公開する</strong></h2>
-<p>プログラムが配置されているディレクトリでコマンドを実行することで、Google Cloud Functions へのプログラムの公開が行われます。</p>
-<p>コンソールで Go のプログラムを公開するコマンドを入力します。</p>
-<pre><code>$ gcloud functions deploy {Cloud Functions 名} \
---runtime go111 \
---trigger-http</code></pre>
-<aside class="special"><h3 is-upgraded><strong>Cloud Functions の名前について</strong></h3>
-<p>名前は、英数字とハイフンのみ使用できます。<br>この名前が Go のプログラムの関数名になりますが、--entry-point オプションを指定すると、Cloud Functions の名前と関数名を異なるように設定することができます。</p>
-<p>デプロイ時のオプションの詳細は <a href="https://cloud.google.com/sdk/gcloud/reference/beta/functions/deploy" target="_blank">gcloud beta functions deploy</a> に書いてあります。</p>
-</aside>
 
 
       </google-codelab-step>
