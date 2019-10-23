@@ -1,5 +1,7 @@
 runtime: go112
 
+main: ./web
+
 handlers:
 - url: /.*
   script: auto
