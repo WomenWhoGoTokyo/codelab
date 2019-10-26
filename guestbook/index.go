@@ -23,9 +23,9 @@ type IndexTemplate struct {
 
 func Index(w http.ResponseWriter, r *http.Request) {
 	ctx := context.Background()
-	client, err := datastore.NewClient(ctx, r.Host)
+	client, err := datastore.NewClient(ctx, "wwgt-codelabs")
 	if err != nil {
-		http.Error(w, "err", http.StatusInternalServerError)
+		http.Error(w, "クライアント作成に失敗しました", http.StatusInternalServerError)
 		return
 	}
 
@@ -33,7 +33,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	q := datastore.NewQuery("Message").Order("-createdAt").Limit(10)
 	keys, err := client.GetAll(ctx, q, &msgs)
 	if err != nil {
-		http.Error(w, "err", http.StatusInternalServerError)
+		http.Error(w, "クエリ実行に失敗しました", http.StatusInternalServerError)
 		return
 	}
 
@@ -49,6 +49,6 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := indexTmpl.Execute(w, idxt); err != nil {
-		http.Error(w, "err", http.StatusInternalServerError)
+		http.Error(w, "テンプレートを表示できません", http.StatusInternalServerError)
 	}
 }

@@ -10,9 +10,9 @@ import (
 
 func Post(w http.ResponseWriter, r *http.Request) {
 	ctx := context.Background()
-	client, err := datastore.NewClient(ctx, r.Host)
+	client, err := datastore.NewClient(ctx, "wwgt-codelabs")
 	if err != nil {
-		http.Error(w, "err", http.StatusInternalServerError)
+		http.Error(w, "クライアント作成に失敗しました", http.StatusInternalServerError)
 		return
 	}
 
@@ -34,7 +34,7 @@ func Post(w http.ResponseWriter, r *http.Request) {
 
 	key := datastore.IncompleteKey("Message", nil)
 	if _, err := client.Put(ctx, key, msg); err != nil {
-		http.Error(w, "err", http.StatusInternalServerError)
+		http.Error(w, "データの保存に失敗しました", http.StatusInternalServerError)
 	}
 
 	http.Redirect(w, r, "/", http.StatusFound)
