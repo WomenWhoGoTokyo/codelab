@@ -1,6 +1,7 @@
 package guestbook
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 	"context"
@@ -12,7 +13,7 @@ func Post(w http.ResponseWriter, r *http.Request) {
 	ctx := context.Background()
 	client, err := datastore.NewClient(ctx, "wwgt-codelabs")
 	if err != nil {
-		http.Error(w, "クライアント作成に失敗しました", http.StatusInternalServerError)
+		http.Error(w, fmt.Sprint(err), http.StatusInternalServerError)
 		return
 	}
 
@@ -34,7 +35,7 @@ func Post(w http.ResponseWriter, r *http.Request) {
 
 	key := datastore.IncompleteKey("Message", nil)
 	if _, err := client.Put(ctx, key, msg); err != nil {
-		http.Error(w, "データの保存に失敗しました", http.StatusInternalServerError)
+		http.Error(w, fmt.Sprint(err), http.StatusInternalServerError)
 	}
 
 	http.Redirect(w, r, "/", http.StatusFound)
