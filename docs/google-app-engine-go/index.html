@@ -61,7 +61,7 @@
 <p><code>codelab/guestbook</code> というディレクトリが作られていることを、Google Cloud Shell のコンソールで確認しましょう。</p>
 <pre><code>$ cd codelab/guestbook
 $ ls
-README.md  app.yaml   index.go   web    message.go post.go    view</code></pre>
+README.md  app.yaml   edit.go    go.mod     go.sum     index.go   message.go post.go    view       web</code></pre>
 <aside class="special"><h3 is-upgraded><strong>コマンドの説明</strong></h3>
 <p><code>cd</code> : 作業しているディレクトリを移動するコマンドです。<code>cd codelab/guestbook</code> は、<code>codelab</code> ディレクトリのさらに下の <code>guestbook</code> というディレクトリに移動します。</p>
 <p><code>ls</code>: ファイルやディレクトリの情報を表示するコマンドです。ここでは、<code>guestbook</code> ディレクトリに入っているファイルを表示します。</p>
@@ -84,7 +84,8 @@ handlers:
   secure: always</code></pre>
 <p>利用する開発言語やそのバージョン等を設定することができます。</p>
 <p>このコードラボでは、開発言語は Go、バージョンは 1.12 を設定します。</p>
-<p>また今回はメイン パッケージ が app.yaml と同じディレクトリにないので、mainフラグでメインパッケージへのパスを宣言しています。</p>
+<p>アプリケーションを起動したときに一番最初に読み込まれる処理は web/main.go に書かれています。</p>
+<p>app.yaml では、main.go へのパスを指定します。        </p>
 
 
       </google-codelab-step>
@@ -101,7 +102,7 @@ handlers:
 <h2 is-upgraded><strong>アクセスする</strong></h2>
 <p>Google Cloud Platform の AppEngine &gt; バージョン をクリックすると、公開するコマンドのコマンドライン引数で利用したバージョンを一覧で確認できます。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/b1b5e2ddba9ea253.png"></p>
-<p>一覧で、デプロイしたバージョン名をクリックします。</p>
+<p>一覧で、公開するコマンドに含まれていたバージョン名をクリックします。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/4ecc293852dd9e25.png"></p>
 <p>ブラウザが立ち上がり、下記のような画面が表示されると成功です。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/7d7d5c7b21c9ab31.png"></p>
