@@ -12,6 +12,7 @@ import (
 func main() {
 	http.HandleFunc("/post", guestbook.Post)
 	http.HandleFunc("/", guestbook.Index)
+	http.HandleFunc("/edit", guestbook.Edit)
 
 	port := os.Getenv("PORT")
 	if port == "" {

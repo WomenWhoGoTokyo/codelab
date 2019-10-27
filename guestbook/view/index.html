@@ -59,12 +59,14 @@
       <div class="message">
         <div class="message-header">お名前</div>
         <div class="message-header">メッセージ</div>
+        <div class="message-header">編集</div>
       </div>
       {{end}}
       {{range .Messages}}
       <div class="message">
         <h2 class="message-name">{{.Name}}</h2>
         <p class="message-text">{{.Message}}</p>
+        <div class="message-link"><a href="./edit?key={{.ID}}">編集する</a></div>
       </div>
       {{end}}
     </div>
