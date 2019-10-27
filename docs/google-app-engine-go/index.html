@@ -112,8 +112,8 @@ handlers:
 <p>Google Cloud Platform 上でもデータを確認することができます。</p>
 <p>データストア &gt; エンティティ をクリックしましょう。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/b30687eeae641446.png"></p>
-<p>&#34;名前空間&#34; を選択し、先程入力したデータが格納されていることを確認できます。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/cddcf9f7002d1c5c.png"></p>
+<p>&#34;種類&#34;で公開するコマンドに含まれていたバージョン名を選択し、先程入力したデータが格納されていることを確認できます。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/1b66cf38edf66aaa.png"></p>
 
 
       </google-codelab-step>
@@ -160,9 +160,9 @@ var description = &#34;Gopher &amp; Gopher 2019.10.28&#34;</code></pre>
 <p><code>index.go</code> の下記の部分を、15件まで取得するように変更します。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/efb6a61818c03859.png"></p>
 <p>Before:</p>
-<pre><code>q := datastore.NewQuery(&#34;Message&#34;).Order(&#34;-createdAt&#34;).Limit(10)</code></pre>
+<pre><code>q := datastore.NewQuery(r.Host).Order(&#34;-createdAt&#34;).Limit(10)</code></pre>
 <p>After:</p>
-<pre><code>q := datastore.NewQuery(&#34;Message&#34;).Order(&#34;-createdAt&#34;).Limit(15)</code></pre>
+<pre><code>q := datastore.NewQuery(r.Host).Order(&#34;-createdAt&#34;).Limit(15)</code></pre>
 <p><code>File &gt; Save</code> を選択して、保存します。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/295ea5061777f58.png"></p>
 <h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
@@ -279,7 +279,7 @@ func Edit(w http.ResponseWriter, r *http.Request) {
         }
 
         var msg Message
-        key := datastore.IDKey(&#34;Message&#34;, keyID, nil)
+        key := datastore.IDKey(r.Host, keyID, nil)
         if err = client.Get(ctx, key, &amp;msg); err != nil {
                 http.Error(w, fmt.Sprint(err), http.StatusInternalServerError)
                 return
@@ -337,11 +337,10 @@ func Edit(w http.ResponseWriter, r *http.Request) {
         &#34;strconv&#34;
         &#34;time&#34;
 
-
         &#34;cloud.google.com/go/datastore&#34;
 )</code></pre>
 <p>② Before:</p>
-<pre><code>key := datastore.IncompleteKey(&#34;Message&#34;, nil)
+<pre><code>key := datastore.IncompleteKey(r.Host, nil)
 if _, err := client.Put(ctx, key, msg); err != nil {
         http.Error(w, fmt.Sprint(err), http.StatusInternalServerError)
 }</code></pre>
@@ -350,14 +349,14 @@ if _, err := client.Put(ctx, key, msg); err != nil {
 k := r.FormValue(&#34;key&#34;)
 
 if k == &#34;&#34; {
-        key = datastore.IncompleteKey(&#34;Message&#34;, nil)
+        key = datastore.IncompleteKey(r.Host, nil)
 } else {
         keyID, err := strconv.ParseInt(k, 10, 64)
         if err != nil {
                 http.Error(w, fmt.Sprint(err), http.StatusBadRequest)
                 return
         }
-        key = datastore.IDKey(&#34;Message&#34;, keyID, nil)
+        key = datastore.IDKey(r.Host, keyID, nil)
 }
 if _, err := client.Put(ctx, key, msg); err != nil {
         http.Error(w, fmt.Sprint(err), http.StatusInternalServerError)
