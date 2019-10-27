@@ -31,7 +31,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var msgs []*Message
-	q := datastore.NewQuery("Message").Order("-createdAt").Limit(10)
+	q := datastore.NewQuery(r.Host).Order("-createdAt").Limit(10)
 	keys, err := client.GetAll(ctx, q, &msgs)
 	if err != nil {
 		http.Error(w, fmt.Sprint(err), http.StatusInternalServerError)

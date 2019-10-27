@@ -33,7 +33,7 @@ func Post(w http.ResponseWriter, r *http.Request) {
 		CreatedAt: time.Now(),
 	}
 
-	key := datastore.IncompleteKey("Message", nil)
+	key := datastore.IncompleteKey(r.Host, nil)
 	if _, err := client.Put(ctx, key, msg); err != nil {
 		http.Error(w, fmt.Sprint(err), http.StatusInternalServerError)
 	}
