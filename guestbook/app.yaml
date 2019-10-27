@@ -1,7 +1,8 @@
-runtime: go
-api_version: go1.9
+runtime: go112
+
+main: ./web
 
 handlers:
 - url: /.*
-  script: _go_app
+  script: auto
   secure: always

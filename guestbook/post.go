@@ -1,18 +1,19 @@
-package main
+package guestbook
 
 import (
+	"fmt"
 	"net/http"
 	"time"
+	"context"
 
-	"google.golang.org/appengine"
-	"google.golang.org/appengine/datastore"
+	"cloud.google.com/go/datastore"
 )
 
-func post(w http.ResponseWriter, r *http.Request) {
-	c := appengine.NewContext(r)
-	ctx, err := appengine.Namespace(c, r.Host)
+func Post(w http.ResponseWriter, r *http.Request) {
+	ctx := context.Background()
+	client, err := datastore.NewClient(ctx, "wwgt-codelabs")
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		http.Error(w, fmt.Sprint(err), http.StatusInternalServerError)
 		return
 	}
 
@@ -32,9 +33,9 @@ func post(w http.ResponseWriter, r *http.Request) {
 		CreatedAt: time.Now(),
 	}
 
-	key := datastore.NewIncompleteKey(ctx, "Message", nil)
-	if _, err := datastore.Put(ctx, key, msg); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+	key := datastore.IncompleteKey("Message", nil)
+	if _, err := client.Put(ctx, key, msg); err != nil {
+		http.Error(w, fmt.Sprint(err), http.StatusInternalServerError)
 	}
 
 	http.Redirect(w, r, "/", http.StatusFound)

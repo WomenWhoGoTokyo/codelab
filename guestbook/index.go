@@ -1,11 +1,12 @@
-package main
+package guestbook
 
 import (
+	"context"
+	"fmt"
 	"html/template"
 	"net/http"
 
-	"google.golang.org/appengine"
-	"google.golang.org/appengine/datastore"
+	"cloud.google.com/go/datastore"
 )
 
 var indexTmpl = template.Must(template.ParseFiles("./view/index.html"))
@@ -21,24 +22,24 @@ type IndexTemplate struct {
 	Messages    []*Message
 }
 
-func index(w http.ResponseWriter, r *http.Request) {
-	c := appengine.NewContext(r)
-	ctx, err := appengine.Namespace(c, r.Host)
+func Index(w http.ResponseWriter, r *http.Request) {
+	ctx := context.Background()
+	client, err := datastore.NewClient(ctx, "wwgt-codelabs")
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		http.Error(w, fmt.Sprint(err), http.StatusInternalServerError)
 		return
 	}
 
 	var msgs []*Message
 	q := datastore.NewQuery("Message").Order("-createdAt").Limit(10)
-	keys, err := q.GetAll(ctx, &msgs)
+	keys, err := client.GetAll(ctx, q, &msgs)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		http.Error(w, fmt.Sprint(err), http.StatusInternalServerError)
 		return
 	}
 
 	for i := 0; i < len(msgs); i++ {
-		msgs[i].ID = keys[i].IntID()
+		msgs[i].ID = keys[i].ID
 	}
 
 	idxt := &IndexTemplate{
@@ -49,6 +50,6 @@ func index(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := indexTmpl.Execute(w, idxt); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		http.Error(w, fmt.Sprint(err), http.StatusInternalServerError)
 	}
 }
