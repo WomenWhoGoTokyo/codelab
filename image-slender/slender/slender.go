@@ -18,17 +18,17 @@ import (
 
 type SlenderImage string
 
-func (s *SlenderImage) Path() (string, string, error) {
-	path, err := filepath.Abs(filepath.Clean(string(*s)))
+func (s SlenderImage) Path() (string, string, error) {
+	path, err := filepath.Abs(filepath.Clean(string(s)))
 	return path, filepath.Dir(path), err
 }
 
-func (s *SlenderImage) Ext() string {
-	return strings.ToLower(filepath.Ext(string(*s)))
+func (s SlenderImage) Ext() string {
+	return strings.ToLower(filepath.Ext(string(s)))
 }
 
-func (s *SlenderImage) Name() string {
-	file := string(*s)
+func (s SlenderImage) Name() string {
+	file := string(s)
 	return filepath.Base(file[:len(file)-len(s.Ext())])
 }
 
