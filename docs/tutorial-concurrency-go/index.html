@@ -87,17 +87,12 @@ go.mod  go.sum  images  images.yaml  main.go  main_test.go  README.md  slender</
 <pre>$ ./image-slender</pre>
 <p>しばらくするとコンソールに 「The images are slender.」と表示されます。</p>
 <p class="image-container"><img style="width: 610.00px" src="img/d134b3b1cac86c5f.png"></p>
-<p>Images ディレクトリに「{ご当地}-bear-slender.png」というファイルが新しく追加されていることが確認できます。</p>
+<p><code>images</code> ディレクトリに <code>*-bear-slender.png</code> というファイルが新しく追加されていることが確認できます。</p>
 <p class="image-container"><img style="width: 610.00px" src="img/994a0977bdfe3a9b.png"></p>
-<p>ためしに「tokyo-bear.png」と「tokyo-bear-slender.png」を見比べてみましょう。</p>
-<table>
-<tr><td colspan="1" rowspan="1"><p class="image-container"><img style="width: 338.50px" src="img/9895201d072cafd4.png"></p>
-</td><td colspan="1" rowspan="1"><p>→</p>
-</td><td colspan="1" rowspan="1"><p class="image-container"><img style="width: 170.50px" src="img/82b25b49d2d68181.png"></p>
-</td></tr>
-</table>
+<p>ためしに <code>tokyo-bear.png</code> と <code>tokyo-bear-slender.png</code> を見比べてみましょう。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/2468dbddc254ebd7.png"></p>
 <p>画像のクマがスリムになりました。</p>
-<p>このように、このサンプルコードは、images フォルダの画像を痩せさせ (リサイズし) 、別名で保存する処理を Go のプログラムで書いたものです。</p>
+<p>このように、このサンプルコードは、<code>images</code> ディレクトリの画像を痩せさせ (リサイズし) 、別名で保存する処理を Go のプログラムで書いたものです。</p>
 
 
       </google-codelab-step>
@@ -211,7 +206,7 @@ $ ./image-slender</pre>
       </google-codelab-step>
     
       <google-codelab-step label="並行処理のベンチマークを実行してみる" duration="0">
-        <p><code>並行処理に書き直した Go のプログラムでベンチマークを実行してみましょう。</code></p>
+        <p>並行処理に書き直した Go のプログラムでベンチマークを実行してみましょう。</p>
 <pre>$ go test -count 10 -bench BenchmarkExecute</pre>
 <p>ベンチマークの実行結果が出力されました。</p>
 <pre>goos: darwin

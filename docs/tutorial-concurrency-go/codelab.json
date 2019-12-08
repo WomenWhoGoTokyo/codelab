@@ -3,7 +3,7 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2019-12-08T08:52:25Z",
+  "updated": "2019-12-08T09:01:47Z",
   "id": "tutorial-concurrency-go",
   "duration": 0,
   "title": "Go の並行処理を体験してみよう",
