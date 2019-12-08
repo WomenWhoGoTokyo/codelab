@@ -15,7 +15,9 @@ var Config = struct {
 func main() {
 	if err := execute(); err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err.Error())
+		return
 	}
+	fmt.Println("The images are slender.")
 }
 
 func execute() error {
