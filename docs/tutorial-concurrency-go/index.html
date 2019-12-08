@@ -1,0 +1,256 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Go の並行処理を体験してみよう</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="tutorial-concurrency-go"
+                  title="Go の並行処理を体験してみよう"
+                  environment="web"
+                  feedback-link="https://github.com/WomenWhoGoTokyo/codelab/issues">
+    
+      <google-codelab-step label="はじめに" duration="0">
+        <p>このコードラボでは、画像のリサイズ処理を題材に、通常の処理と並行処理の2パターンを書くことで、Go の並行処理を体験することができます。</p>
+<p>下記の流れで開発を行います。</p>
+<ol type="1" start="1">
+<li>Go で書かれたサンプルコードを取得・確認する。</li>
+<li>サンプルコードを動かしてみる。</li>
+<li>サンプルコードのベンチマークを実行する。</li>
+<li>サンプルコードを Go の並行処理に変更する。</li>
+<li>Go の並行処理を動かしてみる。</li>
+<li>サンプルコードのベンチマークを実行して、3. と比較する。</li>
+</ol>
+<h2 is-upgraded>Go の開発環境は必要でしょうか？</h2>
+<p>お使いのコンピューター上で Go の開発環境を用意していない方は、Google Cloud Shell というクラウド上の開発環境を利用することで、すぐに Go の開発をはじめることができます。</p>
+<p>Google Cloud Shell の詳しい説明と使い方は <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a>  を参照してください。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="サンプルコードを取得する" duration="0">
+        <p>GitHub からコードラボで利用するサンプルコードを取得しましょう。</p>
+<pre>$ git clone https://github.com/WomenWhoGoTokyo/codelab.git</pre>
+<p>Google Cloud Shell をご利用の方は、<a href="https://github.com/WomenWhoGoTokyo/codelab/tree/master/image-slender" target="_blank">https://github.com/WomenWhoGoTokyo/codelab/tree/master/image-slender</a> の「OPEN IN GOOGLE CLOUD SHELL」ボタンを押下してコードを取得してください。</p>
+<p class="image-container"><img style="width: 610.00px" src="img/df5b1eed0035be23.png"></p>
+<p><code>コードが</code>取得できたら、codelab/image-slender というディレクトリが作られていることを確認しましょう。</p>
+<pre>$ cd codelab/image-slender
+$ ls
+go.mod  go.sum  images  images.yaml  main.go  main_test.go  README.md  slender</pre>
+<p>ファイルの構成は以下の通りです。</p>
+<pre>├── README.md
+├── go.mod
+├── go.sum
+├── images
+│   ├── fukuoka-bear.png
+│   ├── nagoya-bear.png
+│   ├── osaka-bear.png
+│   ├── sapporo-bear.png
+│   └── tokyo-bear.png
+├── images.yaml
+├── main.go
+└── slender
+    └── slender.go
+</pre>
+<aside class="special"><h3 is-upgraded><strong>コマンドの説明</strong></h3>
+<p><code>cd</code><strong> </strong>: 作業ディレクトリを移動するコマンドです。<code>cd codelab/image-slender</code> は、<code>codelab</code> ディレクトリのさらに下の <code>image-slender</code> というディレクトリに移動します。</p>
+<p><code>ls</code>: ファイルやディレクトリの情報を表示するコマンドです。ここでは <code>image-slender</code> ディレクトリに入っているファイルを表示します。</p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="サンプルコードを動かしてみる" duration="0">
+        <p>取得したサンプルコードを動かしてみましょう。</p>
+<p><code>codelab/image-slender</code> ディレクトリで、以下のコマンドを実行します。</p>
+<pre>$ go build -v -o image-slender</pre>
+<p><code>go build</code> を実行すると、バイナリファイルが生成されます。</p>
+<p class="image-container"><img style="width: 610.00px" src="img/202cee11e53c739b.png"></p>
+<p>バイナリファイルを実行してみましょう。</p>
+<pre>$ ./image-slender</pre>
+<p>しばらくするとコンソールに 「The images are slender.」と表示されます。</p>
+<p class="image-container"><img style="width: 610.00px" src="img/d134b3b1cac86c5f.png"></p>
+<p>Images ディレクトリに「{ご当地}-bear-slender.png」というファイルが新しく追加されていることが確認できます。</p>
+<p class="image-container"><img style="width: 610.00px" src="img/994a0977bdfe3a9b.png"></p>
+<p>ためしに「tokyo-bear.png」と「tokyo-bear-slender.png」を見比べてみましょう。</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p class="image-container"><img style="width: 338.50px" src="img/9895201d072cafd4.png"></p>
+</td><td colspan="1" rowspan="1"><p>→</p>
+</td><td colspan="1" rowspan="1"><p class="image-container"><img style="width: 170.50px" src="img/82b25b49d2d68181.png"></p>
+</td></tr>
+</table>
+<p>画像のクマがスリムになりました。</p>
+<p>このように、このサンプルコードは、images フォルダの画像を痩せさせ (リサイズし) 、別名で保存する処理を Go のプログラムで書いたものです。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="ベンチマークを実行してみる" duration="0">
+        <p><code>image-slender ディ�</code>�クトリの下に main_test.go というファイルを作成し、下記のように <code>Go</code> のプログラムを書きましょう。</p>
+<p><code>codelab/image-slender/main_test.go</code></p>
+<pre><code>package main
+
+import &#34;testing&#34;
+
+func BenchmarkExecute(b *testing.B) {
+        b.ResetTimer()
+        for i := 0; i &lt; b.N; i++ {
+                execute()
+        }
+}</code></pre>
+<p>これは、<code>main.go に書かれている execute という関数のベンチマークを実行するための処理です。実行してみましょう。</code></p>
+<pre>$ go test -count 10 -bench BenchmarkExecute</pre>
+<p>ベンチマークの実行結果が出力されました。</p>
+<pre>goos: darwin
+goarch: amd64
+pkg: github.com/mi-bear/image-slender
+BenchmarkExecute-8                  1        15800638167 ns/op
+BenchmarkExecute-8                  1        15737073630 ns/op
+BenchmarkExecute-8                  1        15742299275 ns/op
+BenchmarkExecute-8                  1        15739635788 ns/op
+BenchmarkExecute-8                  1        15752764686 ns/op
+BenchmarkExecute-8                  1        15728355016 ns/op
+BenchmarkExecute-8                  1        15775978024 ns/op
+BenchmarkExecute-8                  1        15731555275 ns/op
+BenchmarkExecute-8                  1        15725556579 ns/op
+BenchmarkExecute-8                  1        15711972716 ns/op
+PASS
+ok          github.com/mi-bear/image-slender        157.465s</pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="並行処理を書いてみる" duration="0">
+        <p><code>main.go</code> を変更して、画像のリサイズを並行処理で実行してみましょう。</p>
+<p>まずは、<code>main.go</code> の <code>execute()</code> を確認します。</p>
+<p><code>codelab/image-slender/main.go</code></p>
+<pre><code>package main
+
+import (
+        &#34;fmt&#34;
+        &#34;os&#34;
+
+        &#34;github.com/jinzhu/configor&#34;
+        &#34;github.com/mi-bear/image-slender/slender&#34;
+)
+.
+.
+.
+func execute() error {
+        configor.Load(&amp;Config, &#34;images.yaml&#34;)
+        images := Config.Images
+
+        for _, image := range images {
+                image := image
+                slenderImage := slender.SlenderImage(image)
+                if err := slenderImage.Make(); err != nil {
+                        return err
+                }
+        }
+        return nil
+}</code></pre>
+<p><code>images.yaml</code> に設定した画像を、1件ずつリサイズ処理しています。</p>
+<p>画像処理でエラーが発生した場合は、<code>execute()</code> を呼び出している <code>main</code> 関数にエラーを返却しています。</p>
+<p>処理を実行している箇所を <code>golang.org/x/sync/errgroup</code> を利用して、平行処理に変更しましょう。</p>
+<p><code>codelab/image-slender/main.go</code></p>
+<pre><code>package main
+
+import (
+        &#34;fmt&#34;
+        &#34;os&#34;
+
+        &#34;github.com/jinzhu/configor&#34;
+        &#34;github.com/mi-bear/image-slender/slender&#34;
+        &#34;golang.org/x/sync/errgroup&#34;
+)
+.
+.
+.
+func execute() error {
+        configor.Load(&amp;Config, &#34;images.yaml&#34;)
+        images := Config.Images
+
+        eg := &amp;errgroup.Group{}
+
+        for _, image := range images {
+                image := image
+                eg.Go(func() error {
+                        slenderImage := slender.SlenderImage(image)
+                        return slenderImage.Make()
+                })
+        }
+
+        if err := eg.Wait(); err != nil {
+                return err
+        }
+        return nil
+}</code></pre>
+<p><code>errgroup</code> は、<code>errgroup.Go</code> の処理をすべて実行し終わるまで、<code>errgroup.Wait</code> が呼ばれることはありません。また、<code>errgroup.Go</code> でエラーが発生したら、そのうち一番最初のエラーを返却します。 </p>
+<pre>$ go build -v -o image-slender
+$ ./image-slender</pre>
+<p> 更新したプログラムを保存したら、実行してみましょう。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="並行処理のベンチマークを実行してみる" duration="0">
+        <p><code>並行処理に書き直した Go のプログラムでベンチマークを実行してみましょう。</code></p>
+<pre>$ go test -count 10 -bench BenchmarkExecute</pre>
+<p>ベンチマークの実行結果が出力されました。</p>
+<pre>goos: darwin
+goarch: amd64
+pkg: github.com/mi-bear/image-slender
+BenchmarkExecute-8                  1        3426717180 ns/op
+BenchmarkExecute-8                  1        3370627914 ns/op
+BenchmarkExecute-8                  1        3379053786 ns/op
+BenchmarkExecute-8                  1        3349740755 ns/op
+BenchmarkExecute-8                  1        3383601348 ns/op
+BenchmarkExecute-8                  1        3399993295 ns/op
+BenchmarkExecute-8                  1        3425098299 ns/op
+BenchmarkExecute-8                  1        3378263273 ns/op
+BenchmarkExecute-8                  1        3413634149 ns/op
+BenchmarkExecute-8                  1        3375049615 ns/op
+PASS
+ok          github.com/mi-bear/image-slender        33.929s</pre>
+<p>改善前後の平均実行時間を比べてみると効果がわかります。</p>
+<p>前:</p>
+<pre>157.465s</pre>
+<p>後:</p>
+<pre>33.929s</pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="さいごに" duration="0">
+        <p>このコードラボでは、画像のリサイズ処理を題材に、通常の処理と並行処理の2パターンを書くことで、Go の並行処理を体験しました。</p>
+<p>Go の並行処理は、結果が得られやすいので、今後も楽しく並行・効率化していきましょう。</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+
+</body>
+</html>

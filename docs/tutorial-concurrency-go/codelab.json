@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2019-12-08T08:52:25Z",
+  "id": "tutorial-concurrency-go",
+  "duration": 0,
+  "title": "Go の並行処理を体験してみよう",
+  "authors": "mi-bear",
+  "summary": "ベンチマークを取得しながら Go の並行処理を体験することができます。",
+  "source": "1iFi9Dq1Aw-iH-cJ8JqyoaQdrOgVDwk41Or3p1Xf93lM",
+  "theme": "web",
+  "status": [
+    "public"
+  ],
+  "category": [
+    "Web"
+  ],
+  "tags": [
+    "women who go tokyo"
+  ],
+  "feedback": "https://github.com/WomenWhoGoTokyo/codelab/issues",
+  "url": "tutorial-concurrency-go"
+}
