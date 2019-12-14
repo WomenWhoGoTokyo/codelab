@@ -11,6 +11,8 @@
 
 - [Google App Engine で Go を動かしてみよう](./google-app-engine-go?index=codelab) by [micchie](https://twitter.com/micchiebear)
 - [Google Cloud Functions で Go を動かしてみよう](./google-cloud-functions-go?index=codelab) by [micchie](https://twitter.com/micchiebear)
+- [Google Cloud Functions で Go を動かしてみよう](./google-cloud-functions-go?index=codelab) by [micchie](https://twitter.com/micchiebear)
+- [Go の並行処理を体験してみよう](./tutorial-concurrency-go/?index=codelab) by [micchie](https://twitter.com/micchiebear)
 
 ## サブコンテンツ
 
