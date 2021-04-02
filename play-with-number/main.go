@@ -9,6 +9,6 @@ func main() {
 	var num int
 	fmt.Scan(&num)
 
-	fmt.Printf("この数字は%s\n", primenumdeterminer(num))
+	fmt.Printf("この数字は%s\n", PrimeNumdeterminer(num))
 
 }

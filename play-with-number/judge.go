@@ -1,6 +1,6 @@
 package main
 
-func primenumdeterminer(num int) (result string) {
+func PrimeNumdeterminer(num int) (result string) {
 	var divisor []int
 	for i := 1; i < num; i++ {
 		if num%i == 0 {
