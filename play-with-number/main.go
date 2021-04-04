@@ -7,6 +7,15 @@ import (
 
 var game string
 
+func init() {
+	flag.StringVar(&game, "game", defaultGame, usage)
+}
+
+const (
+	defaultGame = ""
+	usage       = "ゲームのメニューを選択"
+)
+
 func main() {
 
 	flag.Parse()
@@ -23,9 +32,4 @@ func main() {
 	} else {
 		fmt.Printf("オプションを指定してください")
 	}
-}
-
-func init() {
-
-	flag.StringVar(&game, "game", "", "ゲームのメニューを選択")
 }
