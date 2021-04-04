@@ -6,6 +6,7 @@ import (
 )
 
 var game string
+var num int
 
 func init() {
 	flag.StringVar(&game, "game", defaultGame, usage)
@@ -22,14 +23,12 @@ func main() {
 
 	// TODO:timeを使って今日の日付を数字に変換する
 
-	if game != "" {
-		fmt.Print("数字を入力してください\n")
+	switch game {
 
-		var num int
-		fmt.Scan(&num)
-
+	case "prime":
+		prime()
 		fmt.Printf("この数字は%s\n", PrimeNumdeterminer(num))
-	} else {
+	default:
 		fmt.Printf("オプションを指定してください")
 	}
 }

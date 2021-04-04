@@ -1,5 +1,14 @@
 package main
 
+import "fmt"
+
+func prime() int {
+	fmt.Print("数字を入力してください\n")
+
+	fmt.Scan(&num)
+	return num
+}
+
 func PrimeNumdeterminer(num int) (result string) {
 	var divisor []int
 	for i := 1; i < num; i++ {
