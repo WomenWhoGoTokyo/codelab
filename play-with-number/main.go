@@ -21,13 +21,13 @@ func main() {
 
 	flag.Parse()
 
-	// TODO:timeを使って今日の日付を数字に変換する
-
 	switch game {
 
 	case "prime":
 		prime()
 		fmt.Printf("この数字は%s\n", PrimeNumdeterminer(num))
+	case "todayis":
+		fmt.Printf("今日の日付は%s\n", TodaysDatedeterminer())
 	default:
 		fmt.Printf("オプションを指定してください")
 	}
