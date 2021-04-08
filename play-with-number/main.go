@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
 	"strconv"
 	"time"
 
@@ -11,62 +10,66 @@ import (
 )
 
 var game string
-var num int
-
-func init() {
-	flag.StringVar(&game, "game", defaultGame, usage)
-}
 
 const (
 	defaultGame = ""
 	usage       = "ゲームのメニューを選択"
 )
 
+func init() {
+	flag.StringVar(&game, "game", defaultGame, usage)
+}
+
 func main() {
 
 	flag.Parse()
 
+	var (
+		num int
+		err error
+	)
+
 	switch game {
 
 	case "prime":
-		getNum()
-		fmt.Printf("この数字は%s\n", PrimeNumdeterminer(num))
+		// 数字を標準入力で取得する（numに判定したい数字が入る）
+		fmt.Print("数字を入力してください\n")
+		fmt.Scan(&num)
+
 	case "todayis":
-		fmt.Printf("今日の日付は%s\n", TodaysDatedeterminer())
+		// 本日の日付を数字に変換する（numに判定したい数字が入る）
+		num, err = convertTodayToNum()
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 	default:
-		fmt.Printf("オプションを指定してください")
+		fmt.Print("オプションを指定してください")
+		return
 	}
+	//数字を判定した結果を文字列で出力する（共通処理）
+	PrimeNumdeterminer(num)
 }
 
-func getNum() int {
-	fmt.Print("数字を入力してください\n")
-
-	fmt.Scan(&num)
-	return num
-}
-
-func PrimeNumdeterminer(num int) (msg string) {
+// 素数判定の結果を出力
+func PrimeNumdeterminer(num int) {
 	result := prime.Prime(num)
-
 	switch result {
 	case true:
-		return "素数です"
+		fmt.Printf("%dは%s\n", num, "素数です")
 	default:
-		return "素数ではありません"
+		fmt.Printf("%dは%s\n", num, "素数ではありません")
 	}
 }
 
-func TodaysDatedeterminer() (result string) {
-
+// 本日の日付をintegerに変換
+func convertTodayToNum() (int, error) {
 	t := time.Now()
-	const layout = "20060102"
+	var layout = "20060102"
 
 	today, err := strconv.Atoi(t.Format(layout))
 	if err != nil {
-		log.Fatal(err)
+		return 0, err
 	}
-
-	fmt.Printf("本日は%v\n", today)
-
-	return PrimeNumdeterminer(today)
+	return today, nil
 }
