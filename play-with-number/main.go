@@ -32,12 +32,10 @@ func main() {
 	switch game {
 
 	case "prime":
-		// 数字を標準入力で取得する（numに判定したい数字が入る）
 		fmt.Print("数字を入力してください\n")
 		fmt.Scan(&num)
 
 	case "todayis":
-		// 本日の日付を数字に変換する（numに判定したい数字が入る）
 		num, err = convertTodayToNum()
 		if err != nil {
 			fmt.Println(err)
@@ -47,11 +45,9 @@ func main() {
 		fmt.Print("オプションを指定してください")
 		return
 	}
-	//数字を判定した結果を文字列で出力する（共通処理）
 	PrimeNumdeterminer(num)
 }
 
-// 素数判定の結果を出力
 func PrimeNumdeterminer(num int) {
 	result := prime.Prime(num)
 	switch result {
@@ -62,7 +58,6 @@ func PrimeNumdeterminer(num int) {
 	}
 }
 
-// 本日の日付をintegerに変換
 func convertTodayToNum() (int, error) {
 	t := time.Now()
 	var layout = "20060102"

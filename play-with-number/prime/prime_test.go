@@ -5,26 +5,21 @@ import "testing"
 func TestPrime(t *testing.T) {
 
 	tests := []struct {
-		name string
-		args int
+		arg  int
 		want bool
 	}{
 		{
-			name: "is prime",
-			args: 5,
+			arg:  5,
 			want: true,
 		},
 		{
-			name: "is not prime",
-			args: 6,
+			arg:  6,
 			want: false,
 		},
 	}
 	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := Prime(tt.args); got != tt.want {
-				t.Errorf("Prime() = %v, want %v", got, tt.want)
-			}
-		})
+		if got := Prime(tt.arg); got != tt.want {
+			t.Errorf("Prime() = %v, want %v", got, tt.want)
+		}
 	}
 }
