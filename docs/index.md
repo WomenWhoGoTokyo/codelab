@@ -12,6 +12,7 @@
 - [Google App Engine で Go を動かしてみよう](./google-app-engine-go?index=codelab) by [micchie](https://twitter.com/micchiebear)
 - [Google Cloud Functions で Go を動かしてみよう](./google-cloud-functions-go?index=codelab) by [micchie](https://twitter.com/micchiebear)
 - [Go の並行処理を体験してみよう](./tutorial-concurrency-go/?index=codelab) by [micchie](https://twitter.com/micchiebear)
+- [数で遊ぼう 〜 コマンドラインツールで数を操る](./play-with-number?index=codelab) by [miki](https://twitter.com/mikisslv09), [mom0tomo](https://twitter.com/mom0tomo), [mi-bear](https://twitter.com/micchiebear)
 
 ## サブコンテンツ
 

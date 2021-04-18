@@ -9,6 +9,7 @@ codelabs=(
     "google-app-engine-go"      "1AjOewYLEtWy-x8RGQtxQe1vMCTKia15CK3iKczmfoQM"
     "google-cloud-functions-go" "1uwGLNnjLfFky0mvQuAKu7CIVTt6jO2rIMD4AkxrRUj4"
     "tutorial-concurrency-go" "1iFi9Dq1Aw-iH-cJ8JqyoaQdrOgVDwk41Or3p1Xf93lM"
+    "play-with-number" "1XGFY4kS12qH0nT3hC-dFB-Nce-HfA896GY19muS-Czk"
 )
 
 for ((i = 0; i < ${#codelabs[@]}; i+=2)) {
