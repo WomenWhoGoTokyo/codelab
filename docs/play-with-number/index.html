@@ -28,8 +28,8 @@
                   feedback-link="https://github.com/WomenWhoGoTokyo/codelab/issues">
     
       <google-codelab-step label="はじめに" duration="5">
-        <p>このコードラボでは、素数を判定するゲームを題材に、Goでコマンドラインツールをつくりそのテストを行う体験ができます。</p>
-<p>下記の流れで開発を行います。</p>
+        <p>このコードラボでは、素数を判定するゲームを題材に、Goでコマンドラインツールをつくり、そのテストを行う体験ができます。</p>
+<p>コードラボの流れは次のとおりです。</p>
 <ol type="1" start="1">
 <li>Go で書かれたサンプルコードを取得・確認する。</li>
 <li>サンプルコードを動かしてみる。</li>
@@ -53,7 +53,7 @@
 <p><code>コードが</code>取得できたら、codelab/play-with-number というディレクトリが作られていることを確認しましょう。</p>
 <pre>$ cd codelab/play-with-number
 $ ls
-README.md go.mod    img       main.go   prime</pre>
+README.md go.mod  main.go   prime</pre>
 <p>ファイルの構成は以下の通りです。</p>
 <p class="image-container"><img style="width: 438.00px" src="img/594b3f6472f9805d.png"></p>
 <aside class="special"><h3 is-upgraded><strong>コマンドの説明</strong></h3>
@@ -198,8 +198,8 @@ func PrimeNumdeterminer(num int) {
 }
 
 ...</code></pre>
-<p><code>main関数</code>では、標準入力に入力した値を <code>flag.Parse()</code> で読み込んで、 <code>flag.Scan()でスキャンしています。</code></p>
-<p><code>PrimeNumdeterminer</code>関数では、primeパッケージのprime関数の戻り値が <code>true だった場合に「素数です」と出力し、戻り値が true でなかった場合「素数ではありません」と出力します。</code></p>
+<p><code>main関数</code>では、コンソールに入力した値を <code>flag.Parse()</code> で読み込んで、 <code>flag.Scan()でスキャンしています。</code></p>
+<p><code>PrimeNumdeterminer�</code>�数では、primeパッケージのprime関数の戻り値が <code>true だった場合に「素数です」と出力し、戻り値が true でなかった場合「素数ではありません」と出力します。</code></p>
 
 </google-codelab-step>
 
@@ -230,10 +230,11 @@ func Prime(n int) bool {
 <p>素数を判定する条件として、除数が1の場合だけでなく、除数が「入力した数自身」の場合も <code>true</code> を返すように修正しましょう。</p>
 <p><code>Prime</code>関数の、素数かどうかを判定する処理を実行している箇所を、正しい処理に書き直します。</p>
 
-</google-codelab-step>
 
-<google-codelab-step label="Prime関数を修正する" duration="10">
-<p><code>条件分岐に、除数がその数自身の場合 true を返す分岐を追加します。</code></p>
+      </google-codelab-step>
+    
+      <google-codelab-step label="Prime関数を修正する" duration="10">
+        <p><code>条件分岐に、除数がその数自身の場合 true を返す分岐を追加します。</code></p>
 <p><code>codelab/play-with-number/prime/prime.go</code></p>
 <pre><code>package prime
 
