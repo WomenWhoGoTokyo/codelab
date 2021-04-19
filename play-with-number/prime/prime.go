@@ -1,18 +1,18 @@
 package prime
 
+import (
+	"math"
+)
+
 func Prime(n int) bool {
-	divisor := make([]int, n, n)
-	for i := 1; i < n; i++ {
+	squareroot := math.Sqrt(float64(n))
+	result := true
+
+	for i := 2; i <= int(squareroot); i++ {
 		if n%i == 0 {
-			divisor = append(divisor, i)
+			result = false
+			break
 		}
 	}
-
-	switch len(divisor) {
-	case 1:
-		return true
-	default:
-		return false
-	}
-
+	return result
 }
