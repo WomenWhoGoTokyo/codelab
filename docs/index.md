@@ -27,4 +27,4 @@
 
 Amigurumi Gophersによるコンテンツです。
 
-- [初めて編むGopher](./gopher-amigurumi?index=codelab) by [miki](https://twitter.com/mikisslv09), [mihohoi](https://twitter.com/Danny_miho)
+- [初めて編むGopher](./gopher-amigurumi/ja?index=codelab) by [miki](https://twitter.com/mikisslv09), [mihohoi](https://twitter.com/Danny_miho)

@@ -9,7 +9,7 @@ codelabs=(
     "google-app-engine-go"      "1AjOewYLEtWy-x8RGQtxQe1vMCTKia15CK3iKczmfoQM"
     "google-cloud-functions-go" "1uwGLNnjLfFky0mvQuAKu7CIVTt6jO2rIMD4AkxrRUj4"
     "tutorial-concurrency-go" "1iFi9Dq1Aw-iH-cJ8JqyoaQdrOgVDwk41Or3p1Xf93lM"
-    "gopher-amigurumi" "1CmQBaleilToO5uvoVtQFaG6t2abpsJHslep3uKBUe3Q"
+    "gopher-amigurumi" "1hSsUCgcBIyPFY0z07T2IXuiRJkrsjMe3IQc2xaWJHYw"
 )
 
 for ((i = 0; i < ${#codelabs[@]}; i+=2)) {

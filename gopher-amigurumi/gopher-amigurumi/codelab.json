@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2021-04-21T10:53:42Z",
+  "id": "gopher-amigurumi",
+  "duration": 81,
+  "title": "初めて編む Gopher",
+  "authors": "miki, mihohoi",
+  "summary": "かぎ針をつかって Gopher のあみぐるみを作ります。",
+  "source": "1hSsUCgcBIyPFY0z07T2IXuiRJkrsjMe3IQc2xaWJHYw",
+  "theme": "go",
+  "status": [
+    "public"
+  ],
+  "category": [
+    "Go"
+  ],
+  "tags": [
+    "amigurumi gophers"
+  ],
+  "feedback": "https://github.com/WomenWhoGoTokyo/codelab/issues",
+  "url": "gopher-amigurumi"
+}
