@@ -1,6 +1,6 @@
 # Women Who Go Tokyo コードラボについて
 
-ここにあるコードラボは Women Who Go Tokyo の運営メンバーによって作られたものです。  
+ここにあるコードラボは Women Who Go Tokyo の運営メンバーによって作られたものです。
 主に Go に関する内容のものになります。
 
 何か問題や間違いがありましたら、[issue](https://github.com/WomenWhoGoTokyo/codelab/issues) を起票してください。
@@ -24,3 +24,7 @@
 クラウド上で Go の開発ができるツールを利用する手順が記載されているコンテンツです。
 
 - [Google Cloud Shell で Go の開発をはじめよう](./google-cloud-shell-go?index=codelab) by [micchie](https://twitter.com/micchiebear)
+
+Amigurumi Gophersによるコンテンツです。
+
+- [初めて編むGopher](./gopher-amigurumi?index=codelab) by [miki](https://twitter.com/mikisslv09), [mihohoi](https://twitter.com/Danny_miho)
