@@ -25,7 +25,9 @@
 
 - [Google Cloud Shell で Go の開発をはじめよう](./google-cloud-shell-go?index=codelab) by [micchie](https://twitter.com/micchiebear)
 
-Amigurumi Gophersによるコンテンツです。
+
+## Amigurumi Gophers
+Amigurumi Gophersによる編み物コンテンツです。
 
 - [初めて編むGopher](./gopher-amigurumi/ja?index=codelab) by [miki](https://twitter.com/mikisslv09), [mihohoi](https://twitter.com/Danny_miho)
 
