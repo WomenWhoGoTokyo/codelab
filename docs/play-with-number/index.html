@@ -147,7 +147,7 @@ FAIL        github.com/WomenWhoGoTokyo/codelab/play-with-number/prime        0.4
 func PrimeNumDeterminer(num int) {
         result := prime.IsPrime(num)
         switch result {
-        case // TODO: 素数の場合の条件分岐処理を書く
+        case true:
                 fmt.Printf(&#34;%dは%s\n&#34;, num, &#34;素数です&#34;)
         default:
                 fmt.Printf(&#34;%dは%s\n&#34;, num, &#34;素数ではありません&#34;)
@@ -205,7 +205,7 @@ func main() {
 }
 
 ...（略）</code></pre>
-<p><code>flag.String() </code>や<code>flag.Int() </code>などの関数を使って、パースしたいパラメーターを指定することができます。今回は<code>flag.StringVar() </code>を使っています。</p>
+<p><code>flag.String() </code>や<code>flag.Int() </code>などの関数を使って、パースしたいパラメータを指定することができます。今回は<code>flag.StringVar() </code>を使っています。</p>
 <p>パースしたいパラメータを指定したら、<code>flag.Parse() </code>を使ってコマンドラインを解析します。<code>flag.Parse() </code>は、入力された値を定義されたフラグに変換します。</p>
 
       </google-codelab-step>
@@ -225,8 +225,9 @@ func IsPrime(n int) bool {
         result := true
 
         for i := 2; i &lt;= int(squareroot); i++ {
-                if n%i == 0 {
-                        //TODO: 結果の判定する
+                //TODO: コマンドラインから取得した値が1の場合の条件分岐処理を書く
+		if n%i == 0 {
+                        //TODO: 結果の判定をする
                         break
                 }
         }
@@ -248,6 +249,7 @@ func IsPrime(n int) bool {
         result := true
 
         for i := 2; i &lt;= int(squareroot); i++ {
+                //TODO: コマンドラインから取得した値が1の場合の条件分岐処理を書く
                 if n%i == 0 {
                         result = false
                         break
@@ -376,6 +378,7 @@ func IsPrime(n int) bool {
         result := true
 
         for i := 2; i &lt;= int(squareroot); i++ {
+                //TODO: コマンドラインから取得した値が1の場合の条件分岐処理を書く
                 if n%i == 0 {
                         result = false
                         break
@@ -385,6 +388,30 @@ func IsPrime(n int) bool {
 }</code></pre>
 <p>ループ処理の中の条件分岐で、入力された値が 1 だった場合に <code>result</code> に false を代入する処理を追加しましょう。</p>
 <p>switch 文を使い、入力された値が1の場合と、それ以外の場合で分岐します。</p>
+<p><code>codelab/play-with-number/prime/prime.go</code></p>
+<pre><code>package prime
+
+import (
+        &#34;math&#34;
+)
+
+func IsPrime(n int) bool {
+        squareroot := math.Sqrt(float64(n))
+        result := true
+
+        for i := 2; i &lt;= int(squareroot); i++ {
+                switch n {
+                //TODO: コマンドラインから取得した値が1の場合の条件分岐処理を書く
+                if n%i == 0 {
+                        result = false
+                        break
+                }
+        }
+        return result
+}</code></pre>
+
+修正後のコードは下記のようになります。
+
 <p><code>codelab/play-with-number/prime/prime.go</code></p>
 <pre><code>package prime
 
@@ -409,6 +436,7 @@ func IsPrime(n int) bool {
         }
         return result
 }</code></pre>
+
 <p>修正したコードを保存したら、もう一度テストを実行してみましょう。</p>
 <pre>$ pwd
 /Users/{ユーザー名}/dev/codelab/play-with-number/prime
