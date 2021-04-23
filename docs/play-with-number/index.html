@@ -73,7 +73,7 @@ README.md go.mod  main.go   prime</pre>
 <p><code>go build</code> を実行すると、バイナリファイルが生成されます。</p>
 <p class="image-container"><img style="width: 601.70px" src="img/510aaacbcbea7b03.png"></p>
 <p>このゲームには二つのモードがあります。</p>
-<p>一つ目は <code>todayis</code> モード、二つ目は <code>prime</code> モードです。</p>
+<p>一つ目は <code>todayis</code> モード、二つ目は <code>prime</code> モードです。<code>todayis</code> モードは、本日の日付を6桁の数字にしたものが素数かどうかを判定します。 <code>primeモードは、入力した任意の数字が素数かどうかを判定します。 </code></p>
 <p>まずtodayisモードから試してみましょう。</p>
 <p>実行オプションで <code>-game</code> を指定し、引数に <code>todayis</code> を入れて、バイナリファイルを実行してみましょう。</p>
 <pre>$ ./play-with-number -game todayis
@@ -83,12 +83,12 @@ README.md go.mod  main.go   prime</pre>
 <p>実行オプションで <code>-game</code> を指定し、引数に <code>prime</code> を入れて、バイナリファイルを実行してみましょう。</p>
 <pre>$ ./play-with-number -game prime</pre>
 <p>実行するとコンソールに 「数字を入力してください」と表示されます。</p>
-<p><code>好きな数字を入力してみましょう。まず試しに、素数である 5 を入力してみます。</code></p>
+<p>好きな文字を入力してみましょう。まず試しに、素数ではない6を入力してみます。</p>
 <pre>$ ./play-with-number -game prime
 数字を入力してください
-5
-5は素数ではありません</pre>
-<p>入力した数字 <code>5</code> は素数ではないという、期待と異なる結果が出力されました。</p>
+6
+は素数です</pre>
+<p>入力した数字 <code>6</code> は素数であるという、期待と異なる結果が出力されました。</p>
 <p>次の項からは、期待した結果が返ってくるようにプログラムを修正していきます。</p>
 
 
@@ -128,8 +128,8 @@ func TestIsPrime(t *testing.T) {
 <pre>$ cd prime
 $ go test</pre>
 <p>テストの実行結果が出力されました。</p>
-<pre>--- FAIL: TestPrime (0.00s)
-    prime_test.go:22: IsPrime() = true, want false
+<pre>--- FAIL: TestIsPrime (0.00s)
+    prime_test.go:22: IsPrime(6) = true, want false
 FAIL
 exit status 1
 FAIL        github.com/WomenWhoGoTokyo/codelab/play-with-number/prime        0.452s</pre>
@@ -139,8 +139,8 @@ FAIL        github.com/WomenWhoGoTokyo/codelab/play-with-number/prime        0.4
       </google-codelab-step>
     
       <google-codelab-step label="main関数を確認する" duration="15">
-        <p>まず、main関数を確認しましょう。</p>
-<p>PrimeNumDeterminer関数で、Prime関数の戻り値が true だった場合に「素数です」と出力し、戻り値が true でなかった場合「素数ではありません」と出力する処理をしています。</p>
+        <p><code>まず、codelab/play-with-number ディレクトリにあるmain.goファイルの main 関数を確認しましょう。</code></p>
+<p><code>PrimeNumDeterminer </code>関数で、<code>Prime</code> 関数の戻り値が <code>true だった場合に「素数です」と出力し、戻り値が true でなかった場合「素数ではありません」と出力する処理をしています。</code></p>
 <p><code>codelab/play-with-number/main.go</code></p>
 <pre><code>...（略）
 
@@ -267,7 +267,7 @@ func IsPrime(n int) bool {
 
       </google-codelab-step>
     
-      <google-codelab-step label="テストケースを増やす" duration="10">
+      <google-codelab-step label="テストケースを増やす" duration="5">
         <p>書き直した Go のプログラムが期待通り動作するか確認するために、もう一度テストを実行してみましょう。</p>
 <pre>$ pwd
 /Users/{ユーザー名}/dev/codelab/play-with-number/prime
@@ -348,6 +348,73 @@ func TestPrime(t *testing.T) {
                 }
         }
 }</code></pre>
+<pre>$ pwd
+/Users/{ユーザー名}/dev/codelab/play-with-number/prime
+
+$ go test</pre>
+<pre>--- FAIL: TestIsPrime (0.00s)
+    prime_test.go:66: IsPrime(1) = true, want false
+FAIL
+exit status 1
+FAIL        github.com/WomenWhoGoTokyo/codelab/play-with-number/prime        0.322s</pre>
+<p>1の場合も <code>prime</code>関数の戻り値が <code>true</code> となっており、テストが落ちています。</p>
+<p>１は素数ではないので、判定処理のプログラムを修正しましょう。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="main関数を修正する" duration="5">
+        <p><code>main.goのma</code>in 関数コードを保存したら、もう一度テストを実行してみましょう。</p>
+<p><code>codelab/play-with-number/main.go</code></p>
+<pre><code>package main
+
+import (
+        &#34;flag&#34;
+        &#34;fmt&#34;
+        &#34;strconv&#34;
+        &#34;time&#34;
+
+        &#34;github.com/WomenWhoGoTokyo/codelab/play-with-number/prime&#34;
+)
+
+var game string
+
+const (
+        defaultGame = &#34;&#34;
+        usage       = &#34;ゲームのメニューを選択&#34;
+)
+
+func init() {
+        flag.StringVar(&amp;game, &#34;game&#34;, defaultGame, usage)
+}
+
+func main() {
+        var (
+                num int
+                err error
+        )
+
+        flag.Parse()
+
+        switch game {
+        case &#34;prime&#34;:
+                fmt.Print(&#34;数字を入力してください\n&#34;)
+                fmt.Scan(&amp;num)
+        case &#34;todayis&#34;:
+                num, err = convertTodayToNum()
+                if err != nil {
+                        fmt.Println(err)
+                        return
+                }
+        default:
+                fmt.Print(&#34;オプションを指定してください&#34;)
+                return
+        }
+        PrimeNumDeterminer(num)
+}
+
+...（略）</code></pre>
+<p>修正したコードを保存したら、もう一度テストを実行してみましょう。</p>
 <pre>$ pwd
 /Users/{ユーザー名}/dev/codelab/play-with-number/prime
 
