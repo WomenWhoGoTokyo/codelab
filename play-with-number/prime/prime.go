@@ -10,7 +10,7 @@ func IsPrime(n int) bool {
 
 	for i := 2; i <= int(squareroot); i++ {
 		if n%i == 0 {
-			result = false
+			//TODO: 結果の判定をする
 			break
 		}
 	}
