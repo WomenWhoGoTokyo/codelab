@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2021-04-23T07:19:02Z",
+  "id": "play-with-number",
+  "duration": 60,
+  "title": "数で遊ぼう 〜 コマンドラインツールで数を操る",
+  "authors": "miki, mom0tomo, mi-bear",
+  "summary": "数遊びができるコマンドラインツールを作成します。",
+  "source": "1XGFY4kS12qH0nT3hC-dFB-Nce-HfA896GY19muS-Czk",
+  "theme": "go",
+  "status": [
+    "public"
+  ],
+  "category": [
+    "Go"
+  ],
+  "tags": [
+    "women who go tokyo"
+  ],
+  "feedback": "https://github.com/WomenWhoGoTokyo/codelab/issues",
+  "url": "play-with-number"
+}

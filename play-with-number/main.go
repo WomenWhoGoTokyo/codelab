@@ -45,11 +45,11 @@ func main() {
 		fmt.Print("オプションを指定してください")
 		return
 	}
-	PrimeNumdeterminer(num)
+	PrimeNumDeterminer(num)
 }
 
-func PrimeNumdeterminer(num int) {
-	result := prime.Prime(num)
+func PrimeNumDeterminer(num int) {
+	result := prime.IsPrime(num)
 	switch result {
 	case true:
 		fmt.Printf("%dは%s\n", num, "素数です")

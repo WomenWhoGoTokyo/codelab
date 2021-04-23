@@ -2,7 +2,7 @@ package prime
 
 import "testing"
 
-func TestPrime(t *testing.T) {
+func TestIsPrime(t *testing.T) {
 
 	tests := []struct {
 		arg  int
@@ -18,7 +18,7 @@ func TestPrime(t *testing.T) {
 		},
 	}
 	for _, tt := range tests {
-		if got := Prime(tt.arg); got != tt.want {
+		if got := IsPrime(tt.arg); got != tt.want {
 			t.Errorf("Prime() = %v, want %v", got, tt.want)
 		}
 	}
