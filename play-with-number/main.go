@@ -49,7 +49,7 @@ func main() {
 }
 
 func PrimeNumdeterminer(num int) {
-	result := prime.Prime(num)
+	result := prime.IsPrime(num)
 	switch result {
 	case true:
 		fmt.Printf("%dは%s\n", num, "素数です")

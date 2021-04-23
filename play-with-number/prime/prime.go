@@ -4,7 +4,7 @@ import (
 	"math"
 )
 
-func Prime(n int) bool {
+func IsPrime(n int) bool {
 	squareroot := math.Sqrt(float64(n))
 	result := true
 
