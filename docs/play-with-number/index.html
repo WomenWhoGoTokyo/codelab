@@ -445,6 +445,12 @@ $ go test</pre>
 <pre>PASS
 ok          github.com/WomenWhoGoTokyo/codelab/play-with-number/prime        0.344s</pre>
 <p>期待通り、全てのテストがパスしました。</p>
+<p>ここまでの修正を経てプログラムが期待通りに動くようになったので、もう一度バイナリをビルドして、prime モードで素数判定を実行してみましょう。</p>
+<pre>$ go build -v -o play-with-number</pre>
+<pre>$ ./play-with-number -game prime
+数字を入力してください
+13
+13は素数です</pre>
 
 
       </google-codelab-step>
