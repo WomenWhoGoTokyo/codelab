@@ -233,9 +233,9 @@ func IsPrime(n int) bool {
         }
         return result
 }</code></pre>
-<p><code>IsPrime</code>関数で行っている処理を上から見ていきましょう。</p>
-<p>まず、コマンドラインで文字列（string型）として与えられたnをfloat64型に型変換しています。さらに、mathパッケージのSqrt関数を使い、その平方根を取得してsquarerootという変数に代入しています。square rootとは日本語で平方根のことです。</p>
-<p>続くループ処理で、nが２から自分自身までの自然数で割り切れた場合は結果をtrueとし、割り切れずにあまりが出た場合は結果をfalseとすることで、素数かどうかの判定ができるようになります。</p>
+<p><code>IsPrime </code>関数で行っている処理を上から見ていきましょう。</p>
+<p>まず、コマンドラインで文字列（string型）として与えられた<code>n</code>を <code>float64</code> 型に型変換しています。さらに、mathパッケージの <code>Sqrt</code> 関数を使い、その平方根を取得して<code>squareroot </code>という変数に代入しています。square root とは日本語で平方根のことです。</p>
+<p>続くループ処理で、<code>n </code>が 2 から自分自身までの自然数で割り切れた場合は結果を <code>true </code>とし、割り切れずに余りが出た場合は結果を <code>false</code>とすることで、素数かどうかの判定ができるようになります。</p>
 <p>この処理を書くと、プログラムは次のようになります。</p>
 <p><code>codelab/play-with-number/prime/prime.go</code></p>
 <pre><code>package prime
@@ -363,57 +363,53 @@ FAIL        github.com/WomenWhoGoTokyo/codelab/play-with-number/prime        0.3
 
       </google-codelab-step>
     
-      <google-codelab-step label="main関数を修正する" duration="5">
-        <p><code>main.goのma</code>in 関数コードを保存したら、もう一度テストを実行してみましょう。</p>
-<p><code>codelab/play-with-number/main.go</code></p>
-<pre><code>package main
+      <google-codelab-step label="IsPrime関数を修正する" duration="5">
+        <p>もう一度、<code>prime.go </code>の<code>IsPrime </code> 関数を確認します。</p>
+<p><code>codelab/play-with-number/prime/prime.go</code></p>
+<pre><code>package prime
 
 import (
-        &#34;flag&#34;
-        &#34;fmt&#34;
-        &#34;strconv&#34;
-        &#34;time&#34;
-
-        &#34;github.com/WomenWhoGoTokyo/codelab/play-with-number/prime&#34;
+        &#34;math&#34;
 )
 
-var game string
+func IsPrime(n int) bool {
+        squareroot := math.Sqrt(float64(n))
+        result := true
 
-const (
-        defaultGame = &#34;&#34;
-        usage       = &#34;ゲームのメニューを選択&#34;
-)
-
-func init() {
-        flag.StringVar(&amp;game, &#34;game&#34;, defaultGame, usage)
-}
-
-func main() {
-        var (
-                num int
-                err error
-        )
-
-        flag.Parse()
-
-        switch game {
-        case &#34;prime&#34;:
-                fmt.Print(&#34;数字を入力してください\n&#34;)
-                fmt.Scan(&amp;num)
-        case &#34;todayis&#34;:
-                num, err = convertTodayToNum()
-                if err != nil {
-                        fmt.Println(err)
-                        return
+        for i := 2; i &lt;= int(squareroot); i++ {
+                if n%i == 0 {
+                        result = false
+                        break
                 }
-        default:
-                fmt.Print(&#34;オプションを指定してください&#34;)
-                return
         }
-        PrimeNumDeterminer(num)
-}
+        return result
+}</code></pre>
+<p>ループ処理の中の条件分岐で、入力された値が1だった場合に <code>result</code> に <code>false</code> を代入する処理を追加しましょう。</p>
+<p><code>switch 文を使い、入力された値が1の場合と、それ以外の場合で分岐します。if文を使うこともできますが、簡潔に書くことができるため、Goではこのような場合に switch 文を使うことが多いです。</code></p>
+<p><code>codelab/play-with-number/prime/prime.go</code></p>
+<pre><code>package prime
 
-...（略）</code></pre>
+import (
+        &#34;math&#34;
+)
+
+func IsPrime(n int) bool {
+        squareroot := math.Sqrt(float64(n))
+        result := true
+
+        for i := 2; i &lt;= int(squareroot); i++ {
+                switch n {
+                case 1:
+                        result = false
+                default:
+                        if n%i == 0 {
+                                result = false
+                                break
+                        }
+                }
+        }
+        return result
+}</code></pre>
 <p>修正したコードを保存したら、もう一度テストを実行してみましょう。</p>
 <pre>$ pwd
 /Users/{ユーザー名}/dev/codelab/play-with-number/prime
@@ -428,7 +424,7 @@ ok          github.com/WomenWhoGoTokyo/codelab/play-with-number/prime        0.3
     
       <google-codelab-step label="さいごに" duration="5">
         <p>このコードラボでは、素数を判定するゲームを題材に、Goでコマンドラインツールをつくりそのテストを実行する体験をしました。</p>
-<p>Goでは、標準パッケージを使って簡単にコマンドラインツールをつくることができるので、みなさんも趣味や業務に役立つツールを作ってみてください。</p>
+<p>Goでは、標準パッケージを使って簡単にコマンドラインツールをつくることができるので、みなさんも趣味や業務に役立つツールをつくってみてください。</p>
 
 
       </google-codelab-step>
