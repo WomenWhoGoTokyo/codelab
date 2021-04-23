@@ -224,8 +224,8 @@ func IsPrime(n int) bool {
         squareroot := math.Sqrt(float64(n))
         result := true
 
+        //TODO: コマンドラインから取得した値が1の場合の条件分岐処理を書く
         for i := 2; i &lt;= int(squareroot); i++ {
-                //TODO: コマンドラインから取得した値が1の場合の条件分岐処理を書く
 		if n%i == 0 {
                         //TODO: 結果の判定をする
                         break
@@ -248,8 +248,8 @@ func IsPrime(n int) bool {
         squareroot := math.Sqrt(float64(n))
         result := true
 
+        //TODO: コマンドラインから取得した値が1の場合の条件分岐処理を書く
         for i := 2; i &lt;= int(squareroot); i++ {
-                //TODO: コマンドラインから取得した値が1の場合の条件分岐処理を書く
                 if n%i == 0 {
                         result = false
                         break
@@ -261,9 +261,9 @@ func IsPrime(n int) bool {
 <pre>$ go build -v -o play-with-number</pre>
 <pre>$ ./play-with-number -game prime
 数字を入力してください
-5
-5は素数です</pre>
-<p>期待通り、5 は素数だと判定されました。</p>
+6
+6は素数はありません</pre>
+<p>期待通り、6 は素数ではないと判定されました。</p>
 
 
       </google-codelab-step>
@@ -377,8 +377,8 @@ func IsPrime(n int) bool {
         squareroot := math.Sqrt(float64(n))
         result := true
 
+        //TODO: コマンドラインから取得した値が1の場合の条件分岐処理を書く
         for i := 2; i &lt;= int(squareroot); i++ {
-                //TODO: コマンドラインから取得した値が1の場合の条件分岐処理を書く
                 if n%i == 0 {
                         result = false
                         break
@@ -386,8 +386,8 @@ func IsPrime(n int) bool {
         }
         return result
 }</code></pre>
-<p>ループ処理の中の条件分岐で、入力された値が 1 だった場合に <code>result</code> に false を代入する処理を追加しましょう。</p>
-<p>switch 文を使い、入力された値が1の場合と、それ以外の場合で分岐します。</p>
+<p>ループ処理に入る前に条件分岐を追加し、入力された値が 1 だった場合に false を返す処理を追加しましょう。</p>
+<p>入力された値が1の場合は、早期リターンをして false を返し、<code>IsPrime </code>関数を抜けるようにします。</p>
 <p><code>codelab/play-with-number/prime/prime.go</code></p>
 <pre><code>package prime
 
@@ -399,14 +399,13 @@ func IsPrime(n int) bool {
         squareroot := math.Sqrt(float64(n))
         result := true
 
-        for i := 2; i &lt;= int(squareroot); i++ {
-                switch n {
-                //TODO: コマンドラインから取得した値が1の場合の条件分岐処理を書く
-                if n%i == 0 {
-                        result = false
-                        break
-                }
-        }
+	//TODO: コマンドラインから取得した値が1の場合の処理を書く
+	for i := 2; i <= int(squareroot); i++ {
+		if n%i == 0 {
+			result = false
+			break
+		}
+	}
         return result
 }</code></pre>
 
@@ -423,17 +422,16 @@ func IsPrime(n int) bool {
         squareroot := math.Sqrt(float64(n))
         result := true
 
-        for i := 2; i &lt;= int(squareroot); i++ {
-                switch n {
-                case 1:
-                        result = false
-                default:
-                        if n%i == 0 {
-                                result = false
-                                break
-                        }
-                }
-        }
+	if n == 1 {
+		return false
+	}
+
+	for i := 2; i <= int(squareroot); i++ {
+		if n%i == 0 {
+			result = false
+			break
+		}
+	}
         return result
 }</code></pre>
 
