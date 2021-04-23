@@ -102,7 +102,7 @@ README.md go.mod  main.go   prime</pre>
 
 import &#34;testing&#34;
 
-func TestPrime(t *testing.T) {
+func TestIsPrime(t *testing.T) {
 
         tests := []struct {
                 arg  int
@@ -118,8 +118,8 @@ func TestPrime(t *testing.T) {
                 },
         }
         for _, tt := range tests {
-                if got := Prime(tt.arg); got != tt.want {
-                        t.Errorf(&#34;Prime() = %v, want %v&#34;, got, tt.want)
+                if got := IsPrime(tt.arg); got != tt.want {
+                        t.Errorf(&#34;IIsPrime(%v) = %v, want %v&#34;, got, tt.want)
                 }
         }
 }</code></pre>
@@ -129,7 +129,7 @@ func TestPrime(t *testing.T) {
 $ go test</pre>
 <p>テストの実行結果が出力されました。</p>
 <pre>--- FAIL: TestPrime (0.00s)
-    prime_test.go:22: Prime() = true, want false
+    prime_test.go:22: IsPrime() = true, want false
 FAIL
 exit status 1
 FAIL        github.com/WomenWhoGoTokyo/codelab/play-with-number/prime        0.452s</pre>
@@ -145,7 +145,7 @@ FAIL        github.com/WomenWhoGoTokyo/codelab/play-with-number/prime        0.4
 <pre><code>...（略）
 
 func PrimeNumDeterminer(num int) {
-        result := prime.Prime(num)
+        result := prime.IsPrime(num)
         switch result {
         case // TODO: 素数の場合の条件分岐処理を書く
                 fmt.Printf(&#34;%dは%s\n&#34;, num, &#34;素数です&#34;)
@@ -343,7 +343,7 @@ func TestPrime(t *testing.T) {
                 },
         }
         for _, tt := range tests {
-                if got := Prime(tt.arg); got != tt.want {
+                if got := IsPrime(tt.arg); got != tt.want {
                         t.Errorf(&#34;Prime() = %v, want %v&#34;, got, tt.want)
                 }
         }
