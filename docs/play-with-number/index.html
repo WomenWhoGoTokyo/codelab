@@ -50,7 +50,7 @@
         <p>GitHub からコードラボで利用するサンプルコードを取得しましょう。</p>
 <pre>$ git clone https://github.com/WomenWhoGoTokyo/codelab.git</pre>
 <p>Google Cloud Shell をご利用の方は、<a href="https://github.com/WomenWhoGoTokyo/codelab/tree/master/play-with-number" target="_blank">https://github.com/WomenWhoGoTokyo/codelab/tree/master/play-with-number</a> の「OPEN IN GOOGLE CLOUD SHELL」ボタンを押下してコードを取得してください。<img style="width: 601.70px" src="img/265fac3df769e316.png"></p>
-<p><code>コードが取</code>得できたら codelab/play-with-number というディレクトリが作られていることを確認しましょう。</p>
+<p>コードが取得できたら <code>codelab/play-with-number</code> というディレクトリが作られていることを確認しましょう。</p>
 <pre>$ cd codelab/play-with-number
 $ ls
 README.md go.mod  main.go   prime</pre>
@@ -123,7 +123,7 @@ func TestPrime(t *testing.T) {
                 }
         }
 }</code></pre>
-<p>これは、<code>prime/prime.go に書かれている Prime という関数をテストするための処理です。入力した数値が素数である 5 の場合は true を、素数ではない 6 の場合は false を返す処理が書かれています。</code></p>
+<p>これは、<code>prime/prime.go</code>に書かれている Prime という関数をテストするための処理です。入力した数値が素数である 5 の場合は true を、素数ではない 6 の場合は false を返す処理が書かれています。</p>
 <p><code>テストを実行してみましょう。</code></p>
 <pre>$ cd prime
 $ go test</pre>
@@ -139,8 +139,8 @@ FAIL        github.com/WomenWhoGoTokyo/codelab/play-with-number/prime        0.4
       </google-codelab-step>
     
       <google-codelab-step label="main関数を確認する" duration="15">
-        <p><code>まず、main関数を確認しましょう。</code></p>
-<p><code>PrimeNumDeterminer </code>関数で、<code>Prime</code>関数の戻り値が <code>true だった場合に「素数です」と出力し、戻り値が true でなかった場合「素数ではありません」と出力する処理をしています。</code></p>
+        <p>まず、main関数を確認しましょう。</p>
+<p>PrimeNumDeterminer関数で、Prime関数の戻り値が true だった場合に「素数です」と出力し、戻り値が true でなかった場合「素数ではありません」と出力する処理をしています。</p>
 <p><code>codelab/play-with-number/main.go</code></p>
 <pre><code>...（略）
 
@@ -155,7 +155,7 @@ func PrimeNumDeterminer(num int) {
 }
 
 ...（略）</code></pre>
-<p><code>また</code>、コンソールに入力した値を読み取る処理で、<code>flagパッケージを使っています。</code></p>
+<p>また、コンソールに入力した値を読み取る処理で、<code>flag</code>パッケージを使っています。</p>
 <p><code>codelab/play-with-number/main.go</code></p>
 <pre><code>package main
 
@@ -212,8 +212,8 @@ func main() {
       </google-codelab-step>
     
       <google-codelab-step label="Prime関数を修正する" duration="10">
-        <p><code>まず</code>、 prime.go の <code>IsPrime </code>関数を確認します。<code>prime とは日本語で素数のことです。</code></p>
-<p><code>IsPrime関数では、コ</code>マンドラインで引数として与えられた文字列を n とし、nが素数であるか否かの判定を行います。nが素数かどうかは、「１より大きい整数で、平方根をとってそれ以下の素数で割り切れる場合」に素数であると判定できます。</p>
+        <p>まず、 prime.go の <code>IsPrime </code>関数を確認します。prime とは日本語で素数のことです。</p>
+<p><code>IsPrime</code>関数では、コマンドラインで引数として与えられた文字列を n とし、nが素数であるか否かの判定を行います。nが素数かどうかは、「１より大きい整数で、平方根をとってそれ以下の素数で割り切れる場合」に素数であると判定できます。</p>
 <p><code>codelab/play-with-number/prime/prime.go</code></p>
 <pre><code>package prime
 
@@ -233,9 +233,9 @@ func IsPrime(n int) bool {
         }
         return result
 }</code></pre>
-<p><code>IsPrime関数で行っている処理を上から見ていきましょう。</code></p>
-<p><code>まず、コマンドラインで文字列（string型）として与えられたnをfloat64型に型変換しています。さらに、mathパッケージのSqrt関数を使い、その平方根を取得してsquarerootという変数に代入しています。square rootとは日本語で平方根のことです。</code></p>
-<p><code>続くループ処理で、nが２から自分自身までの自然数で割り切れた場合は結果をtrueとし、割り切れずにあまりが出た場合は結果をfalseとすることで、素数かどうかの判定ができるようになります。</code></p>
+<p><code>IsPrime</code>関数で行っている処理を上から見ていきましょう。</p>
+<p>まず、コマンドラインで文字列（string型）として与えられたnをfloat64型に型変換しています。さらに、mathパッケージのSqrt関数を使い、その平方根を取得してsquarerootという変数に代入しています。square rootとは日本語で平方根のことです。</p>
+<p>続くループ処理で、nが２から自分自身までの自然数で割り切れた場合は結果をtrueとし、割り切れずにあまりが出た場合は結果をfalseとすることで、素数かどうかの判定ができるようになります。</p>
 <p>この処理を書くと、プログラムは次のようになります。</p>
 <p><code>codelab/play-with-number/prime/prime.go</code></p>
 <pre><code>package prime
@@ -256,7 +256,7 @@ func IsPrime(n int) bool {
         }
         return result
 }</code></pre>
-<p><code>更新したプログラムを保存したら、再度バイナリをビルドして、もう一度primeモードで素数判定を実行してみましょう。</code></p>
+<p>更新したプログラムを保存したら、再度バイナリをビルドして、もう一度primeモードで素数判定を実行してみましょう。</p>
 <pre>$ go build -v -o play-with-number</pre>
 <pre>$ ./play-with-number -game prime
 数字を入力してください
@@ -277,7 +277,7 @@ $ go test</pre>
 <pre>PASS
 ok          github.com/WomenWhoGoTokyo/codelab/play-with-number/prime        0.228s</pre>
 <p>期待通りにテストがパスしました。</p>
-<p>本当に素数が判定できているかどうか確認するために、テストケースを増やしてテストを実行してみます。<code>1</code> から <code>13 までの整数をテストケースに追加します。</code></p>
+<p>本当に素数が判定できているかどうか確認するために、テストケースを増やしてテストを実行してみます。1 から 13 までの整数をテストケースに追加します。</p>
 <p><code>codelab/play-with-number/prime/prime_test.go</code></p>
 <pre><code>package prime
 
