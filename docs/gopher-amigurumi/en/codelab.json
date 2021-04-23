@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2021-04-22T06:41:48Z",
+  "id": "gopher-amigurumi/en",
+  "duration": 71,
+  "title": "My First Gopher Amigurumi",
+  "authors": "miki, mihohoi",
+  "summary": "Using crochet hooks, make a crocheted version of Gopher.",
+  "source": "1CmQBaleilToO5uvoVtQFaG6t2abpsJHslep3uKBUe3Q",
+  "theme": "go",
+  "status": [
+    "public"
+  ],
+  "category": [
+    "Go"
+  ],
+  "tags": [
+    "amigurumi gophers"
+  ],
+  "feedback": "https://github.com/WomenWhoGoTokyo/codelab/issues",
+  "url": "gopher-amigurumi/en"
+}
