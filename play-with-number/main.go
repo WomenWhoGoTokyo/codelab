@@ -45,10 +45,10 @@ func main() {
 		fmt.Print("オプションを指定してください")
 		return
 	}
-	PrimeNumdeterminer(num)
+	PrimeNumDeterminer(num)
 }
 
-func PrimeNumdeterminer(num int) {
+func PrimeNumDeterminer(num int) {
 	result := prime.IsPrime(num)
 	switch result {
 	case true:
