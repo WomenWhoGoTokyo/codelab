@@ -50,7 +50,7 @@
         <p>GitHub からコードラボで利用するサンプルコードを取得しましょう。</p>
 <pre>$ git clone https://github.com/WomenWhoGoTokyo/codelab.git</pre>
 <p>Google Cloud Shell をご利用の方は、<a href="https://github.com/WomenWhoGoTokyo/codelab/tree/master/play-with-number" target="_blank">https://github.com/WomenWhoGoTokyo/codelab/tree/master/play-with-number</a> の「OPEN IN GOOGLE CLOUD SHELL」ボタンを押下してコードを取得してください。<img style="width: 601.70px" src="img/265fac3df769e316.png"></p>
-<p><code>コードが取</code>得できたら codelab/play-with-number というディレクトリが作られていることを確認しましょう。</p>
+<p>コードが取得できたら <code>codelab/play-with-number</code> というディレクトリがつくられていることを確認しましょう。</p>
 <pre>$ cd codelab/play-with-number
 $ ls
 README.md go.mod  main.go   prime</pre>
@@ -73,23 +73,23 @@ README.md go.mod  main.go   prime</pre>
 <p><code>go build</code> を実行すると、バイナリファイルが生成されます。</p>
 <p class="image-container"><img style="width: 601.70px" src="img/510aaacbcbea7b03.png"></p>
 <p>このゲームには二つのモードがあります。</p>
-<p>一つ目は <code>todayis</code> モード、二つ目は <code>prime</code> モードです。</p>
-<p>まずtodayisモードから試してみましょう。</p>
+<p>一つ目は todayis モード、二つ目は prime モードです。todayisモードは、本日の日付を6桁の数字にしたものが素数かどうかを判定します。prime モードは、入力した任意の数字が素数かどうかを判定します。</p>
+<p>まず todayis モードから試してみましょう。</p>
 <p>実行オプションで <code>-game</code> を指定し、引数に <code>todayis</code> を入れて、バイナリファイルを実行してみましょう。</p>
 <pre>$ ./play-with-number -game todayis
 20210418は素数ではありません</pre>
 <p>本日の日付（2021年4月18日）をyymmdd形式で表した6桁の数字は、素数ではないという結果が出力されました。</p>
-<p>今度は <code>prime</code> モードを試してみましょう。</p>
-<p>実行オプションで <code>-game</code> を指定し、引数に <code>prime</code> を入れて、バイナリファイルを実行してみましょう。</p>
+<p>今度は prime モードを試してみましょう。</p>
+<p>先ほどと同じように実行オプションで <code>-game</code> を指定し、引数に <code>prime</code> を入れて、バイナリファイルを実行してみましょう。</p>
 <pre>$ ./play-with-number -game prime</pre>
 <p>実行するとコンソールに 「数字を入力してください」と表示されます。</p>
-<p><code>好きな数字を入力してみましょう。まず試しに、素数である 5 を入力してみます。</code></p>
+<p>好きな文字を入力してみましょう。まず試しに、素数ではない 6 を入力してみます。</p>
 <pre>$ ./play-with-number -game prime
 数字を入力してください
-5
-5は素数ではありません</pre>
-<p>入力した数字 <code>5</code> は素数ではないという、期待と異なる結果が出力されました。</p>
-<p>次の項からは、期待した結果が返ってくるようにプログラムを修正していきます。</p>
+6
+は素数です</pre>
+<p>入力した数字 6 は素数であるという、期待と異なる結果が出力されました。</p>
+<p>次の章からは、期待した結果が返ってくるようにプログラムを修正していきます。</p>
 
 
       </google-codelab-step>
@@ -102,7 +102,7 @@ README.md go.mod  main.go   prime</pre>
 
 import &#34;testing&#34;
 
-func TestPrime(t *testing.T) {
+func TestIsPrime(t *testing.T) {
 
         tests := []struct {
                 arg  int
@@ -118,34 +118,34 @@ func TestPrime(t *testing.T) {
                 },
         }
         for _, tt := range tests {
-                if got := Prime(tt.arg); got != tt.want {
-                        t.Errorf(&#34;Prime() = %v, want %v&#34;, got, tt.want)
+                if got := IsPrime(tt.arg); got != tt.want {
+                        t.Errorf(&#34;IIsPrime(%v) = %v, want %v&#34;, got, tt.want)
                 }
         }
 }</code></pre>
-<p>これは、<code>prime/prime.go に書かれている Prime という関数をテストするための処理です。入力した数値が素数である 5 の場合は true を、素数ではない 6 の場合は false を返す処理が書かれています。</code></p>
-<p><code>テストを実行してみましょう。</code></p>
+<p>これは、<code>prime/prime.go</code>に書かれている IsPrime という関数をテストするためのプログラムです。入力した数値が素数である 5 の場合は true を、素数ではない 6 の場合は false を返す処理が書かれています。</p>
+<p>テストを実行してみましょう。</p>
 <pre>$ cd prime
 $ go test</pre>
 <p>テストの実行結果が出力されました。</p>
-<pre>--- FAIL: TestPrime (0.00s)
-    prime_test.go:22: Prime() = true, want false
+<pre>--- FAIL: TestIsPrime (0.00s)
+    prime_test.go:22: IsPrime(6) = true, want false
 FAIL
 exit status 1
 FAIL        github.com/WomenWhoGoTokyo/codelab/play-with-number/prime        0.452s</pre>
-<p>入力値が <code>5</code> の場合も <code>6</code> の場合も  <code>false が返ってきており、期待と異なる結果になっています。このテストがパスするように、入力した値が素数の場合は true が返るようにコードを修正していきます。</code></p>
-
+<p>入力値が 5 の場合も 6 の場合も false が返ってきており、期待と異なる結果になっています。このテストがパスするように、入力した値が素数の場合は true が返るようにコードを修正していきます。</p>
 
       </google-codelab-step>
     
       <google-codelab-step label="main関数を確認する" duration="15">
         <p>まず、codelab/play-with-number ディレクトリにあるmain.goファイルを確認しましょう。</p>
+
 <p><code>PrimeNumDeterminer </code>関数では、<code>IsPrime</code> 関数の戻り値が true だった場合に「素数です」と出力し、戻り値が true でなかった場合「素数ではありません」と出力する処理をしています。</p>
 <p><code>codelab/play-with-number/main.go</code></p>
 <pre><code>...（略）
 
 func PrimeNumDeterminer(num int) {
-        result := prime.Prime(num)
+        result := prime.IsPrime(num)
         switch result {
         case // TODO: 素数の場合の条件分岐処理を書く
                 fmt.Printf(&#34;%dは%s\n&#34;, num, &#34;素数です&#34;)
@@ -155,7 +155,7 @@ func PrimeNumDeterminer(num int) {
 }
 
 ...（略）</code></pre>
-<p><code>また</code>、コンソールに入力した値を読み取る処理で、<code>flagパッケージを使っています。</code></p>
+<p>また、コンソールに入力した値を読み取る処理で、<code>flag</code>パッケージを使っています。</p>
 <p><code>codelab/play-with-number/main.go</code></p>
 <pre><code>package main
 
@@ -205,15 +205,14 @@ func main() {
 }
 
 ...（略）</code></pre>
-<p><code>flag.String()やflag.Int()などのメソッドを使って、パースしたいパラメーターを指定することができます。今回はflag.StringVar()を使っています。</code></p>
-<p><code>パースしたいパラメータを指定したら、flag.Parse()を使ってコマンドラインを解析します。flag.Parse()は、入力された値を定義されたフラグに変換します。</code></p>
-
+<p><code>flag.String() </code>や<code>flag.Int() </code>などの関数を使って、パースしたいパラメーターを指定することができます。今回は<code>flag.StringVar() </code>を使っています。</p>
+<p>パースしたいパラメータを指定したら、<code>flag.Parse() </code>を使ってコマンドラインを解析します。<code>flag.Parse() </code>は、入力された値を定義されたフラグに変換します。</p>
 
       </google-codelab-step>
     
-      <google-codelab-step label="Prime関数を修正する" duration="10">
-        <p><code>まず</code>、 prime.go の <code>IsPrime </code>関数を確認します。<code>prime とは日本語で素数のことです。</code></p>
-<p><code>IsPrime関数では、コ</code>マンドラインで引数として与えられた文字列を n とし、nが素数であるか否かの判定を行います。nが素数かどうかは、「１より大きい整数で、平方根をとってそれ以下の素数で割り切れる場合」に素数であると判定できます。</p>
+      <google-codelab-step label="IsPrime関数を修正する" duration="10">
+        <p>まず、 <code>prime.go </code>の<code>IsPrime </code>関数を確認します。prime とは日本語で素数のことです。</p>
+<p><code>IsPrime </code>関数では、コマンドラインで引数として与えられた文字列を n とし、nが素数であるか否かの判定を行います。nが素数かどうかは、「１より大きい整数で、平方根をとってそれ以下の素数で割り切れる場合」に素数であると判定できます。</p>
 <p><code>codelab/play-with-number/prime/prime.go</code></p>
 <pre><code>package prime
 
@@ -233,9 +232,9 @@ func IsPrime(n int) bool {
         }
         return result
 }</code></pre>
-<p><code>IsPrime関数で行っている処理を上から見ていきましょう。</code></p>
-<p><code>まず、コマンドラインで文字列（string型）として与えられたnをfloat64型に型変換しています。さらに、mathパッケージのSqrt関数を使い、その平方根を取得してsquarerootという変数に代入しています。square rootとは日本語で平方根のことです。</code></p>
-<p><code>続くループ処理で、nが２から自分自身までの自然数で割り切れた場合は結果をtrueとし、割り切れずにあまりが出た場合は結果をfalseとすることで、素数かどうかの判定ができるようになります。</code></p>
+<p><code>IsPrime </code>関数で行っている処理を上から見ていきましょう。</p>
+<p>まず、コマンドラインで文字列（string型）として与えられた<code>n</code>を <code>float64</code> 型に型変換しています。さらに、mathパッケージの <code>Sqrt</code> 関数を使い、その平方根を取得して<code>squareroot </code>という変数に代入しています。square root とは日本語で平方根のことです。</p>
+<p>続くループ処理で、<code>n </code>が 2 から自分自身までの自然数で割り切れた場合は結果を <code>true </code>とし、割り切れずに余りが出た場合は結果を <code>false</code>とすることで、素数かどうかの判定ができるようになります。</p>
 <p>この処理を書くと、プログラムは次のようになります。</p>
 <p><code>codelab/play-with-number/prime/prime.go</code></p>
 <pre><code>package prime
@@ -256,7 +255,7 @@ func IsPrime(n int) bool {
         }
         return result
 }</code></pre>
-<p><code>更新したプログラムを保存したら、再度バイナリをビルドして、もう一度primeモードで素数判定を実行してみましょう。</code></p>
+<p>更新したプログラムを保存したら、再度バイナリをビルドして、もう一度 prime モードで素数判定を実行してみましょう。</p>
 <pre>$ go build -v -o play-with-number</pre>
 <pre>$ ./play-with-number -game prime
 数字を入力してください
@@ -267,7 +266,7 @@ func IsPrime(n int) bool {
 
       </google-codelab-step>
     
-      <google-codelab-step label="テストケースを増やす" duration="10">
+      <google-codelab-step label="テストケースを増やす" duration="5">
         <p>書き直した Go のプログラムが期待通り動作するか確認するために、もう一度テストを実行してみましょう。</p>
 <pre>$ pwd
 /Users/{ユーザー名}/dev/codelab/play-with-number/prime
@@ -277,7 +276,7 @@ $ go test</pre>
 <pre>PASS
 ok          github.com/WomenWhoGoTokyo/codelab/play-with-number/prime        0.228s</pre>
 <p>期待通りにテストがパスしました。</p>
-<p>本当に素数が判定できているかどうか確認するために、テストケースを増やしてテストを実行してみます。<code>1</code> から <code>13 までの整数をテストケースに追加します。</code></p>
+<p>本当に素数が判定できているかどうか確認するために、テストケースを増やしてテストを実行してみます。1 から 13 までの整数をテストケースに追加します。</p>
 <p><code>codelab/play-with-number/prime/prime_test.go</code></p>
 <pre><code>package prime
 
@@ -343,11 +342,74 @@ func TestPrime(t *testing.T) {
                 },
         }
         for _, tt := range tests {
-                if got := Prime(tt.arg); got != tt.want {
+                if got := IsPrime(tt.arg); got != tt.want {
                         t.Errorf(&#34;Prime() = %v, want %v&#34;, got, tt.want)
                 }
         }
 }</code></pre>
+<pre>$ pwd
+/Users/{ユーザー名}/dev/codelab/play-with-number/prime
+
+$ go test</pre>
+<pre>--- FAIL: TestIsPrime (0.00s)
+    prime_test.go:66: IsPrime(1) = true, want false
+FAIL
+exit status 1
+FAIL        github.com/WomenWhoGoTokyo/codelab/play-with-number/prime        0.322s</pre>
+<p>1の場合も <code>IsPrime</code>関数の戻り値が true となっており、テストが落ちています。</p>
+<p>１は素数ではないので、判定処理のプログラムを修正しましょう。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="IsPrime関数を修正する" duration="5">
+        <p>もう一度、<code>prime.go </code>の<code>IsPrime </code> 関数を確認します。</p>
+<p><code>codelab/play-with-number/prime/prime.go</code></p>
+<pre><code>package prime
+
+import (
+        &#34;math&#34;
+)
+
+func IsPrime(n int) bool {
+        squareroot := math.Sqrt(float64(n))
+        result := true
+
+        for i := 2; i &lt;= int(squareroot); i++ {
+                if n%i == 0 {
+                        result = false
+                        break
+                }
+        }
+        return result
+}</code></pre>
+<p>ループ処理の中の条件分岐で、入力された値が 1 だった場合に <code>result</code> に false を代入する処理を追加しましょう。</p>
+<p>switch 文を使い、入力された値が1の場合と、それ以外の場合で分岐します。</p>
+<p><code>codelab/play-with-number/prime/prime.go</code></p>
+<pre><code>package prime
+
+import (
+        &#34;math&#34;
+)
+
+func IsPrime(n int) bool {
+        squareroot := math.Sqrt(float64(n))
+        result := true
+
+        for i := 2; i &lt;= int(squareroot); i++ {
+                switch n {
+                case 1:
+                        result = false
+                default:
+                        if n%i == 0 {
+                                result = false
+                                break
+                        }
+                }
+        }
+        return result
+}</code></pre>
+<p>修正したコードを保存したら、もう一度テストを実行してみましょう。</p>
 <pre>$ pwd
 /Users/{ユーザー名}/dev/codelab/play-with-number/prime
 
@@ -361,7 +423,7 @@ ok          github.com/WomenWhoGoTokyo/codelab/play-with-number/prime        0.3
     
       <google-codelab-step label="さいごに" duration="5">
         <p>このコードラボでは、素数を判定するゲームを題材に、Goでコマンドラインツールをつくりそのテストを実行する体験をしました。</p>
-<p>Goでは、標準パッケージを使って簡単にコマンドラインツールをつくることができるので、みなさんも趣味や業務に役立つツールを作ってみてください。</p>
+<p>Goでは、標準パッケージを使って簡単にコマンドラインツールをつくることができるので、みなさんも趣味や業務に役立つツールをつくってみてください。</p>
 
 
       </google-codelab-step>
