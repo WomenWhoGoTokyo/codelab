@@ -3,6 +3,7 @@ package guestbook
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 	"time"
 	"context"
 
@@ -33,7 +34,20 @@ func Post(w http.ResponseWriter, r *http.Request) {
 		CreatedAt: time.Now(),
 	}
 
-	key := datastore.IncompleteKey(r.Host, nil)
+	var key *datastore.Key
+	k := r.FormValue("key")
+
+	if k == "" {
+		key = datastore.IncompleteKey(r.Host, nil)
+	} else {
+		keyID, err := strconv.ParseInt(k, 10, 64)
+		if err != nil {
+			http.Error(w, fmt.Sprint(err), http.StatusBadRequest)
+			return
+		}
+		key = datastore.IDKey(r.Host, keyID, nil)
+	}
+
 	if _, err := client.Put(ctx, key, msg); err != nil {
 		http.Error(w, fmt.Sprint(err), http.StatusInternalServerError)
 	}

@@ -11,8 +11,8 @@ import (
 
 var indexTmpl = template.Must(template.ParseFiles("./view/index.html"))
 
-var title = "ゲストブック"
-var description = "結婚式などの受付で名前や住所, メッセージを記帳してもらうためのノートのことです。"
+var title = "Wedding Guest Book"
+var description = "Gopher & Gopher 2019.10.28"
 
 // IndexTemplate is a structure of index template.
 type IndexTemplate struct {
@@ -31,7 +31,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var msgs []*Message
-	q := datastore.NewQuery(r.Host).Order("-createdAt").Limit(10)
+	q := datastore.NewQuery(r.Host).Order("-createdAt").Limit(15)
 	keys, err := client.GetAll(ctx, q, &msgs)
 	if err != nil {
 		http.Error(w, fmt.Sprint(err), http.StatusInternalServerError)
