@@ -2,13 +2,12 @@ package taskmanager
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
-
-	"github.com/pkg/errors"
 )
 
 // TaskManager is entry point of Cloud Functions.
@@ -24,8 +23,7 @@ func TaskManager(w http.ResponseWriter, r *http.Request) {
 
 		t := newTask(param.Title)
 		if err := t.add(); err != nil {
-			e := errors.Wrap(err, "post error")
-			responseWrite(w, http.StatusInternalServerError, e.Error(), e)
+			responseWrite(w, http.StatusInternalServerError, err.Error(), err)
 			return
 		}
 		msg := fmt.Sprintf("%v added", t.Title)
@@ -60,20 +58,16 @@ func getJSON(contentType string, body io.Reader) (Parameter, int, error) {
 	var p Parameter
 
 	if contentType != "application/json" {
-		cause := errors.New("contentType")
-		e := errors.Wrap(cause, "bad request Content-Type")
-		return p, http.StatusBadRequest, e
+		return p, http.StatusBadRequest, errors.New("invalid Content Type")
 	}
 
 	b, err := ioutil.ReadAll(body)
 	if err != nil {
-		e := errors.Wrap(err, "read error")
-		return p, http.StatusInternalServerError, e
+		return p, http.StatusInternalServerError, err
 	}
 
 	if err = json.Unmarshal(b, &p); err != nil {
-		e := errors.Wrap(err, "json parse error")
-		return p, http.StatusInternalServerError, e
+		return p, http.StatusInternalServerError, err
 	}
 
 	return p, http.StatusOK, nil
