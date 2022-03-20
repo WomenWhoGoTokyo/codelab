@@ -25,4 +25,4 @@ $ ./play-with-number -game prime
 $ go test ./prime
 ```
 
-[![Open in Cloud Shell](http://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2FWomenWhoGoTokyo%2Fcodelab&cloudshell_workspace=play-with-number)
+[![Open in Cloud Shell](http://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/WomenWhoGoTokyo/codelab.git&cloudshell_workspace=play-with-number)
