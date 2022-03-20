@@ -1,6 +1,6 @@
 package taskmanager
 
-import "github.com/pkg/errors"
+import "fmt"
 
 // Status is the progress of the task.
 type Status int
@@ -19,5 +19,5 @@ func (s Status) validate() error {
 	case ToDo, InProgress, Done:
 		return nil
 	}
-	return errors.Errorf("%v is invalid Status.", s)
+	return fmt.Errorf("%v is invalid Status.", s)
 }
