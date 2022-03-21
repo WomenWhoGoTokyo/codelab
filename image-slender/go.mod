@@ -1,6 +1,6 @@
 module github.com/WomenWhoGoTokyo/codelab/image-slender
 
-go 1.18
+go 1.17
 
 require (
 	github.com/jinzhu/configor v1.1.1
