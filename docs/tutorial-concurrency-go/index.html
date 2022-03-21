@@ -97,7 +97,7 @@ func BenchmarkExecute(b *testing.B) {
                 execute()
         }
 }</code></pre>
-<p>これは、<code>main.go に書かれている execute という関数のベンチマークを実行するための処理です。実行してみましょう。</code></p>
+<p>これは、<code>main.go</code> に書かれている execute という関数のベンチマークを実行するための処理です。実行してみましょう。</p>
 <pre>$ go test -count 10 -bench BenchmarkExecute</pre>
 <p>ベンチマークの実行結果が出力されました。</p>
 <pre>goos: darwin
