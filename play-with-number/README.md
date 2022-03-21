@@ -20,7 +20,7 @@ $ ./play-with-number -game prime
 5は素数です
 ```
 
-## Run the test of the prime mode
+## Run the test of the `prime` mode
 ```bash
 $ go test ./prime
 ```
