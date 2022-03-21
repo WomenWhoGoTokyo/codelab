@@ -1,6 +1,7 @@
 package slender
 
 import (
+	"errors"
 	"fmt"
 	"image"
 	"image/gif"
@@ -10,8 +11,6 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
-
-	"github.com/pkg/errors"
 
 	"golang.org/x/image/draw"
 )
