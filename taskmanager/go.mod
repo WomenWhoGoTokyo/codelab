@@ -1,4 +1,4 @@
-module functions/taskmanagement
+module github.com/WomenWhoGoTokyo/codelab/taskmanager
 
 go 1.16
 
