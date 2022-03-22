@@ -74,15 +74,17 @@ function.go  go.mod  go.sum  parameter.go  status.go  task.go</pre>
         <p><code>git clone</code> したファイルの中に <code>go.mod</code> があります。Google Cloud Functions で Go のプログラムを動かすためには、<a href="https://github.com/golang/go/wiki/Modules" target="_blank">Go Modules</a> が必要です。</p>
 <p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って,  Goolge Cloud Shell のエディタで <code>codelab &gt; taskmanager &gt; go.mod</code> を開いてみましょう。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/d389a9c482963599.png"></p>
-<pre><code>module functions/taskmanager
+<pre><code>module github.com/WomenWhoGoTokyo/codelab/taskmanager
 
-go 1.11
+go 1.16
 
 require (
-        cloud.google.com/go v0.38.0
-        github.com/pkg/errors v0.8.1
-)</code></pre>
-<p>このように、Go のランタイム (このコードラボでは 1.11) が指定されています。</p>
+	cloud.google.com/go/datastore v1.1.0
+	github.com/pkg/errors v0.9.1
+)
+...
+</code></pre>
+<p>このように、Go のランタイム (このコードラボでは 1.16) が指定されています。</p>
 <p>また、プログラム内で利用している外部パッケージのバージョンもここで指定します。</p>
 <p>このコードラボでは、<a href="https://github.com/golang/go/wiki/Modules" target="_blank">Go Modules</a> の詳細な仕組みについては触れませんが、興味のある方は会場内のエンジニアにぜひ聞いてみてください。</p>
 
@@ -92,7 +94,7 @@ require (
       <google-codelab-step label="Google Cloud Functions に公開する" duration="0">
         <p>取得した Go のプログラムを <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go/?index=codelab#3" target="_blank">Google Cloud Shell で Go のプログラムを公開する</a> の手順に従って、Google Cloud Functions に公開してみましょう。</p>
 <pre>$ gcloud functions deploy {Cloud Functions Name} \
---runtime go111 \
+--runtime go116 \
 --entry-point TaskManager \
 --trigger-http</pre>
 <p><code>--entry-point</code> は省略することが可能ですが、その場合は、Cloud Functions Nameと同じになります。</p>
@@ -103,7 +105,7 @@ updateTime: &#39;2019-05-11T08:11:43Z&#39;
 versionId: &#39;1&#39;</pre>
 <p>このコードラボでは、Cloud Functions Nameを環境変数にセットしてプログラム内で利用します。</p>
 <p>環境変数を設定するコマンドを実行しましょう。</p>
-<pre>$ gcloud beta functions deploy {Cloud Functions Name} \
+<pre>$ gcloud functions deploy {Cloud Functions Name} \
 --set-env-vars MY_CODE={Cloud Functions Name}</pre>
 
 
