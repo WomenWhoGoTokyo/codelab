@@ -2,10 +2,7 @@ module github.com/WomenWhoGoTokyo/codelab/taskmanager
 
 go 1.16
 
-require (
-	cloud.google.com/go/datastore v1.1.0
-	github.com/pkg/errors v0.9.1
-)
+require cloud.google.com/go/datastore v1.6.0
 
 // NOTE: Dependabotのalert対応
 // https://wayne.cloud/go-mod-why/
