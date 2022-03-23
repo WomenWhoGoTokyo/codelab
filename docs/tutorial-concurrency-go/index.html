@@ -188,12 +188,14 @@ func execute() error {
 
 <p> 更新したプログラムを保存したら、実行してみましょう。</p>
 
-<p> まず新しくimportした<code>golang.org/x/sync/errgroup</code>  パッケージを <code>go mod </code>コマンドを使ってインストールします。</p>
+<p> <code>errgroup</code> パッケージを利用したいので、<code>go mod </code>コマンドでモジュールに追加します。</p>
+
+
 <pre>$ go mod tidy
 go: finding module for package golang.org/x/sync/errgroup
 go: found golang.org/x/sync/errgroup in golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
 </pre>
-<p>go buildしてバイナリファイルを実行しましょう。</p>
+<p><code>go build</code> コマンドで Go の実行バイナリファイルを生成し、実行してみましょう。</p>
 <pre>$ go build -v -o image-slender
 $ ./image-slender</pre>
 
