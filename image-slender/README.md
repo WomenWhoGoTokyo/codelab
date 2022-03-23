@@ -1,5 +1,5 @@
 # image-slender
-https://womenwhogotokyo.github.io/codelab/image-slender/
+https://womenwhogotokyo.github.io/codelab/tutorial-concurrency-go/
 
 ## Run the Benchmark
 ```
