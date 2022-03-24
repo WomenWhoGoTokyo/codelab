@@ -27,7 +27,7 @@ func newTask(title string) *Task {
 func (t Task) add() error {
 	ctx := context.Background()
 
-	client, err := datastore.NewClient(ctx, "wwgt-codelabs")
+	client, err := datastore.NewClient(ctx, "{プロジェクトID}")
 	if err != nil {
 		return err
 	}
