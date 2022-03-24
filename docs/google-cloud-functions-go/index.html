@@ -202,7 +202,7 @@ versionId: &#39;1&#39;</pre>
 <pre><code>func getAllTask() ([]Task, error) {
     ctx := context.Background()
 
-    client, err := datastore.NewClient(ctx, &#34;wwgt-codelabs&#34;)
+    client, err := datastore.NewClient(ctx, &#34;{プロジェクトID}&#34;)
     if err != nil {
         return nil, err
     }
@@ -260,7 +260,7 @@ var t []Task
 <h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
 <p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
 <pre>$ gcloud functions deploy {Cloud Functions Name} \
---runtime go111 \
+--runtime go116 \
 --entry-point TaskManager \
 --trigger-http</pre>
 <h2 is-upgraded><strong>アプリケーションを確認する</strong></h2>
@@ -309,7 +309,7 @@ var t []Task
 <pre><code>func (t Task) update() error {
     ctx := context.Background()
 
-    client, err := datastore.NewClient(ctx, &#34;wwgt-codelabs&#34;)
+    client, err := datastore.NewClient(ctx, &#34;{プロジェクトID}&#34;)
     if err != nil {
         return err
     }
@@ -371,7 +371,7 @@ var t []Task
 <h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
 <p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
 <pre>$ gcloud functions deploy {Cloud Functions Name} \
---runtime go111 \
+--runtime go116 \
 --entry-point TaskManager \
 --trigger-http</pre>
 <h2 is-upgraded><strong>アプリケーションを確認する</strong></h2>
@@ -400,7 +400,7 @@ var t []Task
 <pre><code>func (t Task) delete() error {
     ctx := context.Background()
 
-    client, err := datastore.NewClient(ctx, &#34;wwgt-codelabs&#34;)
+    client, err := datastore.NewClient(ctx, &#34;{プロジェクトID}&#34;)
     if err != nil {
         return err
     }
@@ -439,7 +439,7 @@ var t []Task
 <h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
 <p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
 <pre>$ gcloud functions deploy {Cloud Functions Name} \
---runtime go111 \
+--runtime go116 \
 --entry-point TaskManager \
 --trigger-http</pre>
 <h2 is-upgraded><strong>アプリケーションを確認する</strong></h2>
