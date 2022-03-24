@@ -213,8 +213,7 @@ var t []Task
     case http.MethodGet:
         t, err := getAllTask()
         if err != nil {
-            e := errors.Errorf(&#34;get error: %v&#34;, err)
-            responseWrite(w, http.StatusInternalServerError, e.Error(), e)
+            responseWrite(w, http.StatusInternalServerError, err.Error(), err)
             return
         }
 
@@ -225,8 +224,7 @@ var t []Task
 
         b, err := json.Marshal(t)
         if err != nil {
-            e := errors.Errorf(&#34;json marshal error: %v&#34;, err)
-            responseWrite(w, http.StatusInternalServerError, e.Error(), e)
+            responseWrite(w, http.StatusInternalServerError, err.Error(), err)
             return
         }
 
@@ -339,8 +337,7 @@ var t []Task
 
         t := setTask(param.ID, param.Title, param.Status)
         if err := t.update(); err != nil {
-            e := errors.Errorf(&#34;patch error: %v&#34;, err)
-            responseWrite(w, http.StatusInternalServerError, e.Error(), e)
+            responseWrite(w, http.StatusInternalServerError, err.Error(), err)
             return
         }
         msg := fmt.Sprintf(&#34;%v updated&#34;, t)
@@ -409,8 +406,7 @@ var t []Task
 
         t := setTask(param.ID, &#34;&#34;, 0)
         if err := t.delete(); err != nil {
-            e := errors.Errorf(&#34;delete error: %v&#34;, err)
-            responseWrite(w, http.StatusInternalServerError, e.Error(), e)
+            responseWrite(w, http.StatusInternalServerError, err.Error(), err)
             return
         }
         msg := fmt.Sprintf(&#34;%v deleted&#34;, t)
