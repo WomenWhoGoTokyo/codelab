@@ -101,7 +101,7 @@ require cloud.google.com/go/datastore v1.6.0
             func (t Task) add() error {
                 ctx := context.Background()
             
-                client, err := datastore.NewClient(ctx, "GCP_PROJECT")
+                client, err := datastore.NewClient(ctx, os.Getenv("GCP_PROJECT"))
                 if err != nil {
                     return err
                 }
@@ -202,7 +202,7 @@ versionId: &#39;1&#39;</pre>
 <pre><code>func getAllTask() ([]Task, error) {
     ctx := context.Background()
 
-    client, err := datastore.NewClient(ctx, &#34;"GCP_PROJECT"&#34;)
+    client, err := datastore.NewClient(ctx, &#34;os.Getenv("GCP_PROJECT")&#34;)
     if err != nil {
         return nil, err
     }
@@ -309,7 +309,7 @@ var t []Task
 <pre><code>func (t Task) update() error {
     ctx := context.Background()
 
-    client, err := datastore.NewClient(ctx, &#34;"GCP_PROJECT"&#34;)
+    client, err := datastore.NewClient(ctx, &#34;os.Getenv("GCP_PROJECT")&#34;)
     if err != nil {
         return err
     }
@@ -400,7 +400,7 @@ var t []Task
 <pre><code>func (t Task) delete() error {
     ctx := context.Background()
 
-    client, err := datastore.NewClient(ctx, &#34;"GCP_PROJECT"&#34;)
+    client, err := datastore.NewClient(ctx, &#34;os.Getenv("GCP_PROJECT")&#34;)
     if err != nil {
         return err
     }
