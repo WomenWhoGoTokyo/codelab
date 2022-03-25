@@ -27,7 +27,7 @@ func newTask(title string) *Task {
 func (t Task) add() error {
 	ctx := context.Background()
 
-	client, err := datastore.NewClient(ctx, "{プロジェクトID}")
+	client, err := datastore.NewClient(ctx, "GCP_PROJECT")
 	if err != nil {
 		return err
 	}
