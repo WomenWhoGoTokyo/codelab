@@ -97,7 +97,7 @@ func BenchmarkExecute(b *testing.B) {
                 execute()
         }
 }</code></pre>
-<p>これは、<code>main.go に書かれている execute という関数のベンチマークを実行するための処理です。実行してみましょう。</code></p>
+<p>これは、<code>main.go</code> に書かれている execute という関数のベンチマークを実行するための処理です。実行してみましょう。</p>
 <pre>$ go test -count 10 -bench BenchmarkExecute</pre>
 <p>ベンチマークの実行結果が出力されました。</p>
 <pre>goos: darwin
@@ -160,7 +160,7 @@ import (
 
         &#34;github.com/jinzhu/configor&#34;
         &#34;github.com/mi-bear/image-slender/slender&#34;
-        &#34;golang.org/x/sync/errgroup&#34;
+        &#34;golang.org/x/sync/errgroup&#34; // 追加する
 )
 .
 .
@@ -185,10 +185,17 @@ func execute() error {
         return nil
 }</code></pre>
 <p><code>errgroup</code> は、<code>errgroup.Go</code> の処理をすべて実行し終わるまで、<code>errgroup.Wait</code> が呼ばれることはありません。また、<code>errgroup.Go</code> でエラーが発生したら、そのうち一番最初のエラーを返却します。 </p>
-<pre>$ go build -v -o image-slender
-$ ./image-slender</pre>
+
 <p> 更新したプログラムを保存したら、実行してみましょう。</p>
 
+<p> まず新しくimportした<code>golang.org/x/sync/errgroup</code>  パッケージを <code>go mod </code>コマンドを使ってインストールします。</p>
+<pre>$ go mod tidy
+go: finding module for package golang.org/x/sync/errgroup
+go: found golang.org/x/sync/errgroup in golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
+</pre>
+<p>go buildしてバイナリファイルを実行しましょう。</p>
+<pre>$ go build -v -o image-slender
+$ ./image-slender</pre>
 
       </google-codelab-step>
     
