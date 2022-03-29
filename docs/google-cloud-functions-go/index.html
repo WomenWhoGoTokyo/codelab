@@ -61,7 +61,7 @@
 <p><code>codelab/taskmanager</code> というディレクトリが作られていることを Google Cloud Shell のコンソールで確認しましょう。</p>
 <pre>$ cd codelab/taskmanager
 $ ls
-function.go  go.mod  go.sum  parameter.go  status.go  task.go</pre>
+README.md  function.go  go.mod  go.sum  parameter.go  status.go  task.go</pre>
 <aside class="special"><h3 is-upgraded><strong>コマンドの説明</strong></h3>
 <p><code>cd</code><strong> </strong>: 作業ディレクトリを移動するコマンドです。<code>cd codelab/taskmanager</code> は、<code>codelab</code> ディレクトリのさらに下の <code>taskmanager</code> というディレクトリに移動します。</p>
 <p><code>ls</code>: ファイルやディレクトリの情報を表示するコマンドです。ここでは <code>taskmanager</code> ディレクトリに入っているファイルを表示します。</p>
@@ -74,15 +74,14 @@ function.go  go.mod  go.sum  parameter.go  status.go  task.go</pre>
         <p><code>git clone</code> したファイルの中に <code>go.mod</code> があります。Google Cloud Functions で Go のプログラムを動かすためには、<a href="https://github.com/golang/go/wiki/Modules" target="_blank">Go Modules</a> が必要です。</p>
 <p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って,  Goolge Cloud Shell のエディタで <code>codelab &gt; taskmanager &gt; go.mod</code> を開いてみましょう。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/d389a9c482963599.png"></p>
-<pre><code>module functions/taskmanager
+<pre><code>module github.com/WomenWhoGoTokyo/codelab/taskmanager
 
-go 1.11
+go 1.16
 
-require (
-        cloud.google.com/go v0.38.0
-        github.com/pkg/errors v0.8.1
-)</code></pre>
-<p>このように、Go のランタイム (このコードラボでは 1.11) が指定されています。</p>
+require cloud.google.com/go/datastore v1.6.0
+...
+</code></pre>
+<p>このように、Go のランタイム (このコードラボでは 1.16) が指定されています。</p>
 <p>また、プログラム内で利用している外部パッケージのバージョンもここで指定します。</p>
 <p>このコードラボでは、<a href="https://github.com/golang/go/wiki/Modules" target="_blank">Go Modules</a> の詳細な仕組みについては触れませんが、興味のある方は会場内のエンジニアにぜひ聞いてみてください。</p>
 
@@ -91,8 +90,27 @@ require (
     
       <google-codelab-step label="Google Cloud Functions に公開する" duration="0">
         <p>取得した Go のプログラムを <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go/?index=codelab#3" target="_blank">Google Cloud Shell で Go のプログラムを公開する</a> の手順に従って、Google Cloud Functions に公開してみましょう。</p>
+        <p>まず、プログラムの中のProjectIDを指定します。</p>
+        <code>codelab > taskmanager > task.go</code> を開きましょう。
+        <p>プロジェクトIDに、自分のGCPプロジェクトのIDを指定します。</p>
+
+        
+        <pre>
+            <code>...
+
+            func (t Task) add() error {
+                ctx := context.Background()
+            
+                client, err := datastore.NewClient(ctx, os.Getenv("GCP_PROJECT"))
+                if err != nil {
+                    return err
+                }
+            ...
+            </code>
+        </pre>
+        <p>次に、Google Cloud Functions に公開します。</p>
 <pre>$ gcloud functions deploy {Cloud Functions Name} \
---runtime go111 \
+--runtime go116 \
 --entry-point TaskManager \
 --trigger-http</pre>
 <p><code>--entry-point</code> は省略することが可能ですが、その場合は、Cloud Functions Nameと同じになります。</p>
@@ -102,9 +120,9 @@ timeout: 60s
 updateTime: &#39;2019-05-11T08:11:43Z&#39;
 versionId: &#39;1&#39;</pre>
 <p>このコードラボでは、Cloud Functions Nameを環境変数にセットしてプログラム内で利用します。</p>
-<p>環境変数を設定するコマンドを実行しましょう。</p>
-<pre>$ gcloud beta functions deploy {Cloud Functions Name} \
---set-env-vars MY_CODE={Cloud Functions Name}</pre>
+<p>最後に、環境変数を設定するコマンドを実行しましょう。</p>
+<pre>$ gcloud functions deploy {Cloud Functions Name} \
+--set-env-vars GCP_PROJECT={プロジェクトID},MY_CODE={Cloud Functions Name}</pre>
 
 
       </google-codelab-step>
@@ -184,7 +202,7 @@ versionId: &#39;1&#39;</pre>
 <pre><code>func getAllTask() ([]Task, error) {
     ctx := context.Background()
 
-    client, err := datastore.NewClient(ctx, &#34;wwgt-codelabs&#34;)
+    client, err := datastore.NewClient(ctx, &#34;os.Getenv("GCP_PROJECT")&#34;)
     if err != nil {
         return nil, err
     }
@@ -214,8 +232,7 @@ var t []Task
     case http.MethodGet:
         t, err := getAllTask()
         if err != nil {
-            e := errors.Errorf(&#34;get error: %v&#34;, err)
-            responseWrite(w, http.StatusInternalServerError, e.Error(), e)
+            responseWrite(w, http.StatusInternalServerError, err.Error(), err)
             return
         }
 
@@ -226,8 +243,7 @@ var t []Task
 
         b, err := json.Marshal(t)
         if err != nil {
-            e := errors.Errorf(&#34;json marshal error: %v&#34;, err)
-            responseWrite(w, http.StatusInternalServerError, e.Error(), e)
+            responseWrite(w, http.StatusInternalServerError, err.Error(), err)
             return
         }
 
@@ -244,7 +260,7 @@ var t []Task
 <h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
 <p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
 <pre>$ gcloud functions deploy {Cloud Functions Name} \
---runtime go111 \
+--runtime go116 \
 --entry-point TaskManager \
 --trigger-http</pre>
 <h2 is-upgraded><strong>アプリケーションを確認する</strong></h2>
@@ -293,7 +309,7 @@ var t []Task
 <pre><code>func (t Task) update() error {
     ctx := context.Background()
 
-    client, err := datastore.NewClient(ctx, &#34;wwgt-codelabs&#34;)
+    client, err := datastore.NewClient(ctx, &#34;os.Getenv("GCP_PROJECT")&#34;)
     if err != nil {
         return err
     }
@@ -340,8 +356,7 @@ var t []Task
 
         t := setTask(param.ID, param.Title, param.Status)
         if err := t.update(); err != nil {
-            e := errors.Errorf(&#34;patch error: %v&#34;, err)
-            responseWrite(w, http.StatusInternalServerError, e.Error(), e)
+            responseWrite(w, http.StatusInternalServerError, err.Error(), err)
             return
         }
         msg := fmt.Sprintf(&#34;%v updated&#34;, t)
@@ -356,7 +371,7 @@ var t []Task
 <h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
 <p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
 <pre>$ gcloud functions deploy {Cloud Functions Name} \
---runtime go111 \
+--runtime go116 \
 --entry-point TaskManager \
 --trigger-http</pre>
 <h2 is-upgraded><strong>アプリケーションを確認する</strong></h2>
@@ -385,7 +400,7 @@ var t []Task
 <pre><code>func (t Task) delete() error {
     ctx := context.Background()
 
-    client, err := datastore.NewClient(ctx, &#34;wwgt-codelabs&#34;)
+    client, err := datastore.NewClient(ctx, &#34;os.Getenv("GCP_PROJECT")&#34;)
     if err != nil {
         return err
     }
@@ -410,8 +425,7 @@ var t []Task
 
         t := setTask(param.ID, &#34;&#34;, 0)
         if err := t.delete(); err != nil {
-            e := errors.Errorf(&#34;delete error: %v&#34;, err)
-            responseWrite(w, http.StatusInternalServerError, e.Error(), e)
+            responseWrite(w, http.StatusInternalServerError, err.Error(), err)
             return
         }
         msg := fmt.Sprintf(&#34;%v deleted&#34;, t)
@@ -425,7 +439,7 @@ var t []Task
 <h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
 <p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
 <pre>$ gcloud functions deploy {Cloud Functions Name} \
---runtime go111 \
+--runtime go116 \
 --entry-point TaskManager \
 --trigger-http</pre>
 <h2 is-upgraded><strong>アプリケーションを確認する</strong></h2>
