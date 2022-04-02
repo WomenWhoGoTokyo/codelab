@@ -24,7 +24,7 @@
 
 クラウド上で Go の開発ができるツールを利用する手順が記載されているコンテンツです。
 
-- [Google Cloud Shell で Go の開発をはじめよう](./google-cloud-shell-go?index=codelab) by [micchie](https://twitter.com/micchiebear)
+- [Google Cloud Shell で Go の開発をはじめよう](./google-cloud-shell-go-solo?index=codelab) by [micchie](https://twitter.com/micchiebear), [Misato](https://twitter.com/mikkegt)
 
 
 ## Amigurumi Gophers
