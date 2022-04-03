@@ -1,24 +1,7 @@
 version: 2
 updates:
-- package-ecosystem: gomod
-  directory: "/guestbook"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: cloud.google.com/go/datastore
-    versions:
-    - 1.4.0
-- package-ecosystem: gomod
-  directory: "/taskmanager"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: cloud.google.com/go
-    versions:
-    - 0.75.0
-    - 0.76.0
-    - 0.78.0
-    - 0.79.0
-    - 0.80.0
+  - package-ecosystem: gomod
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
