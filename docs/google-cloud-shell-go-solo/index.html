@@ -1,0 +1,117 @@
+
+<!doctype html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <meta name="theme-color" content="#4F7DC9">
+    <meta charset="UTF-8">
+    <title>Google Cloud Shell で Go の開発をはじめよう</title>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+    <style>
+        .success {
+            color: #1e8e3e;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+<google-codelab codelab-gaid=""
+                id="google-cloud-shell-go-solo"
+                title="Google Cloud Shell で Go の開発をはじめよう"
+                environment="web"
+                feedback-link="https://github.com/WomenWhoGoTokyo/codelab/issues">
+
+    <google-codelab-step label="はじめに" duration="0">
+        <h2 is-upgraded><strong>Google Cloud Shell とは</strong></h2>
+        <p>Google Cloud Shell はブラウザ上で動作して、 Google Cloud Platform 上のサービスにアクセス、操作することができるシェルです。</p>
+        <p>あらかじめ Go の環境が準備されているため、すぐに Go のプログラムを書くことができます。</p>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Google Cloud Console にアクセスする" duration="0">
+        <p>下記のURLにアクセスします。</p>
+        <p><a href="https://console.cloud.google.com/?hl=ja" target="_blank">https://console.cloud.google.com/?hl=ja</a></p>
+        <p>「プロジェクトの選択」をクリックします。</p>
+        <p class="image-container"><img style="width: 624.00px" src="img/image001.jpg"></p>
+        <p>Google Cloud Consoleをはじめて使用するときは、プロジェクトが存在しません。「プロジェクトの選択」ダイアログ右上の「新しいプロジェクト」をクリックし、プロジェクト作成画面に移りましょう。</p>
+        <p class="image-container"><img style="width: 624.00px" src="img/image002.jpg"></p>
+        <p>任意の「プロジェクト名」を入力します。プロジェクトIDはグローバルで一意です。プロジェクトIDは後から変更ができないため、変更したい場合は「編集」をクリックし変更しましょう。入力が終りましたら「作成」をクリックします。</p>
+        <p class="image-container"><img style="width: 624.00px" src="img/image003.jpg"></p>
+        <p>プロジェクトが作成されたら「プロジェクトを選択」をクリックします。</p>
+        <p class="image-container"><img style="width: 624.00px" src="img/image004.jpg"></p>
+        <p>ご自身で作成したプロジェクトが表示されているか、確認しましょう。</p>
+        <p class="image-container"><img style="width: 624.00px" src="img/image005.jpg"></p>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Google Cloud Shell で Go のプログラムを実行するための準備をする" duration="0">
+        <p>Google Cloud Shell で Go のプログラムを扱う場合は、コンソールを利用します。</p>
+        <p>「Cloud Shell をアクティブにする」をクリックします。</p>
+        <p class="image-container"><img style="width: 624.00px" src="img/image006.jpg"></p>
+        <p>ターミナルウィンドウが立ち上がります。ここから仮想マシンインスタンスへコマンドラインを使ってアクセスできます。</p>
+        <p class="image-container"><img style="width: 624.00px" src="img/image007.jpg"></p>
+        <aside class="special"><h3 is-upgraded><strong>Clouud Shellについてもっと知る</strong></h3>
+            <p>Clouud Shellについて詳しく知りたい方は「<a href="https://cloud.google.com/shell/docs?hl=ja" target="_blank">CLOUD SHELL のドキュメント</a>」をご覧ください。</p>
+        </aside>
+        <p>以前にプロジェクトを作成したことがある場合は、現在のプロジェクトが選択されているか、次のコマンドで確認しましょう。</p>
+        <pre><code>$ gcloud config configurations list</code></pre>
+        <p>今回設定したプロジェクトと異なるプロジェクトが表示された場合は、プロジェクトの切り替えをおこないましょう。</p>
+        <p class="image-container"><img style="width: 624.00px" src="img/image008.jpg"></p>
+        <p>切り替えたいプロジェクトのIDを確認します（先程作成したプロジェクトIDを確認）。</p>
+        <p class="image-container"><img style="width: 624.00px" src="img/image009.jpg"></p>
+        <p>次のコマンドにプロジェクトIDを指定し、プロジェクトの設定をおこないます。</p>
+        <pre><code>$ gcloud config set project {今回利用するプロジェクトID}</code></pre>
+        <p class="image-container"><img style="width: 624.00px" src="img/image010.jpg"></p>
+        <p>もう一度、プロジェクトの設定を確認しましょう。</p>
+        <pre><code>$ gcloud config configurations list</code></pre>
+        <p class="image-container"><img style="width: 624.00px" src="img/image011.jpg"></p>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Google Cloud Shell で Go のプログラムを取得する" duration="0">
+        <p>Google Cloud Shell を使って、Go のプログラムを取得します。</p>
+        <p>プログラムを配置する場所は自由に設定できます。(ここでは <code>develop</code> ディレクトリを作成し、そこで Go のプログラムを取得します)</p>
+        <p>次のように <code>mkdir</code> コマンドで <code>develop</code> ディレクトリを作成し、 <code>cd</code> コマンドで <code>develop</code> の下に移動します。</p>
+        <pre><code>$ mkdir develop &amp;&amp; cd develop</code></pre>
+        <p>コンソールで Go のプログラムを取得するコマンドを入力します。</p>
+        <pre><code>$ git clone https://github.com/WomenWhoGoTokyo/codelab.git</code></pre>
+        <p class="image-container"><img style="width: 624.00px" src="img/image012.jpg"></p>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Google Cloud Shell のエディタで Go のプログラムを編集する" duration="0">
+        <p>「エディタを開く」をクリックします。</p>
+        <p class="image-container"><img style="width: 624.00px" src="img/image013.jpg"></p>
+        <p>エディタが起動します。</p>
+        <p class="image-container"><img style="width: 624.00px" src="img/image014.jpg"></p>
+        <p>左側がファイルの一覧、右側がエディタです。</p>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="さいごに" duration="0">
+        <p>それでは、はじめましょう！</p>
+
+
+    </google-codelab-step>
+
+</google-codelab>
+
+<script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+<script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+<script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+<script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+<script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

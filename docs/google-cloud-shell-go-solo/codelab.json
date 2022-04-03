@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-04-01T17:59:17Z",
+  "id": "google-cloud-shell-go-solo",
+  "duration": 0,
+  "title": "Google Cloud Shell で Go の開発をはじめよう",
+  "authors": "mi-bear, mikkegt",
+  "summary": "Google Cloud Shell を利用してブラウザ上で Go の開発ができるようになります。",
+  "source": "19rSvwntPRo0eZzZa44HBeJ2j0OX15vqh6CewrGatEF4",
+  "theme": "web",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "web"
+  ],
+  "tags": [
+    "womenwhogotokyo"
+  ],
+  "feedback": "https://github.com/WomenWhoGoTokyo/codelab/issues",
+  "url": "google-cloud-shell-go-solo"
+}
