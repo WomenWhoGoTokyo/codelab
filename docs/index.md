@@ -12,7 +12,7 @@
 - [Google App Engine で Go を動かしてみよう](./google-app-engine-go?index=codelab) by [micchie](https://twitter.com/micchiebear)
 - [Google Cloud Functions で Go を動かしてみよう](./google-cloud-functions-go?index=codelab) by [micchie](https://twitter.com/micchiebear)
 - [Go の並行処理を体験してみよう](./tutorial-concurrency-go/?index=codelab) by [micchie](https://twitter.com/micchiebear)
-- [数で遊ぼう 〜 コマンドラインツールで数を操る](./play-with-number?index=codelab) by [miki](https://twitter.com/mikisslv09), [mom0tomo](https://twitter.com/mom0tomo), [mi-bear](https://twitter.com/micchiebear)
+- [数で遊ぼう 〜 コマンドラインツールで数を操る](./play-with-number?index=codelab) by [miki](https://twitter.com/mikiislv09), [mom0tomo](https://twitter.com/mom0tomo), [micchie](https://twitter.com/micchiebear)
 
 ## サブコンテンツ
 
@@ -24,12 +24,12 @@
 
 クラウド上で Go の開発ができるツールを利用する手順が記載されているコンテンツです。
 
-- [Google Cloud Shell で Go の開発をはじめよう](./google-cloud-shell-go?index=codelab) by [micchie](https://twitter.com/micchiebear)
+- [Google Cloud Shell で Go の開発をはじめよう](./google-cloud-shell-go-solo?index=codelab) by [micchie](https://twitter.com/micchiebear), [Misato](https://twitter.com/mikkegt)
 
 
 ## Amigurumi Gophers
 Amigurumi Gophersによる編み物コンテンツです。
 
-- [初めて編むGopher](./gopher-amigurumi/ja?index=codelab) by [miki](https://twitter.com/mikisslv09), [mihohoi](https://twitter.com/Danny_miho)
+- [初めて編むGopher](./gopher-amigurumi/ja?index=codelab) by [miki](https://twitter.com/mikiislv09), [mihohoi](https://twitter.com/Danny_miho)
 
-- [The First Gopher Amigurumi](./gopher-amigurumi/en?index=codelab) by [miki](https://twitter.com/mikisslv09), [mihohoi](https://twitter.com/Danny_miho)
+- [The First Gopher Amigurumi](./gopher-amigurumi/en?index=codelab) by [miki](https://twitter.com/mikiislv09), [mihohoi](https://twitter.com/Danny_miho)
