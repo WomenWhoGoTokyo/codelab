@@ -3,6 +3,7 @@ package guestbook
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"time"
 	"context"
 
@@ -11,7 +12,7 @@ import (
 
 func Post(w http.ResponseWriter, r *http.Request) {
 	ctx := context.Background()
-	client, err := datastore.NewClient(ctx, "wwgt-codelabs")
+	client, err := datastore.NewClient(ctx, os.Getenv("GOOGLE_CLOUD_PROJECT"))
 	if err != nil {
 		http.Error(w, fmt.Sprint(err), http.StatusInternalServerError)
 		return
