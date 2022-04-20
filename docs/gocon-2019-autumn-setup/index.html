@@ -1,79 +1,91 @@
-
 <!doctype html>
 
 <html>
+
 <head>
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
   <title>Go Conference 2019 Autumn のための準備</title>
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet"
+    href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
   <style>
     .success {
       color: #1e8e3e;
     }
+
     .error {
       color: red;
     }
+
   </style>
 </head>
+
 <body>
   <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
-  <google-codelab codelab-gaid=""
-                  id="gocon-2019-autumn-setup"
-                  title="Go Conference 2019 Autumn のための準備"
-                  environment="web"
-                  feedback-link="https://github.com/WomenWhoGoTokyo/codelab/issues">
-    
-      <google-codelab-step label="はじめに" duration="0">
-        <p><a href="https://gocon.jp/" target="_blank">Go Conference 2019 Autumn</a> に実施する <a href="https://womenwhogotokyo.github.io/codelab/google-app-engine-go/?index=codelab#0" target="_blank">Google App Engine のコードラボ</a> と <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-functions-go/?index=codelab#2" target="_blank">Google Cloud Functions のコードラボ</a> のための準備を行います。</p>
+  <google-codelab codelab-gaid="" id="gocon-2019-autumn-setup" title="Go Conference 2019 Autumn のための準備"
+    environment="web" feedback-link="https://github.com/WomenWhoGoTokyo/codelab/issues">
+
+    <google-codelab-step label="はじめに" duration="0">
+      <p><a href="https://gocon.jp/" target="_blank">Go Conference 2019 Autumn</a> に実施する <a
+          href="https://womenwhogotokyo.github.io/codelab/google-app-engine-go/?index=codelab#0" target="_blank">Google
+          App Engine のコードラボ</a> と <a
+          href="https://womenwhogotokyo.github.io/codelab/google-cloud-functions-go/?index=codelab#2"
+          target="_blank">Google Cloud Functions のコードラボ</a> のための準備を行います。</p>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="Women Who Go Tokyo の Google Groups に参加する" duration="0">
-        <p>Google App Engine や Google Cloud Functions を利用するためには、Google Cloud Platform のプロジェクトが必要になります。今回は、Women Who Go Tokyo が用意したプロジェクトを利用します。</p>
-<p>プロジェクトのアクセス制御に Google Groups を利用しているため、お知らせした Group に参加してください。</p>
-<aside class="warning"><p><strong>Important</strong>: Google Groups の SNS 上でのシェアは行わないでください。</p>
-</aside>
+    </google-codelab-step>
+
+    <google-codelab-step label="Women Who Go Tokyo の Google Groups に参加する" duration="0">
+      <p>Google App Engine や Google Cloud Functions を利用するためには、Google Cloud Platform のプロジェクトが必要になります。今回は、Women Who Go
+        Tokyo が用意したプロジェクトを利用します。</p>
+      <p>プロジェクトのアクセス制御に Google Groups を利用しているため、お知らせした Group に参加してください。</p>
+      <aside class="warning">
+        <p><strong>Important</strong>: Google Groups の SNS 上でのシェアは行わないでください。</p>
+      </aside>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="Women Who Go Tokyo のプロジェクトにアクセスする" duration="0">
-        <p>下記のURLから Google Cloud Console にアクセスし、プロジェクトを選択しましょう。</p>
-<p><a href="https://console.cloud.google.com/" target="_blank">https://console.cloud.google.com/</a></p>
-<p class="image-container"><img style="width: 624.00px" src="img/ddf22819b00ffc1a.png"></p>
-<p>用意しているプロジェクトは、下記の通りです。<br>これは、公開コマンドのアプリケーションIDとしても利用します。</p>
-<aside class="special"><p><strong>wwgt-codelabs</strong></p>
-</aside>
+    </google-codelab-step>
+
+    <google-codelab-step label="Women Who Go Tokyo のプロジェクトにアクセスする" duration="0">
+      <p>下記のURLから Google Cloud Console にアクセスし、プロジェクトを選択しましょう。</p>
+      <p><a href="https://console.cloud.google.com/" target="_blank">https://console.cloud.google.com/</a></p>
+      <p class="image-container"><img style="width: 624.00px" src="img/ddf22819b00ffc1a.png"></p>
+      <p>用意しているプロジェクトは、下記の通りです。<br>これは、公開コマンドのアプリケーションIDとしても利用します。</p>
+      <aside class="special">
+        <p><strong>wwgt-codelabs</strong></p>
+      </aside>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="文字列を生成する" duration="0">
-        <h2 is-upgraded>Google App Engine のバージョンを生成する</h2>
-<p>コードラボの <a href="https://womenwhogotokyo.github.io/codelab/google-app-engine-go/?index=codelab#4" target="_blank">Google App Engine に公開する</a> で「バージョン」を指定してデプロイを行います。</p>
-<p>複数人で同じアプリケーションを用いて開発する場合、異なるバージョンでアプリケーションを公開することで、お互いのアプリケーションの上書きを避けることができます。</p>
-<p>バージョンは一意のものを使う必要があります。今回は自分の Twitter ID を使うか、<a href="https://github.com/WomenWhoGoTokyo/create-unique-id" target="_blank">こちらのツール</a> を使って他の人と重複しない文字列を生成してください。</p>
-<p>また、バージョンは公開したアプリケーションを確認する際にも利用します。</p>
-<h2 is-upgraded><strong>Google Cloud Functions の関数名を生成する</strong></h2>
-<p>プロジェクト内で他の人の関数と名前が衝突することを防ぐため、Google Cloud Functions の関数名は一意のものを生成して使います。</p>
-<p>関数名にはハイフンや頭文字に数字を使用することはできません。今回は「Func」から始まる文字列を作成してください (例: Func1234123412) 。</p>
-<p>Func 以下の10桁の数字を生成する際には <a href="https://www.google.com/search?q=%E4%B9%B1%E6%95%B0%E7%94%9F%E6%88%90&rlz=1C5CHFA_enJP771JP775&oq=%E4%B9%B1%E6%95%B0%E7%94%9F%E6%88%90&aqs=chrome..69i57j0l5.2411j1j7&sourceid=chrome&ie=UTF-8" target="_blank">Chrome の乱数生成機能</a> が利用できます。</p>
-<p>また、関数名はデプロイの際にも利用します。</p>
+    </google-codelab-step>
+
+    <google-codelab-step label="文字列を生成する" duration="0">
+      <h2 is-upgraded>Google App Engine のバージョンを生成する</h2>
+      <p>コードラボの <a href="https://womenwhogotokyo.github.io/codelab/google-app-engine-go/?index=codelab#4"
+          target="_blank">Google App Engine に公開する</a> で「バージョン」を指定してデプロイを行います。</p>
+      <p>複数人で同じアプリケーションを用いて開発する場合、異なるバージョンでアプリケーションを公開することで、お互いのアプリケーションの上書きを避けることができます。</p>
+      <p>バージョンは一意のものを使う必要があります。今回は自分の Twitter ID を使うか、<a href="https://github.com/WomenWhoGoTokyo/create-unique-id"
+          target="_blank">こちらのツール</a> を使って他の人と重複しない文字列を生成してください。</p>
+      <p>また、バージョンは公開したアプリケーションを確認する際にも利用します。</p>
+      <h2 is-upgraded><strong>Google Cloud Functions の関数名を生成する</strong></h2>
+      <p>プロジェクト内で他の人の関数と名前が衝突することを防ぐため、Google Cloud Functions の関数名は一意のものを生成して使います。</p>
+      <p>関数名にはハイフンや頭文字に数字を使用することはできません。今回は「Func」から始まる文字列を作成してください (例: Func1234123412) 。</p>
+      <p>Func 以下の10桁の数字を生成する際には <a
+          href="https://www.google.com/search?q=%E4%B9%B1%E6%95%B0%E7%94%9F%E6%88%90&rlz=1C5CHFA_enJP771JP775&oq=%E4%B9%B1%E6%95%B0%E7%94%9F%E6%88%90&aqs=chrome..69i57j0l5.2411j1j7&sourceid=chrome&ie=UTF-8"
+          target="_blank">Chrome の乱数生成機能</a> が利用できます。</p>
+      <p>また、関数名はデプロイの際にも利用します。</p>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="さいごに" duration="0">
-        <p>それでは, はじめましょう！</p>
+    </google-codelab-step>
+
+    <google-codelab-step label="さいごに" duration="0">
+      <p>それでは, はじめましょう！</p>
 
 
-      </google-codelab-step>
-    
+    </google-codelab-step>
+
   </google-codelab>
 
   <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
@@ -82,4 +94,5 @@
   <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
 
 </body>
+
 </html>

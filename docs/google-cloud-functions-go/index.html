@@ -1,101 +1,119 @@
-
 <!doctype html>
 
 <html>
+
 <head>
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <meta name="theme-color" content="#4F7DC9">
-  <meta charset="UTF-8">
-  <title>Google Cloud Functions で Go を動かしてみよう</title>
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
-  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
-  <style>
-    .success {
-      color: #1e8e3e;
-    }
-    .error {
-      color: red;
-    }
-  </style>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <meta name="theme-color" content="#4F7DC9">
+    <meta charset="UTF-8">
+    <title>Google Cloud Functions で Go を動かしてみよう</title>
+    <link rel="stylesheet"
+        href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+    <style>
+        .success {
+            color: #1e8e3e;
+        }
+
+        .error {
+            color: red;
+        }
+
+    </style>
 </head>
+
 <body>
-  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
-  <google-codelab codelab-gaid=""
-                  id="google-cloud-functions-go"
-                  title="Google Cloud Functions で Go を動かしてみよう"
-                  environment="web"
-                  feedback-link="https://github.com/WomenWhoGoTokyo/codelab/issues">
-    
-      <google-codelab-step label="はじめに" duration="0">
-        <p>このコードラボでは、タスクを追加・表示・編集するプログラムを Go で書いて Google Cloud Functions に公開することで、イベント駆動型のサーバレスアプリケーション開発を体験できます。</p>
-<p>下記の流れで開発を行います。</p>
-<ol type="1" start="1">
-<li>Go で書かれたサンプルコードを取得・確認する。</li>
-<li>サンプルコードを Google Cloud Functions に公開する。</li>
-<li>公開したアプリケーションを動かしてみる。</li>
-<li>サンプルコードを変更して 2. と 3. を行う。</li>
-</ol>
-<h2 is-upgraded><strong>Google Cloud Functions とは</strong></h2>
-<p>Google Cloud Functions は、Google Cloud Platform 上のサービスの一つです。</p>
-<p>また、2019年1月より Go でも書けるようになりました。</p>
-<p>Google Cloud Functions には、 HTTPS でアクセスすることで実行できる HTTP 関数と、Google Cloud Platform 内のイベントから呼び出すことができるバックグラウンド関数の2種類があります。ここでは HTTP 関数を作成します。</p>
-<h2 is-upgraded>Go の開発環境は必要でしょうか？</h2>
-<p>このコードラボでは Google Cloud Shell というクラウド上の開発環境を利用します。お使いのコンピューター上で Go の開発環境を用意する必要はありません。</p>
-<p>Google Cloud Shell の詳しい説明と使い方は <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a>  を参照してください。</p>
+    <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+    <google-codelab codelab-gaid="" id="google-cloud-functions-go" title="Google Cloud Functions で Go を動かしてみよう"
+        environment="web" feedback-link="https://github.com/WomenWhoGoTokyo/codelab/issues">
+
+        <google-codelab-step label="はじめに" duration="0">
+            <p>このコードラボでは、タスクを追加・表示・編集するプログラムを Go で書いて Google Cloud Functions に公開することで、イベント駆動型のサーバレスアプリケーション開発を体験できます。
+            </p>
+            <p>下記の流れで開発を行います。</p>
+            <ol type="1" start="1">
+                <li>Go で書かれたサンプルコードを取得・確認する。</li>
+                <li>サンプルコードを Google Cloud Functions に公開する。</li>
+                <li>公開したアプリケーションを動かしてみる。</li>
+                <li>サンプルコードを変更して 2. と 3. を行う。</li>
+            </ol>
+            <h2 is-upgraded><strong>Google Cloud Functions とは</strong></h2>
+            <p>Google Cloud Functions は、Google Cloud Platform 上のサービスの一つです。</p>
+            <p>また、2019年1月より Go でも書けるようになりました。</p>
+            <p>Google Cloud Functions には、 HTTPS でアクセスすることで実行できる HTTP 関数と、Google Cloud Platform
+                内のイベントから呼び出すことができるバックグラウンド関数の2種類があります。ここでは HTTP 関数を作成します。</p>
+            <h2 is-upgraded>Go の開発環境は必要でしょうか？</h2>
+            <p>このコードラボでは Google Cloud Shell というクラウド上の開発環境を利用します。お使いのコンピューター上で Go の開発環境を用意する必要はありません。</p>
+            <p>Google Cloud Shell の詳しい説明と使い方は <a
+                    href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab"
+                    target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> を参照してください。</p>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="Google Cloud Console にアクセスする" duration="0">
-        <h2 is-upgraded><strong>プロジェクトにアクセスする</strong></h2>
-<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って、Google Cloud Console にアクセスしましょう。</p>
+        </google-codelab-step>
+
+        <google-codelab-step label="Google Cloud Console にアクセスする" duration="0">
+            <h2 is-upgraded><strong>プロジェクトにアクセスする</strong></h2>
+            <p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab"
+                    target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って、Google Cloud Console にアクセスしましょう。</p>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="サンプルコードを取得する" duration="0">
-        <p>GitHub からコードラボで利用するサンプルコードを取得しましょう。</p>
-<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って、<code>git clone</code> コマンドを実行します。</p>
-<pre>$ git clone https://github.com/WomenWhoGoTokyo/codelab.git</pre>
-<p><code>codelab/taskmanager</code> というディレクトリが作られていることを Google Cloud Shell のコンソールで確認しましょう。</p>
-<pre>$ cd codelab/taskmanager
+        </google-codelab-step>
+
+        <google-codelab-step label="サンプルコードを取得する" duration="0">
+            <p>GitHub からコードラボで利用するサンプルコードを取得しましょう。</p>
+            <p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab"
+                    target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って、<code>git clone</code> コマンドを実行します。</p>
+            <pre>$ git clone https://github.com/WomenWhoGoTokyo/codelab.git</pre>
+            <p><code>codelab/taskmanager</code> というディレクトリが作られていることを Google Cloud Shell のコンソールで確認しましょう。</p>
+            <pre>$ cd codelab/taskmanager
 $ ls
 README.md  function.go  go.mod  go.sum  parameter.go  status.go  task.go</pre>
-<aside class="special"><h3 is-upgraded><strong>コマンドの説明</strong></h3>
-<p><code>cd</code><strong> </strong>: 作業ディレクトリを移動するコマンドです。<code>cd codelab/taskmanager</code> は、<code>codelab</code> ディレクトリのさらに下の <code>taskmanager</code> というディレクトリに移動します。</p>
-<p><code>ls</code>: ファイルやディレクトリの情報を表示するコマンドです。ここでは <code>taskmanager</code> ディレクトリに入っているファイルを表示します。</p>
-</aside>
+            <aside class="special">
+                <h3 is-upgraded><strong>コマンドの説明</strong></h3>
+                <p><code>cd</code><strong> </strong>: 作業ディレクトリを移動するコマンドです。<code>cd codelab/taskmanager</code>
+                    は、<code>codelab</code> ディレクトリのさらに下の <code>taskmanager</code> というディレクトリに移動します。</p>
+                <p><code>ls</code>: ファイルやディレクトリの情報を表示するコマンドです。ここでは <code>taskmanager</code> ディレクトリに入っているファイルを表示します。</p>
+            </aside>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="設定ファイルを確認する" duration="0">
-        <p><code>git clone</code> したファイルの中に <code>go.mod</code> があります。Google Cloud Functions で Go のプログラムを動かすためには、<a href="https://github.com/golang/go/wiki/Modules" target="_blank">Go Modules</a> が必要です。</p>
-<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って,  Goolge Cloud Shell のエディタで <code>codelab &gt; taskmanager &gt; go.mod</code> を開いてみましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/d389a9c482963599.png"></p>
-<pre><code>module github.com/WomenWhoGoTokyo/codelab/taskmanager
+        </google-codelab-step>
+
+        <google-codelab-step label="設定ファイルを確認する" duration="0">
+            <p><code>git clone</code> したファイルの中に <code>go.mod</code> があります。Google Cloud Functions で Go のプログラムを動かすためには、<a
+                    href="https://github.com/golang/go/wiki/Modules" target="_blank">Go Modules</a> が必要です。</p>
+            <p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab"
+                    target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って, Goolge Cloud Shell のエディタで
+                <code>codelab &gt; taskmanager &gt; go.mod</code> を開いてみましょう。
+            </p>
+            <p class="image-container"><img style="width: 624.00px" src="img/d389a9c482963599.png"></p>
+            <pre><code>module github.com/WomenWhoGoTokyo/codelab/taskmanager
 
 go 1.16
 
 require cloud.google.com/go/datastore v1.6.0
 ...
 </code></pre>
-<p>このように、Go のランタイム (このコードラボでは 1.16) が指定されています。</p>
-<p>また、プログラム内で利用している外部パッケージのバージョンもここで指定します。</p>
-<p>このコードラボでは、<a href="https://github.com/golang/go/wiki/Modules" target="_blank">Go Modules</a> の詳細な仕組みについては触れませんが、興味のある方は会場内のエンジニアにぜひ聞いてみてください。</p>
+            <p>このように、Go のランタイム (このコードラボでは 1.16) が指定されています。</p>
+            <p>また、プログラム内で利用している外部パッケージのバージョンもここで指定します。</p>
+            <p>このコードラボでは、<a href="https://github.com/golang/go/wiki/Modules" target="_blank">Go Modules</a>
+                の詳細な仕組みについては触れませんが、興味のある方は会場内のエンジニアにぜひ聞いてみてください。</p>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="Google Cloud Functions に公開する" duration="0">
-        <p>取得した Go のプログラムを <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go/?index=codelab#3" target="_blank">Google Cloud Shell で Go のプログラムを公開する</a> の手順に従って、Google Cloud Functions に公開してみましょう。</p>
-        <p>まず、プログラムの中のProjectIDを指定します。</p>
-        <code>codelab > taskmanager > task.go</code> を開きましょう。
-        <p>プロジェクトIDに、自分のGCPプロジェクトのIDを指定します。</p>
+        </google-codelab-step>
 
-        
-        <pre>
+        <google-codelab-step label="Google Cloud Functions に公開する" duration="0">
+            <p>取得した Go のプログラムを <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab"
+                    target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の <a
+                    href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go/?index=codelab#3"
+                    target="_blank">Google Cloud Shell で Go のプログラムを公開する</a> の手順に従って、Google Cloud Functions に公開してみましょう。
+            </p>
+            <p>まず、プログラムの中のProjectIDを指定します。</p>
+            <code>codelab > taskmanager > task.go</code> を開きましょう。
+            <p>プロジェクトIDに、自分のGCPプロジェクトのIDを指定します。</p>
+
+
+            <pre>
             <code>...
 
             func (t Task) add() error {
@@ -108,98 +126,100 @@ require cloud.google.com/go/datastore v1.6.0
             ...
             </code>
         </pre>
-        <p>次に、Google Cloud Functions に公開します。</p>
-<pre>$ gcloud functions deploy {Cloud Functions Name} \
+            <p>次に、Google Cloud Functions に公開します。</p>
+            <pre>$ gcloud functions deploy {Cloud Functions Name} \
 --runtime go116 \
 --entry-point TaskManager \
 --trigger-http</pre>
-<p><code>--entry-point</code> は省略することが可能ですが、その場合は、Cloud Functions Nameと同じになります。</p>
-<p>公開コマンドを実行の後、このようにコンソールに表示されたら、うまく公開ができています。</p>
-<pre>status: ACTIVE
+            <p><code>--entry-point</code> は省略することが可能ですが、その場合は、Cloud Functions Nameと同じになります。</p>
+            <p>公開コマンドを実行の後、このようにコンソールに表示されたら、うまく公開ができています。</p>
+            <pre>status: ACTIVE
 timeout: 60s
 updateTime: &#39;2019-05-11T08:11:43Z&#39;
 versionId: &#39;1&#39;</pre>
-<p>このコードラボでは、Cloud Functions Nameを環境変数にセットしてプログラム内で利用します。</p>
-<p>最後に、環境変数を設定するコマンドを実行しましょう。</p>
-<pre>$ gcloud functions deploy {Cloud Functions Name} \
+            <p>このコードラボでは、Cloud Functions Nameを環境変数にセットしてプログラム内で利用します。</p>
+            <p>最後に、環境変数を設定するコマンドを実行しましょう。</p>
+            <pre>$ gcloud functions deploy {Cloud Functions Name} \
 --set-env-vars GCP_PROJECT={プロジェクトID},MY_CODE={Cloud Functions Name}</pre>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="アプリケーションを確認する" duration="0">
-        <p>公開したアプリケーションを確認しましょう。</p>
-<h2 is-upgraded>アクセスする</h2>
-<p><a href="https://console.cloud.google.com/?hl=ja" target="_blank">https://console.cloud.google.com/?hl=ja</a> にアクセスしましょう。</p>
-<p>Google Cloud Platform の Cloud Functions をクリックすると、Cloud Functions の一覧が表示されます。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/a43482d1034518c0.png"></p>
-<p>一覧で、公開した Cloud Functions Nameをクリックします。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/504ff8c493e2fa48.png"></p>
-<p>トリガーをクリックし、HTTP トリガーの URL を確認しましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/976e4480965a9d91.png"></p>
-<h2 is-upgraded>タスクを追加する</h2>
-<p>コンソールでタスクを追加するコマンドを実行しましょう。</p>
-<h4 is-upgraded>1つ目:</h4>
-<pre>$ curl -XPOST -H &#34;Content-Type: application/json&#34; \
+        </google-codelab-step>
+
+        <google-codelab-step label="アプリケーションを確認する" duration="0">
+            <p>公開したアプリケーションを確認しましょう。</p>
+            <h2 is-upgraded>アクセスする</h2>
+            <p><a href="https://console.cloud.google.com/?hl=ja"
+                    target="_blank">https://console.cloud.google.com/?hl=ja</a> にアクセスしましょう。</p>
+            <p>Google Cloud Platform の Cloud Functions をクリックすると、Cloud Functions の一覧が表示されます。</p>
+            <p class="image-container"><img style="width: 624.00px" src="img/a43482d1034518c0.png"></p>
+            <p>一覧で、公開した Cloud Functions Nameをクリックします。</p>
+            <p class="image-container"><img style="width: 624.00px" src="img/504ff8c493e2fa48.png"></p>
+            <p>トリガーをクリックし、HTTP トリガーの URL を確認しましょう。</p>
+            <p class="image-container"><img style="width: 624.00px" src="img/976e4480965a9d91.png"></p>
+            <h2 is-upgraded>タスクを追加する</h2>
+            <p>コンソールでタスクを追加するコマンドを実行しましょう。</p>
+            <h4 is-upgraded>1つ目:</h4>
+            <pre>$ curl -XPOST -H &#34;Content-Type: application/json&#34; \
 -d &#39;{&#34;title&#34;:&#34;銀行に行く&#34;}&#39; \
 {HTTP トリガー URL}</pre>
-<h2 is-upgraded>データを見る</h2>
-<p>Google Cloud Platform 上でデータを確認します。</p>
-<p>データストア &gt; エンティティ をクリックしましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/60a3887db07a5f41.png"></p>
-<p>&#34;種類&#34; を Cloud Functions Nameにすると、コマンドで登録した情報が格納されていることが確認できます。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/50c604a803df1c17.png"></p>
-<h2 is-upgraded><strong>さらにタスクを追加する</strong></h2>
-<p>何回か curl コマンドを実行し、複数のタスクを登録します。</p>
-<p>下記は例です。自由なタスクを登録しましょう。</p>
-<h4 is-upgraded>2つ目:</h4>
-<pre>$ curl -XPOST -H &#34;Content-Type: application/json&#34; \
+            <h2 is-upgraded>データを見る</h2>
+            <p>Google Cloud Platform 上でデータを確認します。</p>
+            <p>データストア &gt; エンティティ をクリックしましょう。</p>
+            <p class="image-container"><img style="width: 624.00px" src="img/60a3887db07a5f41.png"></p>
+            <p>&#34;種類&#34; を Cloud Functions Nameにすると、コマンドで登録した情報が格納されていることが確認できます。</p>
+            <p class="image-container"><img style="width: 624.00px" src="img/50c604a803df1c17.png"></p>
+            <h2 is-upgraded><strong>さらにタスクを追加する</strong></h2>
+            <p>何回か curl コマンドを実行し、複数のタスクを登録します。</p>
+            <p>下記は例です。自由なタスクを登録しましょう。</p>
+            <h4 is-upgraded>2つ目:</h4>
+            <pre>$ curl -XPOST -H &#34;Content-Type: application/json&#34; \
 -d &#39;{&#34;title&#34;:&#34;コードラボの準備をする&#34;}&#39; \
 {HTTP トリガー URL}</pre>
-<h4 is-upgraded>3つ目:</h4>
-<pre>$ curl -XPOST -H &#34;Content-Type: application/json&#34; \
+            <h4 is-upgraded>3つ目:</h4>
+            <pre>$ curl -XPOST -H &#34;Content-Type: application/json&#34; \
 -d &#39;{&#34;title&#34;:&#34;VimGolfをする&#34;}&#39; \
 {HTTP トリガー URL}</pre>
-<h4 is-upgraded>4つ目:</h4>
-<pre>$ curl -XPOST -H &#34;Content-Type: application/json&#34; \
+            <h4 is-upgraded>4つ目:</h4>
+            <pre>$ curl -XPOST -H &#34;Content-Type: application/json&#34; \
 -d &#39;{&#34;title&#34;:&#34;リンゴを買って帰る&#34;}&#39; \
 {HTTP トリガー URL}</pre>
-<h4 is-upgraded>5つ目:</h4>
-<pre>$ curl -XPOST -H &#34;Content-Type: application/json&#34; \
+            <h4 is-upgraded>5つ目:</h4>
+            <pre>$ curl -XPOST -H &#34;Content-Type: application/json&#34; \
 -d &#39;{&#34;title&#34;:&#34;車を洗う&#34;}&#39; \
 {HTTP トリガー URL}</pre>
-<h2 is-upgraded><strong>さらに追加したタスクを見る</strong></h2>
-<p>さらに追加したタスクが登録されていることを確認しましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/ec2ca8203b50eb78.png"></p>
+            <h2 is-upgraded><strong>さらに追加したタスクを見る</strong></h2>
+            <p>さらに追加したタスクが登録されていることを確認しましょう。</p>
+            <p class="image-container"><img style="width: 624.00px" src="img/ec2ca8203b50eb78.png"></p>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="登録したタスクを取得しよう" duration="0">
-        <p>登録したタスクを JSON で取得しましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/7bf5f83a664d487a.png"></p>
-<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って、Goolge Cloud Shell のエディタを立ち上げます。</p>
-<h2 is-upgraded><strong>タスクを取得するプログラムを書く</strong></h2>
-<p><code>codelab &gt; taskmanager &gt; task.go</code> を開きましょう。</p>
-<p>下記の場所にプログラムを追加します。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/c1278a56869d20bc.png"></p>
-<p>書き換える箇所は、このように変更します。</p>
-<h4 is-upgraded>Before:</h4>
-<pre><code>type Task struct {
+        </google-codelab-step>
+
+        <google-codelab-step label="登録したタスクを取得しよう" duration="0">
+            <p>登録したタスクを JSON で取得しましょう。</p>
+            <p class="image-container"><img style="width: 624.00px" src="img/7bf5f83a664d487a.png"></p>
+            <p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab"
+                    target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って、Goolge Cloud Shell のエディタを立ち上げます。</p>
+            <h2 is-upgraded><strong>タスクを取得するプログラムを書く</strong></h2>
+            <p><code>codelab &gt; taskmanager &gt; task.go</code> を開きましょう。</p>
+            <p>下記の場所にプログラムを追加します。</p>
+            <p class="image-container"><img style="width: 624.00px" src="img/c1278a56869d20bc.png"></p>
+            <p>書き換える箇所は、このように変更します。</p>
+            <h4 is-upgraded>Before:</h4>
+            <pre><code>type Task struct {
     ID        int64     `datastore:&#34;-&#34;`
     Title     string    `datastore:&#34;title&#34;`
     Status    Status    `datastore:&#34;status&#34;`
     CreatedAt time.Time `datastore:&#34;createdAt&#34;`
 }</code></pre>
-<h4 is-upgraded>After:</h4>
-<pre><code>type Task struct {
+            <h4 is-upgraded>After:</h4>
+            <pre><code>type Task struct {
     ID        int64     `datastore:&#34;-&#34; json:&#34;ID&#34;`
     Title     string    `datastore:&#34;title&#34; json:&#34;title&#34;`
     Status    Status    `datastore:&#34;status&#34; json:&#34;status&#34;`
     CreatedAt time.Time `datastore:&#34;createdAt&#34; json:&#34;createdAt&#34;`
 }</code></pre>
-<p>また、ファイルの最後に、この関数を追加しましょう。</p>
-<pre><code>func getAllTask() ([]Task, error) {
+            <p>また、ファイルの最後に、この関数を追加しましょう。</p>
+            <pre><code>func getAllTask() ([]Task, error) {
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, &#34;os.Getenv("GCP_PROJECT")&#34;)
@@ -220,12 +240,12 @@ var t []Task
     }
     return t, nil
 }</code></pre>
-<h2 is-upgraded><strong>タスクを取得する処理を呼び出すプログラムを書く</strong></h2>
-<p><code>codelab &gt; taskmanager &gt; function.go</code> を開きましょう。</p>
-<p>下記の場所にプログラムを追加します。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/bc491f71e083b1dd.png"></p>
-<p>タスクを取得するプログラムの呼び出しは、下記のように書きます。</p>
-<pre><code>.
+            <h2 is-upgraded><strong>タスクを取得する処理を呼び出すプログラムを書く</strong></h2>
+            <p><code>codelab &gt; taskmanager &gt; function.go</code> を開きましょう。</p>
+            <p>下記の場所にプログラムを追加します。</p>
+            <p class="image-container"><img style="width: 624.00px" src="img/bc491f71e083b1dd.png"></p>
+            <p>タスクを取得するプログラムの呼び出しは、下記のように書きます。</p>
+            <pre><code>.
 .
 .
     // 一覧取得
@@ -255,49 +275,77 @@ var t []Task
 .
 .
 .</code></pre>
-<p><code>File &gt; SaveAll</code> を選択して、保存します。</p>
-<p class="image-container"><img style="width: 559.00px" src="img/863b992f688b42ba.png"></p>
-<h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
-<p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
-<pre>$ gcloud functions deploy {Cloud Functions Name} \
+            <p><code>File &gt; SaveAll</code> を選択して、保存します。</p>
+            <p class="image-container"><img style="width: 559.00px" src="img/863b992f688b42ba.png"></p>
+            <h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
+            <p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
+            <pre>$ gcloud functions deploy {Cloud Functions Name} \
 --runtime go116 \
 --entry-point TaskManager \
 --trigger-http</pre>
-<h2 is-upgraded><strong>アプリケーションを確認する</strong></h2>
-<p>コンソールで curl コマンドを実行して、タスクを取得してみましょう。</p>
-<pre>$ curl -XGET -H &#34;Content-Type: application/json&#34; \
+            <h2 is-upgraded><strong>アプリケーションを確認する</strong></h2>
+            <p>コンソールで curl コマンドを実行して、タスクを取得してみましょう。</p>
+            <pre>$ curl -XGET -H &#34;Content-Type: application/json&#34; \
 {HTTP トリガー URL} | jq .</pre>
-<p class="image-container"><img style="width: 624.00px" src="img/d13d7db3e95317b7.png"></p>
+            <p class="image-container"><img style="width: 624.00px" src="img/d13d7db3e95317b7.png"></p>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="登録したタスクのステータスを変更してみよう" duration="0">
-        <p>タスクには3つのステータスがあります。</p>
-<table>
-<tr><td colspan="1" rowspan="1"><p><strong>名前</strong></p>
-</td><td colspan="1" rowspan="1"><p><strong>意味</strong></p>
-</td><td colspan="1" rowspan="1"><p><strong>値</strong></p>
-</td></tr>
-<tr><td colspan="1" rowspan="1"><p>ToDo</p>
-</td><td colspan="1" rowspan="1"><p>これからやるタスク</p>
-</td><td colspan="1" rowspan="1"><p>1</p>
-</td></tr>
-<tr><td colspan="1" rowspan="1"><p>InProgress</p>
-</td><td colspan="1" rowspan="1"><p>着手中のタスク</p>
-</td><td colspan="1" rowspan="1"><p>2</p>
-</td></tr>
-<tr><td colspan="1" rowspan="1"><p>Done</p>
-</td><td colspan="1" rowspan="1"><p>完了したタスク</p>
-</td><td colspan="1" rowspan="1"><p>3</p>
-</td></tr>
-</table>
-<p>取得したタスクを確認し、ステータスを更新できるようにします。</p>
-<h2 is-upgraded><strong>タスクを更新するプログラムを書く</strong></h2>
-<p><code>codelab &gt; taskmanager &gt; task.go</code> を開きましょう。</p>
-<p>ファイルの末尾に関数を2つ追加します。</p>
-<h4 is-upgraded>1つ目:</h4>
-<pre><code>func setTask(id int64, title string, status Status) *Task {
+        </google-codelab-step>
+
+        <google-codelab-step label="登録したタスクのステータスを変更してみよう" duration="0">
+            <p>タスクには3つのステータスがあります。</p>
+            <table>
+                <tr>
+                    <td colspan="1" rowspan="1">
+                        <p><strong>名前</strong></p>
+                    </td>
+                    <td colspan="1" rowspan="1">
+                        <p><strong>意味</strong></p>
+                    </td>
+                    <td colspan="1" rowspan="1">
+                        <p><strong>値</strong></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" rowspan="1">
+                        <p>ToDo</p>
+                    </td>
+                    <td colspan="1" rowspan="1">
+                        <p>これからやるタスク</p>
+                    </td>
+                    <td colspan="1" rowspan="1">
+                        <p>1</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" rowspan="1">
+                        <p>InProgress</p>
+                    </td>
+                    <td colspan="1" rowspan="1">
+                        <p>着手中のタスク</p>
+                    </td>
+                    <td colspan="1" rowspan="1">
+                        <p>2</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" rowspan="1">
+                        <p>Done</p>
+                    </td>
+                    <td colspan="1" rowspan="1">
+                        <p>完了したタスク</p>
+                    </td>
+                    <td colspan="1" rowspan="1">
+                        <p>3</p>
+                    </td>
+                </tr>
+            </table>
+            <p>取得したタスクを確認し、ステータスを更新できるようにします。</p>
+            <h2 is-upgraded><strong>タスクを更新するプログラムを書く</strong></h2>
+            <p><code>codelab &gt; taskmanager &gt; task.go</code> を開きましょう。</p>
+            <p>ファイルの末尾に関数を2つ追加します。</p>
+            <h4 is-upgraded>1つ目:</h4>
+            <pre><code>func setTask(id int64, title string, status Status) *Task {
     return &amp;Task{
         ID:        id,
         Title:     title,
@@ -305,8 +353,8 @@ var t []Task
         CreatedAt: time.Now(),
     }
 }</code></pre>
-<h4 is-upgraded>2つ目:</h4>
-<pre><code>func (t Task) update() error {
+            <h4 is-upgraded>2つ目:</h4>
+            <pre><code>func (t Task) update() error {
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, &#34;os.Getenv("GCP_PROJECT")&#34;)
@@ -338,12 +386,12 @@ var t []Task
     })
     return err
 }</code></pre>
-<h2 is-upgraded><strong>タスクを更新する処理を呼び出すプログラムを書く</strong></h2>
-<p><code>codelab &gt; taskmanager &gt; function.go</code> を開きましょう。</p>
-<p>下記の場所にプログラムを追加します。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/ead7d4f9176b3102.png"></p>
-<p>タスクを更新するプログラムの呼び出しは、下記のように書きます。</p>
-<pre><code>.
+            <h2 is-upgraded><strong>タスクを更新する処理を呼び出すプログラムを書く</strong></h2>
+            <p><code>codelab &gt; taskmanager &gt; function.go</code> を開きましょう。</p>
+            <p>下記の場所にプログラムを追加します。</p>
+            <p class="image-container"><img style="width: 624.00px" src="img/ead7d4f9176b3102.png"></p>
+            <p>タスクを更新するプログラムの呼び出しは、下記のように書きます。</p>
+            <pre><code>.
 .
 .
     // ステータス変更
@@ -367,37 +415,37 @@ var t []Task
 .
 .
 .</code></pre>
-<p><code>File &gt; SaveAll</code> を選択して、保存します。</p>
-<h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
-<p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
-<pre>$ gcloud functions deploy {Cloud Functions Name} \
+            <p><code>File &gt; SaveAll</code> を選択して、保存します。</p>
+            <h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
+            <p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
+            <pre>$ gcloud functions deploy {Cloud Functions Name} \
 --runtime go116 \
 --entry-point TaskManager \
 --trigger-http</pre>
-<h2 is-upgraded><strong>アプリケーションを確認する</strong></h2>
-<p>コンソールで curl コマンドを実行して、任意のタスクのステータスを更新してみましょう。</p>
-<p>指定している ID は、エンティティの &#34;名前 / ID&#34; の数字になるため、各々異なります。</p>
-<h4 is-upgraded>1つ目:</h4>
-<pre>$ curl -XPATCH -H &#34;Content-Type: application/json&#34; \
+            <h2 is-upgraded><strong>アプリケーションを確認する</strong></h2>
+            <p>コンソールで curl コマンドを実行して、任意のタスクのステータスを更新してみましょう。</p>
+            <p>指定している ID は、エンティティの &#34;名前 / ID&#34; の数字になるため、各々異なります。</p>
+            <h4 is-upgraded>1つ目:</h4>
+            <pre>$ curl -XPATCH -H &#34;Content-Type: application/json&#34; \
 -d &#39;{&#34;ID&#34;:5632499082330112, &#34;status&#34;:3}&#39; \
 {HTTP トリガー URL}</pre>
-<h4 is-upgraded>2つ目:</h4>
-<pre>$ curl -XPATCH -H &#34;Content-Type: application/json&#34; \
+            <h4 is-upgraded>2つ目:</h4>
+            <pre>$ curl -XPATCH -H &#34;Content-Type: application/json&#34; \
 -d &#39;{&#34;ID&#34;:5642368648740864, &#34;status&#34;:2}&#39; \
 {HTTP トリガー URL}</pre>
-<p>データストア &gt; エンティティ をクリックして、status が書き換わっていることを確認しましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/df90027b13968a87.png"></p>
+            <p>データストア &gt; エンティティ をクリックして、status が書き換わっていることを確認しましょう。</p>
+            <p class="image-container"><img style="width: 624.00px" src="img/df90027b13968a87.png"></p>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="登録したタスクを削除してみよう" duration="0">
-        <p>ID を指定して削除する処理を追加しましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/657d9d7f69ffa920.png"></p>
-<h2 is-upgraded><strong>タスクを削除するプログラムを書く</strong></h2>
-<p><code>codelab &gt; taskmanager &gt; task.go</code> を開きましょう。</p>
-<p>ファイルの末尾にプログラムを追加します。</p>
-<pre><code>func (t Task) delete() error {
+        </google-codelab-step>
+
+        <google-codelab-step label="登録したタスクを削除してみよう" duration="0">
+            <p>ID を指定して削除する処理を追加しましょう。</p>
+            <p class="image-container"><img style="width: 624.00px" src="img/657d9d7f69ffa920.png"></p>
+            <h2 is-upgraded><strong>タスクを削除するプログラムを書く</strong></h2>
+            <p><code>codelab &gt; taskmanager &gt; task.go</code> を開きましょう。</p>
+            <p>ファイルの末尾にプログラムを追加します。</p>
+            <pre><code>func (t Task) delete() error {
     ctx := context.Background()
 
     client, err := datastore.NewClient(ctx, &#34;os.Getenv("GCP_PROJECT")&#34;)
@@ -407,12 +455,12 @@ var t []Task
 
     return client.Delete(ctx, datastore.IDKey(os.Getenv(&#34;MY_CODE&#34;), t.ID, nil))
 }</code></pre>
-<h2 is-upgraded><strong>タスクを削除する処理を呼び出すプログラムを書く</strong></h2>
-<p><code>codelab &gt; taskmanager &gt; function.go</code> を開きましょう。</p>
-<p>下記の場所にプログラムを追加します。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/8defad99e83509ce.png"></p>
-<p>タスクを削除するプログラムの呼び出しは、下記のように書きます。</p>
-<pre><code>.
+            <h2 is-upgraded><strong>タスクを削除する処理を呼び出すプログラムを書く</strong></h2>
+            <p><code>codelab &gt; taskmanager &gt; function.go</code> を開きましょう。</p>
+            <p>下記の場所にプログラムを追加します。</p>
+            <p class="image-container"><img style="width: 624.00px" src="img/8defad99e83509ce.png"></p>
+            <p>タスクを削除するプログラムの呼び出しは、下記のように書きます。</p>
+            <pre><code>.
 .
 .
     // 削除
@@ -435,38 +483,41 @@ var t []Task
 .
 .
 .</code></pre>
-<p><code>File &gt; SaveAll</code> を選択して、保存します。</p>
-<h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
-<p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
-<pre>$ gcloud functions deploy {Cloud Functions Name} \
+            <p><code>File &gt; SaveAll</code> を選択して、保存します。</p>
+            <h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
+            <p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
+            <pre>$ gcloud functions deploy {Cloud Functions Name} \
 --runtime go116 \
 --entry-point TaskManager \
 --trigger-http</pre>
-<h2 is-upgraded><strong>アプリケーションを確認する</strong></h2>
-<p>コンソールで curl コマンドを実行して、任意のタスクを削除してみましょう。</p>
-<p>指定している ID は、エンティティの &#34;名前 / ID&#34; の数字になるため、各々異なります。</p>
-<pre>$ curl -XDELETE -H &#34;Content-Type: application/json&#34; \
+            <h2 is-upgraded><strong>アプリケーションを確認する</strong></h2>
+            <p>コンソールで curl コマンドを実行して、任意のタスクを削除してみましょう。</p>
+            <p>指定している ID は、エンティティの &#34;名前 / ID&#34; の数字になるため、各々異なります。</p>
+            <pre>$ curl -XDELETE -H &#34;Content-Type: application/json&#34; \
 -d &#39;{&#34;ID&#34;:5644004762845184}&#39; \
 {HTTP トリガー URL}</pre>
-<p>データストア &gt; エンティティ をクリックして、指定したタスクが削除されていることを確認しましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/df90d8755a03a72e.png"></p>
+            <p>データストア &gt; エンティティ をクリックして、指定したタスクが削除されていることを確認しましょう。</p>
+            <p class="image-container"><img style="width: 624.00px" src="img/df90d8755a03a72e.png"></p>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="さいごに" duration="0">
-        <p>このコードラボでは、タスクを追加・表示・編集するプログラムを Go で書いて Google Cloud Functions に公開することで、イベント駆動型のサーバレスアプリケーション開発を体験しました。</p>
-<p>ここで触れたことをきっかけに、他のアプリケーションと連携をしてみたり、Google Cloud Platform 内の他のサービスと連携させてみたりと、Google Cloud Functions と Go がもっと身近に、もっと楽しくなることを願っています。</p>
+        </google-codelab-step>
+
+        <google-codelab-step label="さいごに" duration="0">
+            <p>このコードラボでは、タスクを追加・表示・編集するプログラムを Go で書いて Google Cloud Functions に公開することで、イベント駆動型のサーバレスアプリケーション開発を体験しました。
+            </p>
+            <p>ここで触れたことをきっかけに、他のアプリケーションと連携をしてみたり、Google Cloud Platform 内の他のサービスと連携させてみたりと、Google Cloud Functions と Go
+                がもっと身近に、もっと楽しくなることを願っています。</p>
 
 
-      </google-codelab-step>
-    
-  </google-codelab>
+        </google-codelab-step>
 
-  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
-  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
-  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
-  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+    </google-codelab>
+
+    <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+    <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+    <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+    <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
 
 </body>
+
 </html>

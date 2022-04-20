@@ -1,85 +1,89 @@
-
 <!doctype html>
 
 <html>
+
 <head>
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
   <title>Go Conference 2019 Spring のための準備</title>
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet"
+    href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
   <style>
     .success {
       color: #1e8e3e;
     }
+
     .error {
       color: red;
     }
+
   </style>
 </head>
+
 <body>
   <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
-  <google-codelab codelab-gaid=""
-                  id="gocon-2019-spring-setup"
-                  title="Go Conference 2019 Spring のための準備"
-                  environment="web"
-                  feedback-link="https://github.com/WomenWhoGoTokyo/codelab/issues">
-    
-      <google-codelab-step label="はじめに" duration="0">
-        <p><a href="https://gocon.jp/" target="_blank">Go Conference 2019 Spring</a> に実施するコードラボのための準備を行います。</p>
+  <google-codelab codelab-gaid="" id="gocon-2019-spring-setup" title="Go Conference 2019 Spring のための準備"
+    environment="web" feedback-link="https://github.com/WomenWhoGoTokyo/codelab/issues">
+
+    <google-codelab-step label="はじめに" duration="0">
+      <p><a href="https://gocon.jp/" target="_blank">Go Conference 2019 Spring</a> に実施するコードラボのための準備を行います。</p>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="Women Who Go Tokyo の Google Groups に参加する" duration="0">
-        <p>Google Cloud Functions を利用するためには、Google Cloud Platform のプロジェクトが必要になります。今回は、コードラボのために用意したプロジェクトを利用します。</p>
-<p>プロジェクトのアクセス制御に Google Groups を利用しているため、下記の URL の手順に従って Google Groups に参加してください。</p>
-<p><a href="http://bit.ly/2VfQ4bj" target="_blank">Google Groups への参加方法</a></p>
-<aside class="warning"><p><strong>Important</strong>: Google Groups の SNS 上でのシェアは行わないでください。</p>
-</aside>
+    </google-codelab-step>
+
+    <google-codelab-step label="Women Who Go Tokyo の Google Groups に参加する" duration="0">
+      <p>Google Cloud Functions を利用するためには、Google Cloud Platform のプロジェクトが必要になります。今回は、コードラボのために用意したプロジェクトを利用します。</p>
+      <p>プロジェクトのアクセス制御に Google Groups を利用しているため、下記の URL の手順に従って Google Groups に参加してください。</p>
+      <p><a href="http://bit.ly/2VfQ4bj" target="_blank">Google Groups への参加方法</a></p>
+      <aside class="warning">
+        <p><strong>Important</strong>: Google Groups の SNS 上でのシェアは行わないでください。</p>
+      </aside>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="Google Cloud Platform のプロジェクトにアクセスする" duration="0">
-        <p>下記のURLから Google Cloud Console にアクセスし、プロジェクトを選択しましょう。</p>
-<p><a href="https://console.cloud.google.com/" target="_blank">https://console.cloud.google.com/</a></p>
-<p>用意しているプロジェクトは、下記の通りです。<br>このプロジェクト名は、Google Cloud Functions の公開先アプリケーションIDとしても利用します。</p>
-<aside class="special"><p><strong>wwgt-codelabs</strong></p>
-</aside>
-<p class="image-container"><img style="width: 624.00px" src="img/b778a455b344a180.png"></p>
-<p>すでに別のプロジェクトを利用したことがある方は、&#34;最近のプロジェクト&#34; というタブにプロジェクトの一覧が表示されています。新しくプロジェクトに参加するときは、&#34;すべて&#34; のタブを選択してください。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/d2fcd0bae14e90ee.png"></p>
+    </google-codelab-step>
+
+    <google-codelab-step label="Google Cloud Platform のプロジェクトにアクセスする" duration="0">
+      <p>下記のURLから Google Cloud Console にアクセスし、プロジェクトを選択しましょう。</p>
+      <p><a href="https://console.cloud.google.com/" target="_blank">https://console.cloud.google.com/</a></p>
+      <p>用意しているプロジェクトは、下記の通りです。<br>このプロジェクト名は、Google Cloud Functions の公開先アプリケーションIDとしても利用します。</p>
+      <aside class="special">
+        <p><strong>wwgt-codelabs</strong></p>
+      </aside>
+      <p class="image-container"><img style="width: 624.00px" src="img/b778a455b344a180.png"></p>
+      <p>すでに別のプロジェクトを利用したことがある方は、&#34;最近のプロジェクト&#34; というタブにプロジェクトの一覧が表示されています。新しくプロジェクトに参加するときは、&#34;すべて&#34;
+        のタブを選択してください。</p>
+      <p class="image-container"><img style="width: 624.00px" src="img/d2fcd0bae14e90ee.png"></p>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="Google Cloud Functions の名前を設定する" duration="0">
-        <p>同じプロジェクト上で複数人が Google Cloud Functions を作成するとき、お互いのアプリケーションの上書きを避けなければなりません。</p>
-<p>このコードラボを始めるときに、ユニークな文字列を配布します。配布された文字列を Cloud Functions の名前として利用してください。</p>
-<h2 is-upgraded><strong>Go のプログラムを公開する</strong></h2>
-<p>Go のプログラムを公開するときに、Cloud Functions 名を使用します。</p>
-<p>{Cloud Functions Name} = {配布された文字列} とします。</p>
-<pre><code>$ gcloud functions deploy {Cloud Functions Name} \
+    </google-codelab-step>
+
+    <google-codelab-step label="Google Cloud Functions の名前を設定する" duration="0">
+      <p>同じプロジェクト上で複数人が Google Cloud Functions を作成するとき、お互いのアプリケーションの上書きを避けなければなりません。</p>
+      <p>このコードラボを始めるときに、ユニークな文字列を配布します。配布された文字列を Cloud Functions の名前として利用してください。</p>
+      <h2 is-upgraded><strong>Go のプログラムを公開する</strong></h2>
+      <p>Go のプログラムを公開するときに、Cloud Functions 名を使用します。</p>
+      <p>{Cloud Functions Name} = {配布された文字列} とします。</p>
+      <pre><code>$ gcloud functions deploy {Cloud Functions Name} \
 --runtime go111 \
 --entry-point TaskManagement \
 --trigger-http</code></pre>
-<h2 is-upgraded><strong>Google Cloud Functions の名前を環境変数に格納する</strong></h2>
-<p>Go のプログラムを公開したあと、1度だけ実行します。</p>
-<pre><code>$ gcloud beta functions deploy {Cloud Functions Name} \
+      <h2 is-upgraded><strong>Google Cloud Functions の名前を環境変数に格納する</strong></h2>
+      <p>Go のプログラムを公開したあと、1度だけ実行します。</p>
+      <pre><code>$ gcloud beta functions deploy {Cloud Functions Name} \
 --set-env-vars MY_CODE={Cloud Functions Name}</code></pre>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="さいごに" duration="0">
-        <p>それでは、はじめましょう！</p>
+    </google-codelab-step>
+
+    <google-codelab-step label="さいごに" duration="0">
+      <p>それでは、はじめましょう！</p>
 
 
-      </google-codelab-step>
-    
+    </google-codelab-step>
+
   </google-codelab>
 
   <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
@@ -88,4 +92,5 @@
   <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
 
 </body>
+
 </html>

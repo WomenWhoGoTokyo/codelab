@@ -1,80 +1,89 @@
-
 <!doctype html>
 
 <html>
+
 <head>
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
   <title>Go Conference 2018 Autumn のための準備</title>
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet"
+    href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
   <style>
     .success {
       color: #1e8e3e;
     }
+
     .error {
       color: red;
     }
+
   </style>
 </head>
+
 <body>
   <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
-  <google-codelab codelab-gaid=""
-                  id="gocon-2018-autumn-setup"
-                  title="Go Conference 2018 Autumn のための準備"
-                  environment="web"
-                  feedback-link="https://github.com/WomenWhoGoTokyo/codelab/issues">
-    
-      <google-codelab-step label="はじめに" duration="0">
-        <p><a href="https://gocon.jp/" target="_blank">Go Conference 2018 Autumn</a> に実施する<a href="https://womenwhogotokyo.github.io/codelab/google-app-engine-go/?index=codelab#0" target="_blank">コードラボ</a>のための準備を行います。</p>
+  <google-codelab codelab-gaid="" id="gocon-2018-autumn-setup" title="Go Conference 2018 Autumn のための準備"
+    environment="web" feedback-link="https://github.com/WomenWhoGoTokyo/codelab/issues">
+
+    <google-codelab-step label="はじめに" duration="0">
+      <p><a href="https://gocon.jp/" target="_blank">Go Conference 2018 Autumn</a> に実施する<a
+          href="https://womenwhogotokyo.github.io/codelab/google-app-engine-go/?index=codelab#0"
+          target="_blank">コードラボ</a>のための準備を行います。</p>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="Women Who Go Tokyo の Google Groups に参加する" duration="0">
-        <p>Google App Engine を利用するためには、Google Cloud Platform のプロジェクトが必要になります。今回は、Go Conference 2018 Autumn のために用意したプロジェクトを利用します。</p>
-<p>プロジェクトのアクセス制御に Google Groups を利用しているため、お知らせした Group に参加してください。</p>
-<aside class="warning"><p><strong>Important</strong>: Google Groups の SNS 上でのシェアは行わないでください。</p>
-</aside>
+    </google-codelab-step>
+
+    <google-codelab-step label="Women Who Go Tokyo の Google Groups に参加する" duration="0">
+      <p>Google App Engine を利用するためには、Google Cloud Platform のプロジェクトが必要になります。今回は、Go Conference 2018 Autumn
+        のために用意したプロジェクトを利用します。</p>
+      <p>プロジェクトのアクセス制御に Google Groups を利用しているため、お知らせした Group に参加してください。</p>
+      <aside class="warning">
+        <p><strong>Important</strong>: Google Groups の SNS 上でのシェアは行わないでください。</p>
+      </aside>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="Women Who Go Tokyo のプロジェクトにアクセスする" duration="0">
-        <p>下記のURLから Google Cloud Console にアクセスし、プロジェクトを選択しましょう。</p>
-<p><a href="https://console.cloud.google.com/" target="_blank">https://console.cloud.google.com/</a></p>
-<p class="image-container"><img style="width: 624.00px" src="img/4c30f1380cee1992.png"></p>
-<p>用意しているプロジェクトは、下記の通りです。<br>これは、公開コマンドのアプリケーションIDとしても利用します。</p>
-<aside class="special"><p><strong>wwgt-gocon2018autumn</strong></p>
-</aside>
+    </google-codelab-step>
+
+    <google-codelab-step label="Women Who Go Tokyo のプロジェクトにアクセスする" duration="0">
+      <p>下記のURLから Google Cloud Console にアクセスし、プロジェクトを選択しましょう。</p>
+      <p><a href="https://console.cloud.google.com/" target="_blank">https://console.cloud.google.com/</a></p>
+      <p class="image-container"><img style="width: 624.00px" src="img/4c30f1380cee1992.png"></p>
+      <p>用意しているプロジェクトは、下記の通りです。<br>これは、公開コマンドのアプリケーションIDとしても利用します。</p>
+      <aside class="special">
+        <p><strong>wwgt-gocon2018autumn</strong></p>
+      </aside>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="Google App Engine のコマンドと確認方法" duration="0">
-        <h2 is-upgraded><strong>Google App Engine にアプリケーションを公開する</strong></h2>
-<p>コードラボの <a href="https://womenwhogotokyo.github.io/codelab/google-app-engine-go/?index=codelab#4" target="_blank">Google App Engine に公開する</a> で必要になります。</p>
-<p>コマンドは下記の通りです。</p>
-<pre><code>$ goapp deploy --application wwgt-gocon2018autumn --version {配布したバージョン} .</code></pre>
-<p>このコードラボを始める前にバージョンを配布するので、それを利用してください。</p>
-<p>複数人で同じアプリケーションを用いて開発する場合、異なるバージョンでアプリケーションを公開することで、お互いのアプリケーションの上書きを避けることができます。</p>
-<h2 is-upgraded><strong>Google App Engine に公開したアプリケーションを確認する</strong></h2>
-<p>コードラボの <a href="https://womenwhogotokyo.github.io/codelab/google-app-engine-go/?index=codelab#5" target="_blank">アプリケーションを確認する</a> で必要になります。</p>
-<p>下記のURLを確認してください。</p>
-<aside class="special"><p>https://{version}-dot-wwgt-gocon2018autumn.appspot.com/</p>
-</aside>
+    </google-codelab-step>
+
+    <google-codelab-step label="Google App Engine のコマンドと確認方法" duration="0">
+      <h2 is-upgraded><strong>Google App Engine にアプリケーションを公開する</strong></h2>
+      <p>コードラボの <a href="https://womenwhogotokyo.github.io/codelab/google-app-engine-go/?index=codelab#4"
+          target="_blank">Google App Engine に公開する</a> で必要になります。</p>
+      <p>コマンドは下記の通りです。</p>
+      <pre><code>$ goapp deploy --application wwgt-gocon2018autumn --version {配布したバージョン} .</code></pre>
+      <p>このコードラボを始める前にバージョンを配布するので、それを利用してください。</p>
+      <p>複数人で同じアプリケーションを用いて開発する場合、異なるバージョンでアプリケーションを公開することで、お互いのアプリケーションの上書きを避けることができます。</p>
+      <h2 is-upgraded><strong>Google App Engine に公開したアプリケーションを確認する</strong></h2>
+      <p>コードラボの <a href="https://womenwhogotokyo.github.io/codelab/google-app-engine-go/?index=codelab#5"
+          target="_blank">アプリケーションを確認する</a> で必要になります。</p>
+      <p>下記のURLを確認してください。</p>
+      <aside class="special">
+        <p>https://{version}-dot-wwgt-gocon2018autumn.appspot.com/</p>
+      </aside>
 
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="さいごに" duration="0">
-        <p>それでは, はじめましょう！</p>
+    </google-codelab-step>
+
+    <google-codelab-step label="さいごに" duration="0">
+      <p>それでは, はじめましょう！</p>
 
 
-      </google-codelab-step>
-    
+    </google-codelab-step>
+
   </google-codelab>
 
   <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
@@ -83,4 +92,5 @@
   <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
 
 </body>
+
 </html>

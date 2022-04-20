@@ -1,72 +1,83 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{.Title}}</title>
-    <style type="text/css">
-      html {
-        font-size: 625%;
-      }
-      body {
-        font-size: .16em;
-      }
-      .description {
-        font-size: .12rem;
-        margin-bottom: 1.0em;
-      }
-      .count {
-        font-size: .10rem;
-        margin: 1.0em 0;
-      }
-      .messages {
-        display: table;
-        margin-top: 1.0em;
-      }
-      .messages .message {
-        display: table-row;
-      }
-      .messages .message-header {
-        font-size: .12rem;
-        font-weight: bold;
-        display: table-cell;
-        padding: 0.5em;
-        background-color: #f8f8ff;
-        border-bottom: .05em solid #ccc;
-      }
-      .messages .message-name,
-      .messages .message-text,
-      .messages .message-link {
-        font-size: .12rem;
-        display: table-cell;
-        padding: 0.5em;
-        border-bottom: .05em solid #ccc;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>{{.Title}}</h1>
-    <div class="description">{{.Description}}</div>
 
-    <form action="/post" method="post">
-      <input type="text" name="name" placeholder="お名前">
-      <input type="text" name="message" placeholder="メッセージ">
-      <input type="submit">
-    </form>
+<head>
+  <title>{{.Title}}</title>
+  <style type="text/css">
+    html {
+      font-size: 625%;
+    }
 
-    <div class="count">{{.Count}}件のメッセージがあります。</div>
+    body {
+      font-size: .16em;
+    }
 
-    <div class="messages">
-      {{if lt 0 .Count}}
-      <div class="message">
-        <div class="message-header">お名前</div>
-        <div class="message-header">メッセージ</div>
-      </div>
-      {{end}}
-      {{range .Messages}}
-      <div class="message">
-        <h2 class="message-name">{{.Name}}</h2>
-        <p class="message-text">{{.Message}}</p>
-      </div>
-      {{end}}
+    .description {
+      font-size: .12rem;
+      margin-bottom: 1.0em;
+    }
+
+    .count {
+      font-size: .10rem;
+      margin: 1.0em 0;
+    }
+
+    .messages {
+      display: table;
+      margin-top: 1.0em;
+    }
+
+    .messages .message {
+      display: table-row;
+    }
+
+    .messages .message-header {
+      font-size: .12rem;
+      font-weight: bold;
+      display: table-cell;
+      padding: 0.5em;
+      background-color: #f8f8ff;
+      border-bottom: .05em solid #ccc;
+    }
+
+    .messages .message-name,
+    .messages .message-text,
+    .messages .message-link {
+      font-size: .12rem;
+      display: table-cell;
+      padding: 0.5em;
+      border-bottom: .05em solid #ccc;
+    }
+
+  </style>
+</head>
+
+<body>
+  <h1>{{.Title}}</h1>
+  <div class="description">{{.Description}}</div>
+
+  <form action="/post" method="post">
+    <input type="text" name="name" placeholder="お名前">
+    <input type="text" name="message" placeholder="メッセージ">
+    <input type="submit">
+  </form>
+
+  <div class="count">{{.Count}}件のメッセージがあります。</div>
+
+  <div class="messages">
+    {{if lt 0 .Count}}
+    <div class="message">
+      <div class="message-header">お名前</div>
+      <div class="message-header">メッセージ</div>
     </div>
-  </body>
+    {{end}}
+    {{range .Messages}}
+    <div class="message">
+      <h2 class="message-name">{{.Name}}</h2>
+      <p class="message-text">{{.Message}}</p>
+    </div>
+    {{end}}
+  </div>
+</body>
+
 </html>
