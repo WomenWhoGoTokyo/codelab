@@ -1,10 +1,10 @@
 package guestbook
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 	"time"
-	"context"
 
 	"cloud.google.com/go/datastore"
 )
