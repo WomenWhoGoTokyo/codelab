@@ -28,7 +28,7 @@
                   feedback-link="https://github.com/WomenWhoGoTokyo/codelab/issues">
     
       <google-codelab-step label="はじめに" duration="0">
-        <p>このコードラボでは、ゲストブックのプログラムを Go で書いて Google App Engine に公開することで、クラウドサービス上で Web アプリケーションを開発することを体験できます。</p>
+        <p>このコードラボでは、ゲストブックのプログラムを Go で書いて Google App Engine に公開することで、クラウドサービス上で Web アプリケーションを開発することが体験できます。</p>
 <p>下記の流れになります。</p>
 <ol type="1" start="1">
 <li>Go で書かれたサンプルコードを確認する。</li>
@@ -42,136 +42,230 @@
 <p>サーバの運用・構築の手間がかからず、ニーズに合わせて規模を拡大・縮小しやすいことが利点です。</p>
 <h2 is-upgraded>Go の開発環境は必要でしょうか？</h2>
 <p>このコードラボでは Google Cloud Shell というクラウド上の開発環境を利用します。お使いのコンピューター上で Go の開発環境を用意する必要はありません。</p>
-<p>Google Cloud Shell の詳しい説明と使い方は、<a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a>  を参照してください。</p>
+<p>Google Cloud Shell の詳しい説明と使い方は、<a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go-solo?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a>  を参照してください。</p>
+<h2 is-upgraded>課金について</h2>
+<p>このコードラボを進めるにあたり、課金の設定が必要になります。クレジットカードをご用意ください。2022年4月現在、初回登録時に90日間限定で$300相当のクレジットが無料で利用できます。無料枠を利用してコードラボを試したら、最後に忘れずにプロジェクトを削除してください。課金の設定は「Cloud Buildを有効にする」の章に、プロジェクトの削除については「プロジェクトのお片付け」に記載しています。</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Google Cloud Console にアクセスする" duration="0">
         <h2 is-upgraded><strong>プロジェクトにアクセスする</strong></h2>
-<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って、Google Cloud Console にアクセスしましょう。</p>
+<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go-solo?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って、Google Cloud Console にアクセスしましょう。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Cloud Buildを有効にする" duration="0">
+        <p>はじめに、<a href="https://cloud.google.com/build/docs?hl=ja" target="_blank">Cloud Build</a> を有効にしましょう。Cloud Build は、Google Cloud 上でビルドを実行するサービスです。途中で課金の設定が求められます。クレジットカードが必要になりますが、2022年4月現在、初回登録時に90日間限定で$300相当のクレジットが無料で利用できます。</p>
+<p>※既にクレジットカードを登録し、無料枠を使いきってしまっている方は料金が発生します。料金は2022年4月現在、1ビルド$0.00485〜$0.10448です（利用するCPUの数などで料金が変わります）。料金は変更されることがあるので、<a href="https://cloud.google.com/build/pricing?hl=ja" target="_blank">Cloud Buildの料金</a> で確認してみましょう。</p>
+<p>それでは次に進みましょう。</p>
+<h2 is-upgraded><strong>Cloud Buildを有効にする</strong></h2>
+<p>次の「Cloud Buildを有効にする」をクリックします。</p>
+<p><a href="https://console.cloud.google.com/cloud-build?hl=ja&_ga=2.132790926.1497629434.1649609925-1517295811.1647856050" target="_blank"><paper-button class="colored" raised>Cloud Buildを有効にする</paper-button></a></p>
+<p>Cloud Buildを有効化する画面が表示されます。「有効にする」をクリックします。</p>
+<p class="image-container"><img style="width: 513.00px" src="img/66d45162ba2b0b3d.png"></p>
+<p>「課金を有効にする」をクリックします。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/a9463f2fd5b4d2c2.png"></p>
+<p>請求書先のアカウントがない場合、次の画面が表示されます。「請求先アカウントを作成」をクリックし、請求書先を登録しましょう。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/35bf3d7625d61583.png"></p>
+<p>「国」と「組織またはニーズ」に該当するものを選択します。利用規約を読み、チェックをいれ「続行」をクリックしましょう。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/3125f72f920567ac.png"></p>
+<p>個人利用の場合は「アカウントの種類」で「個人」を選択します。「カードを追加」をクリックすると、クレジットカードかPaypalどちらかを選択できます。お支払い情報を設定したら「無料トライアルを開始」をクリックしましょう。</p>
+<p class="image-container"><img style="width: 536.00px" src="img/b377d0f29bfb5a10.png"></p>
+<p>既に請求書先アカウントを登録している場合は、次の画面が表示されます。請求書先アカウントを選択し「アカウントを設定」をクリックしましょう。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/bc278375e30b7c5e.png"></p>
+<p>Google Cloud Platformコンソールの Cloud Build に戻りましょう。Cloud Buildが有効になっている場合、次のように表示されます。リージョンを選択しましょう。東京リージョンは <code>asia-northeast1</code> 、大阪は <code>asia-northeast2</code> です。今回は、東京リージョンを使用します。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/94030981a60b8903.png"></p>
+<aside class="special"><h3 is-upgraded><strong>Cloud Buildサービスアカウント</strong></h3>
+<p>Cloud Buildを有効にすると、プロジェクトに<a href="https://cloud.google.com/build/docs/cloud-build-service-account?hl=ja" target="_blank">Cloud Buildサービスアカウント</a>が自動で作成されます。Cloud Buildサービスアカウントでは、ビルドの更新やログ書き込みの権限がデフォルトで付与されます。</p>
+</aside>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="サンプルコードを取得する" duration="0">
         <p>GitHubからコードラボで利用するサンプルコードを取得しましょう。</p>
-<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って、<code>git clone</code> というコマンドを実行します。</p>
+<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go-solo?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a>  の「Google Cloud Shell で Go のプログラムを取得する」の章に従い、<code>git clone</code> コマンドを実行します。</p>
 <pre><code>$ git clone https://github.com/WomenWhoGoTokyo/codelab.git</code></pre>
-<p><code>codelab/guestbook</code> というディレクトリが作られていることを、Google Cloud Shell のコンソールで確認しましょう。</p>
+<p><code>codelab/guestbook</code> というディレクトリが作られていることを、Google Cloud Shell のターミナルで確認しましょう。</p>
 <pre><code>$ cd codelab/guestbook
 $ ls
-README.md  app.yaml   edit.go    go.mod     go.sum     index.go   message.go post.go    view       web</code></pre>
+app.yaml  go.mod  go.sum  index.go  message.go  post.go  README.md  view  web</code></pre>
+<p>※「Google Cloud Shell で Go の開発をはじめよう」では、developディレクトリに codelab を取得しています。「Google Cloud Shell で Go の開発をはじめよう」通りに進めた場合は、次のコマンドを実行してください。<code>cd ~/develop/codelab/guestbook</code> </p>
 <aside class="special"><h3 is-upgraded><strong>コマンドの説明</strong></h3>
 <p><code>cd</code> : 作業しているディレクトリを移動するコマンドです。<code>cd codelab/guestbook</code> は、<code>codelab</code> ディレクトリのさらに下の <code>guestbook</code> というディレクトリに移動します。</p>
-<p><code>ls</code>: ファイルやディレクトリの情報を表示するコマンドです。ここでは、<code>guestbook</code> ディレクトリに入っているファイルを表示します。</p>
+<p><code>ls</code>: ファイルやディレクトリの情報を表示するコマンドです。ここでは、<code>guestbook</code> ディレクトリにあるファイルを表示します。</p>
 </aside>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="設定ファイルを確認する" duration="0">
-        <p><code>git clone</code> したファイルの中に、<code>app.yaml</code> があります。これは Google App Engine上で動かす アプリケーションの設定ファイルです。</p>
-<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って、Goolge Cloud Shell のエディタで <code>codelab &gt; guestbook &gt; app.yaml</code> を開いてみましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/d6cf1462b8e5891a.png"></p>
-<pre><code>runtime: go112
+        <p>guestbookディレクトリ内に、<code>app.yaml</code> ファイルがあります。これは Google App Engine上で動かす アプリケーションの設定ファイルです。</p>
+<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go-solo?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の「Google Cloud Shell のエディタで Go のプログラムを編集する」の章に従って、Goolge Cloud Shell を立ち上げ、エディタを起動しましょう。 <code>codelab > guestbook > app.yaml</code> の順に開き、ファイルの中身をみてみましょう。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/c89e32df47a32adb.png"></p>
+<pre><code>runtime: go116
 
 main: ./web
 
 handlers:
-  url: /*
+- url: /.*
   script: auto
   secure: always</code></pre>
-<p>利用する開発言語やそのバージョン等を設定することができます。</p>
-<p>このコードラボでは、開発言語は Go、バージョンは 1.12 を設定します。</p>
+<p><code>app.yaml</code> では、利用する開発言語やそのバージョン等を設定することができます。</p>
+<p>このコードラボでは、開発言語は Go、ランタイムのバージョンは 1.16 を使用します。</p>
 <p>アプリケーションを起動したときに一番最初に読み込まれる処理は web/main.go に書かれています。</p>
-<p>app.yaml では、main.go へのパスを指定します。        </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="パッケージを更新する" duration="0">
+        <p><code>go mod tidy</code> コマンドを使って、パッケージを更新しましょう。Goでは <code>go.mod</code> ファイルにビルド時に必要なパッケージが記載されています。 <code>go mod tidy</code> は、 <code>go.mod</code> に記載されているパッケージの依存関係の更新をおこないます。</p>
+<p>以下のコマンドを実行します。</p>
+<pre><code>$ go mod tidy</code></pre>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Google App Engine に公開する" duration="0">
-        <p>取得した Go のプログラムを <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go/?index=codelab#3" target="_blank">Google App Engine に公開する</a> の手順に従って、Google App Engine に公開してみましょう。</p>
+        <p>Google App Engine に、Goのプログラム、guestbook を公開しましょう（デプロイといいます）。ターミナルを開き、次のコマンドを実行します。</p>
 <pre><code>$ gcloud app deploy --project {プロジェクトID} --version {バージョン} .</code></pre>
+<aside class="special"><h3 is-upgraded><strong>コマンドの説明</strong></h3>
+<p><code>gcloud</code> : Google Cloudを操作するコマンドです。</p>
+<p><code>App deploy</code> : guestbookをGoogle App Engineにデプロイします。</p>
+<p><code>--project</code> : プロジェクトIDを指定します。プロジェクトIDの確認方法は「Google Cloud Shell で Go の開発をはじめよう」をご覧ください。</p>
+<p><code>--version</code> : 今回デプロイする guestbook にバージョン名を指定します。今回のコードラボでは「mycodelab」というバージョン名にしました。</p>
+<p><code>.</code> : ピリオドを忘れずにつけましょう。</p>
+</aside>
+<p>リージョンを選択します。リージョンはあとから変更することができません。ここでは <code>asia-east1</code> を選びました。</p>
+<p>※環境によって選択する番号が違うことがありました。良く確認してから先に進んでください。</p>
+<pre><code>You are creating an app for project [my-codelab-347616].
+WARNING: Creating an App Engine application for a project is irreversible and the region
+cannot be changed. More information about regions is at
+&lt;https://cloud.google.com/appengine/docs/locations&gt;.
+
+Please choose the region where you want your App Engine application located:
+
+ [1] asia-east1    (supports standard and flexible)
+ [2] asia-east2    (supports standard and flexible and search_api)
+ [3] asia-northeast1 (supports standard and flexible and search_api)
+ [4] asia-northeast2 (supports standard and flexible and search_api)
+ [5] asia-northeast3 (supports standard and flexible and search_api)
+ [6] asia-south1   (supports standard and flexible and search_api)
+  : （略）
+ [23] us-west4      (supports standard and flexible and search_api)
+ [24] cancel
+
+Please enter your numeric choice:1</code></pre>
+<p>開始するサービスの設定内容が表示されます。「Y」を入力して先に進みましょう。</p>
+<pre><code>Creating App Engine application in project [my-codelab-347616] and region [asia-east1]....done.     
+Services to deploy:
+
+descriptor:                  [/home/kawano_misato/develop/codelab/guestbook/app.yaml]
+source:                      [/home/kawano_misato/develop/codelab/guestbook]
+target project:              [my-codelab-347616]
+target service:              [default]
+target version:              [my-codelab]
+target url:                  [https://my-codelab-347616.de.r.appspot.com]
+target service account:      [App Engine default service account]
+
+
+Do you want to continue (Y/n)?Y</code></pre>
+<p>デプロイが成功すると、次のように表示されます。</p>
+<pre><code>Beginning deployment of service [default]...
+Uploading 11 files to Google Cloud Storage
+9%
+18%
+  : （略）
+100%
+File upload done.
+Updating service [default]...done.     
+Setting traffic split for service [default]...done.   
+Deployed service [default] to [https://my-codelab-347616.de.r.appspot.com]
+
+You can stream logs from the command line by running:
+  $ gcloud app logs tail -s default
+
+To view your application in the web browser run:
+  $ gcloud app browse</code></pre>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="アプリケーションを確認する" duration="0">
         <p>公開したアプリケーションを確認しましょう。</p>
-<h2 is-upgraded><strong>アクセスする</strong></h2>
-<p>Google Cloud Platform の AppEngine &gt; バージョン をクリックすると、公開するコマンドのコマンドライン引数で利用したバージョンを一覧で確認できます。</p>
+<p>Google Cloud Platformコンソールのサイドメニューから AppEngine &gt; バージョン をクリックします。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/b1b5e2ddba9ea253.png"></p>
-<p>一覧で、公開するコマンドに含まれていたバージョン名をクリックします。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/4ecc293852dd9e25.png"></p>
-<p>ブラウザが立ち上がり、下記のような画面が表示されると成功です。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/7d7d5c7b21c9ab31.png"></p>
-<p>&#34;お名前&#34;、&#34;メッセージ&#34; に適当な文字列を入力して、送信ボタンを押下してみましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/acb984b830b269ba.png"></p>
+<p>「Google App Engine に公開する」の章で、デプロイ時に指定したバージョン名をクリックします。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/83ff01d977f4e6d1.png"></p>
+<p>新しいタブが起動し、次のような画面が表示されます。</p>
+<p class="image-container"><img style="width: 558.00px" src="img/903f37b1b9916439.png"></p>
+<p>&#34;お名前&#34;、&#34;メッセージ&#34; に適当な文字列を入力して、送信ボタンをクリックしてみましょう。</p>
+<p class="image-container"><img style="width: 557.00px" src="img/9cac7b1ceb8b814f.png"></p>
 <h2 is-upgraded>データを見る</h2>
-<p>Google Cloud Platform 上でもデータを確認することができます。</p>
-<p>データストア &gt; エンティティ をクリックしましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/b30687eeae641446.png"></p>
-<p>名前空間は「[デフォルト]」、種類は「バージョン名」を選択しましょう。</p>
-<p>先程入力したデータが格納されていることを確認できます。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/1b66cf38edf66aaa.png"></p>
+<p>Google Cloud Platform コンソール上でもデータを確認することができます。</p>
+<p>Datastore &gt; エンティティ をクリックしましょう。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/9e7dea09926c4ea7.png"></p>
+<p>先程入力したデータが格納されていることが確認できます。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/320f4a9d8c950119.png"></p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="表示している文字を変更してみよう" duration="0">
-        <p class="image-container"><img style="width: 503.00px" src="img/3b51d206e16a03b.png"></p>
-<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って、Goolge Cloud Shell のエディタを立ち上げます。</p>
+        <p class="image-container"><img style="width: 520.93px" src="img/1f05df25eb63fc10.png"></p>
+<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go-solo?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って、Goolge Cloud Shell のエディタを立ち上げます。</p>
 <h2 is-upgraded><strong>文字列が書いてあるファイルを開く</strong></h2>
-<p><code>codelab &gt; guestbook &gt; index.go</code> を開きましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/deba4b7824c236e2.png"></p>
+<p><code>codelab > guestbook > index.go</code> を開きましょう。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/ff8337835d7d7825.png"></p>
 <h2 is-upgraded><strong>文字列を変更する</strong></h2>
 <p><code>index.go</code> の下記の部分を好きな文字列に変更します。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/2134149d242cc260.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/b04e5d01fb89d9a3.png"></p>
 <p>Before:</p>
 <pre><code>var title = &#34;ゲストブック&#34;
 var description = &#34;結婚式などの受付で名前や住所, メッセージを記帳してもらうためのノートのことです。&#34;</code></pre>
 <p>After (例):</p>
 <pre><code>var title = &#34;Wedding Guest Book&#34;
-var description = &#34;Gopher &amp; Gopher 2019.10.28&#34;</code></pre>
-<p><code>File &gt; Save</code> を選択して、保存します。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/295ea5061777f58.png"></p>
+var description = &#34;Gopher &amp; Gopher 2022.04.23&#34;</code></pre>
+<p><code>File > Save</code> を選択して、保存します。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/f7ebf0414cc322c4.png"></p>
 <h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
 <p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
 <pre><code>$ gcloud app deploy --project {プロジェクトID} --version {バージョン} .</code></pre>
 <h2 is-upgraded><strong>アプリケーションを確認する</strong></h2>
 <p>ブラウザを更新しましょう。</p>
 <p>タイトルとその下の文言が変更されていることを確認しましょう。</p>
-<p class="image-container"><img style="width: 350.00px" src="img/479cd32fa947790a.png"></p>
+<p class="image-container"><img style="width: 417.00px" src="img/97e0f15e4c3dee02.png"></p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="表示件数を変更してみよう" duration="0">
         <p>まず、&#34;お名前&#34; と &#34;メッセージ&#34; に適当な文字列を入力して、送信ボタンを押下することを繰り返して、10件ほど登録してみましょう。</p>
-<p class="image-container"><img style="width: 367.00px" src="img/e12c5a0676e7a2fd.png"></p>
+<p class="image-container"><img style="width: 446.00px" src="img/972e0d535c591b01.png"></p>
 <p>さらにもう1件の &#34;お名前&#34; と &#34;メッセージ&#34; を登録しましょう。</p>
 <p>全部で11件の &#34;お名前&#34; と &#34;メッセージ&#34; を登録しましたが、表示は10件で、一番古いメッセージが表示されなくなりました。</p>
-<p class="image-container"><img style="width: 440.00px" src="img/1d4b9b4b879795b6.png"></p>
+<p class="image-container"><img style="width: 458.00px" src="img/d8407a597a4f82a.png"></p>
 <p>それでは、登録した11件の &#34;お名前&#34; と &#34;メッセージ&#34; をすべて一覧で表示できるようにしましょう。</p>
 <h2 is-upgraded><strong>文字列が書いてあるファイルを開く</strong></h2>
-<p><code>codelab &gt; guestbook &gt; index.go</code> を開きましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/fa64bdf84f943298.png"></p>
+<p><code>codelab > guestbook > index.go</code> を開きましょう。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/bee8f2b6e7b4058f.png"></p>
 <h2 is-upgraded><strong>件数を変更する</strong></h2>
 <p><code>index.go</code> の下記の部分を、15件まで取得するように変更します。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/efb6a61818c03859.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/314dc40868a769c4.png"></p>
 <p>Before:</p>
 <pre><code>q := datastore.NewQuery(r.Host).Order(&#34;-createdAt&#34;).Limit(10)</code></pre>
 <p>After:</p>
 <pre><code>q := datastore.NewQuery(r.Host).Order(&#34;-createdAt&#34;).Limit(15)</code></pre>
-<p><code>File &gt; Save</code> を選択して、保存します。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/295ea5061777f58.png"></p>
+<p><code>File > Save</code> を選択して、保存します。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/d4050f8896679797.png"></p>
 <h2 is-upgraded><strong>変更したプログラムを公開する</strong></h2>
-<p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
+<p>ターミナルでコマンドを実行して、Go のプログラムを公開しましょう。</p>
 <pre><code>$ gcloud app deploy --project {プロジェクトID} --version {バージョン} .</code></pre>
 <h2 is-upgraded><strong>アプリケーションを確認する</strong></h2>
-<p>ブラウザを更新ボタンを押下して、11件の &#34;お名前&#34; と &#34;メッセージ&#34;  が表示されていることを確認しましょう。</p>
-<p class="image-container"><img style="width: 486.00px" src="img/f6b544613bc3bb3f.png"></p>
+<p>ブラウザの更新ボタンを押下して、11件の &#34;お名前&#34; と &#34;メッセージ&#34;  が表示されていることを確認しましょう。</p>
+<p class="image-container"><img style="width: 432.00px" src="img/1ccb302cef4c1ba0.png"></p>
 <p>15件までは一覧に表示することができるようになりました。</p>
 
 
@@ -187,12 +281,12 @@ var description = &#34;Gopher &amp; Gopher 2019.10.28&#34;</code></pre>
 </ul>
 <h2 is-upgraded><strong>一覧に編集リンクを追加する</strong></h2>
 <h3 is-upgraded><strong>変更箇所のファイルを開く</strong></h3>
-<p><code>codelab &gt; guestbook &gt; view &gt; index.html</code> を開きましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/8db170257761f568.png"></p>
+<p><code>codelab > guestbook > view > index.html</code> を開きましょう。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/f76b6dbc046c6818.png"></p>
 <h3 is-upgraded><strong>一覧にリンクを足す</strong></h3>
 <p>一覧に編集画面へのリンクを追加します。</p>
 <p>編集画面のURLを <code>edit</code> 、1件の &#34;お名前&#34; と &#34;メッセージ&#34; を識別するための変数名を <code>key</code> とします。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/92978e968f2534f2.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/a708302a310f3a71.png"></p>
 <p>Before:</p>
 <pre><code>&lt;div class=&#34;messages&#34;&gt;
   &#123;&#123;if lt 0 .Count}}
@@ -225,23 +319,23 @@ var description = &#34;Gopher &amp; Gopher 2019.10.28&#34;</code></pre>
   &lt;/div&gt;
   &#123;&#123;end}}
 &lt;/div&gt;</code></pre>
-<p><code>File &gt; Save</code> を選択して、保存します。</p>
+<p><code>File > Save</code> を選択して、保存します。</p>
 <h3 is-upgraded><strong>変更したプログラムを公開する</strong></h3>
 <p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
 <pre><code>$ gcloud app deploy --project {プロジェクトID} --version {バージョン} .</code></pre>
 <h3 is-upgraded><strong>アプリケーションを確認する</strong></h3>
 <p>まだリンク先のページはありませんが、一覧にリンクが追加されました。</p>
-<p class="image-container"><img style="width: 489.00px" src="img/9d1a3eb9485dc94.png"></p>
+<p class="image-container"><img style="width: 551.00px" src="img/aed28daf481a19f3.png"></p>
 <h2 is-upgraded><strong>編集リンクをクリックしたら編集画面に遷移する</strong></h2>
 <h3 is-upgraded><strong>ファイルを新規作成する</strong></h3>
-<p><code>codelab &gt; guestbook &gt; edit.go</code> を新規作成しましょう。</p>
-<p><code>File &gt; New &gt; File</code> をクリックします。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/9abb1850bee42f06.png"></p>
+<p><code>codelab > guestbook > edit.go</code> を新規作成しましょう。</p>
+<p><code>File > New File</code> をクリックします。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/b27dbe3be51198b9.png"></p>
 <p><code>edit.go</code> と入力します。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/97711e156dc0e3c7.png"></p>
+<p class="image-container"><img style="width: 435.00px" src="img/f5f3bde6d34dc04.png"></p>
 <h3 is-upgraded><strong>編集画面のコードを書く</strong></h3>
 <p>下記のように書きましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/7834d82b1f3d00fe.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/a4d02c1085f25558.png"></p>
 <pre><code>package guestbook
 
 import (
@@ -250,6 +344,7 @@ import (
         &#34;html/template&#34;
         &#34;net/http&#34;
         &#34;strconv&#34;
+        &#34;os&#34;
 
         &#34;cloud.google.com/go/datastore&#34;
 )
@@ -266,7 +361,7 @@ type EditTemplate struct {
 
 func Edit(w http.ResponseWriter, r *http.Request) {
         ctx := context.Background()
-        client, err := datastore.NewClient(ctx, &#34;wwgt-codelabs&#34;)
+        client, err := datastore.NewClient(ctx, os.Getenv(&#34;GOOGLE_CLOUD_PROJECT&#34;))
         if err != nil {
                 http.Error(w, fmt.Sprint(err), http.StatusInternalServerError)
                 return
@@ -297,30 +392,31 @@ func Edit(w http.ResponseWriter, r *http.Request) {
                 http.Error(w, err.Error(), http.StatusInternalServerError)
         }
 }</code></pre>
-<p><code>File &gt; Save</code> を選択して、保存します。</p>
+<p><code>File > Save</code> を選択して、保存します。</p>
 <h3 is-upgraded><strong>変更箇所のファイルを開く</strong></h3>
 <p><code>/edit</code> にアクセスすると画面が表示されるようにします。</p>
-<p><code>codelab &gt; guestbook &gt; web &gt; main.go</code> を開きましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/1a06f41e46b518ac.png"></p>
+<p><code>codelab > guestbook > web > main.go</code> を開きましょう。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/105e3fd0ef5cb095.png"></p>
 <p><code>/edit にアクセスすると、edit.go の func edit(...) が呼ばれるようにします。</code></p>
-<p class="image-container"><img style="width: 624.00px" src="img/32c8037317d68918.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/cfc3686bc8ce18b0.png"></p>
 <p>下記を追記しましょう。</p>
 <pre><code>http.HandleFunc(&#34;/edit&#34;, guestbook.Edit)</code></pre>
-<p><code>File &gt; Save</code> を選択して、保存します。</p>
+<p><code>File > Save</code> を選択して、保存します。</p>
 <h3 is-upgraded><strong>変更したプログラムを公開する</strong></h3>
 <p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
 <pre><code>$ gcloud app deploy --project {プロジェクトID} --version {バージョン} .</code></pre>
 <h3 is-upgraded><strong>アプリケーションを確認する</strong></h3>
-<p>一覧から編集リンクをクリックすると...<img style="width: 474.00px" src="img/69250d15abb07e76.png"></p>
+<p>一覧から編集リンクをクリックすると...</p>
+<p class="image-container"><img style="width: 557.00px" src="img/d351578d0e3e3053.png"></p>
 <p>編集画面に遷移します。</p>
-<p class="image-container"><img style="width: 397.00px" src="img/74bf77b7acf7d2c8.png"></p>
-<h2 is-upgraded><strong>編集画面で送信ボタンを押下すると変更を更新する</strong></h2>
+<p class="image-container"><img style="width: 508.00px" src="img/c077f95e7f1c0758.png"></p>
+<h2 is-upgraded><strong>編集画面で送信ボタンをクリックすると変更を更新する</strong></h2>
 <h3 is-upgraded><strong>変更箇所のファイルを開く</strong></h3>
-<p><code>codelab &gt; guestbook &gt; post.go</code> を開きましょう。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/2c1b064a698500e9.png"></p>
-<h3 is-upgraded><strong>更新をできるようにする</strong></h3>
+<p><code>codelab > guestbook > post.go</code> を開きましょう。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/839deeeb1b4386b.png"></p>
+<h3 is-upgraded><strong>更新できるようにする</strong></h3>
 <p>&#34;お名前&#34; と &#34;メッセージ&#34; を識別するための変数である <code>key</code> があるときは更新を、ないときには新規追加をするように処理を変更します。</p>
-<p class="image-container"><img style="width: 624.00px" src="img/2f4686aea10b14d0.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img/2d6406240e03f55.png"></p>
 <p>① Before:</p>
 <pre><code>import (
         &#34;context&#34;
@@ -362,15 +458,23 @@ if k == &#34;&#34; {
 if _, err := client.Put(ctx, key, msg); err != nil {
         http.Error(w, fmt.Sprint(err), http.StatusInternalServerError)
 }</code></pre>
-<p><code>File &gt; Save</code> を選択して、保存します。</p>
+<p><code>File > Save</code> を選択して、保存します。</p>
 <h3 is-upgraded><strong>変更したプログラムを公開する</strong></h3>
 <p>コンソールでコマンドを実行して、Go のプログラムを公開しましょう。</p>
 <pre><code>$ gcloud app deploy --project {プロジェクトID} --version {バージョン} .</code></pre>
 <h3 is-upgraded><strong>アプリケーションを確認する</strong></h3>
-<p>編集画面でフォームの中身を変更すると...</p>
-<p class="image-container"><img style="width: 446.00px" src="img/e1ba81a3733790fe.png"></p>
+<p>編集画面でフォームの中身を変更し「送信」をクリックしてみましょう。</p>
+<p class="image-container"><img style="width: 407.00px" src="img/89495d84ece2ae0f.png"></p>
 <p>変更された内容が一覧に反映されます。</p>
-<p class="image-container"><img style="width: 549.00px" src="img/2173982353ccb66e.png"></p>
+<p class="image-container"><img style="width: 428.00px" src="img/e24fa4222230889.png"></p>
+<p>お疲れさまでした！このコードラボはこれで終りです。引き続き、Goのプログラムを編集して、是非お楽しみください。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="プロジェクトのお片付け" duration="0">
+        <p>（2022年4月現在）Cloud Build は、デフォルトの状態だと、1日あたりのBuild料金は120分までは無料でお使いいただけます。また、 Google App Engineも、無料で始めることができるので実質的に導入コストはかかりませんが、利用するごとに課金が行われる従量制となっています。Google App Engineは、スタンダード環境とフレキシブル環境で違いがあり、スタンダード環境は一日の無料割り当て分があります。フレキシブル環境は、無料割り当てがないため、スタンダードの環境を利用するようにしましょう。</p>
+<p>Cloud BuildもGoogle App Engineも従量制となっているため、無料枠を超えると料金がかかります。気になる方はコードラボが終了したら、プロジェクトのお片付けをしましょう。プロジェクトを削除すると、有効化したCloud Buildの設定やGoogle App Engineにデプロイしたリソースも削除されます。</p>
 
 
       </google-codelab-step>
@@ -420,6 +524,7 @@ if _, err := client.Put(ctx, key, msg); err != nil {
   <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
   <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
   <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
 
 </body>
 </html>
