@@ -42,7 +42,7 @@
 <p>Google Cloud Functions には、 HTTPS でアクセスすることで実行できる HTTP 関数と、Google Cloud Platform 内のイベントから呼び出すことができるバックグラウンド関数の2種類があります。ここでは HTTP 関数を作成します。</p>
 <h2 is-upgraded>Go の開発環境は必要でしょうか？</h2>
 <p>このコードラボでは Google Cloud Shell というクラウド上の開発環境を利用します。お使いのコンピューター上で Go の開発環境を用意する必要はありません。</p>
-<p>Google Cloud Shell の詳しい説明と使い方は <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a>  を参照してください。</p>
+<p>Google Cloud Shell の詳しい説明と使い方は <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go-solo?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a>  を参照してください。</p>
 
 
       </google-codelab-step>
@@ -56,7 +56,7 @@
     
       <google-codelab-step label="サンプルコードを取得する" duration="0">
         <p>GitHub からコードラボで利用するサンプルコードを取得しましょう。</p>
-<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って、<code>git clone</code> コマンドを実行します。</p>
+<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go-solo?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って、<code>git clone</code> コマンドを実行します。</p>
 <pre>$ git clone https://github.com/WomenWhoGoTokyo/codelab.git</pre>
 <p><code>codelab/taskmanager</code> というディレクトリが作られていることを Google Cloud Shell のコンソールで確認しましょう。</p>
 <pre>$ cd codelab/taskmanager
@@ -72,7 +72,7 @@ README.md  function.go  go.mod  go.sum  parameter.go  status.go  task.go</pre>
     
       <google-codelab-step label="設定ファイルを確認する" duration="0">
         <p><code>git clone</code> したファイルの中に <code>go.mod</code> があります。Google Cloud Functions で Go のプログラムを動かすためには、<a href="https://github.com/golang/go/wiki/Modules" target="_blank">Go Modules</a> が必要です。</p>
-<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って,  Goolge Cloud Shell のエディタで <code>codelab &gt; taskmanager &gt; go.mod</code> を開いてみましょう。</p>
+<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go-solo?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って,  Goolge Cloud Shell のエディタで <code>codelab &gt; taskmanager &gt; go.mod</code> を開いてみましょう。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/d389a9c482963599.png"></p>
 <pre><code>module github.com/WomenWhoGoTokyo/codelab/taskmanager
 
@@ -89,7 +89,7 @@ require cloud.google.com/go/datastore v1.6.0
       </google-codelab-step>
     
       <google-codelab-step label="Google Cloud Functions に公開する" duration="0">
-        <p>取得した Go のプログラムを <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go/?index=codelab#3" target="_blank">Google Cloud Shell で Go のプログラムを公開する</a> の手順に従って、Google Cloud Functions に公開してみましょう。</p>
+        <p>取得した Go のプログラムを <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go-solo?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go/?index=codelab#3" target="_blank">Google Cloud Shell で Go のプログラムを公開する</a> の手順に従って、Google Cloud Functions に公開してみましょう。</p>
         <p>次のコマンドで、Google Cloud Functions に公開します。</p>
 <pre>$ gcloud functions deploy {Cloud Functions Name} \
 --runtime go116 \
@@ -160,7 +160,7 @@ versionId: &#39;1&#39;</pre>
       <google-codelab-step label="登録したタスクを取得しよう" duration="0">
         <p>登録したタスクを JSON で取得しましょう。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/7bf5f83a664d487a.png"></p>
-<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って、Goolge Cloud Shell のエディタを立ち上げます。</p>
+<p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go-solo?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って、Goolge Cloud Shell のエディタを立ち上げます。</p>
 <h2 is-upgraded><strong>タスクを取得するプログラムを書く</strong></h2>
 <p><code>codelab &gt; taskmanager &gt; task.go</code> を開きましょう。</p>
 <p>下記の場所にプログラムを追加します。</p>
