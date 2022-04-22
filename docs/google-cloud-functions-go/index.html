@@ -115,9 +115,17 @@ require cloud.google.com/go/datastore v1.6.0
 
 
       </google-codelab-step>
+
+      <google-codelab-step label="パッケージを更新する" duration="0">
+        <p><code>go mod tidy</code> コマンドを使って、パッケージを更新しましょう。Goでは <code>go.mod</code> ファイルにビルド時に必要なパッケージが記載されています。 <code>go mod tidy</code> は、 <code>go.mod</code> に記載されているパッケージの依存関係の更新をおこないます。</p>
+<p>以下のコマンドを実行します。</p>
+<pre><code>$ go mod tidy</code></pre>
+
+
+      </google-codelab-step>
     
       <google-codelab-step label="Google Cloud Functions に公開する" duration="0">
-        <p>取得した Go のプログラムを <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go-solo?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go/?index=codelab#3" target="_blank">Google Cloud Shell で Go のプログラムを公開する</a> の手順に従って、Google Cloud Functions に公開してみましょう。</p>
+        <p>取得した Go のプログラムを <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go-solo?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go-solo?index=codelab#3" target="_blank">Google Cloud Shell で Go のプログラムを公開する</a> の手順に従って、Google Cloud Functions に公開してみましょう。</p>
         <p>次のコマンドで、Google Cloud Functions に公開します。</p>
 <pre>$ gcloud functions deploy {Cloud Functions Name} \
 --runtime go116 \
