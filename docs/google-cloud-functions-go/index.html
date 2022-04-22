@@ -53,6 +53,34 @@
 
 
       </google-codelab-step>
+
+      <google-codelab-step label="Cloud Buildを有効にする" duration="0">
+        <p>はじめに、<a href="https://cloud.google.com/build/docs?hl=ja" target="_blank">Cloud Build</a> を有効にしましょう。Cloud Build は、Google Cloud 上でビルドを実行するサービスです。途中で課金の設定が求められます。クレジットカードが必要になりますが、2022年4月現在、初回登録時に90日間限定で$300相当のクレジットが無料で利用できます。</p>
+<p>※既にクレジットカードを登録し、無料枠を使いきってしまっている方は料金が発生します。料金は2022年4月現在、1ビルド$0.00485〜$0.10448です（利用するCPUの数などで料金が変わります）。料金は変更されることがあるので、<a href="https://cloud.google.com/build/pricing?hl=ja" target="_blank">Cloud Buildの料金</a> で確認してみましょう。</p>
+<p>それでは次に進みましょう。</p>
+<h2 is-upgraded><strong>Cloud Buildを有効にする</strong></h2>
+<p>次の「Cloud Buildを有効にする」をクリックします。</p>
+<p><a href="https://console.cloud.google.com/cloud-build?hl=ja&_ga=2.132790926.1497629434.1649609925-1517295811.1647856050" target="_blank"><paper-button class="colored" raised>Cloud Buildを有効にする</paper-button></a></p>
+<p>Cloud Buildを有効化する画面が表示されます。「有効にする」をクリックします。</p>
+<p class="image-container"><img style="width: 513.00px" src="img/66d45162ba2b0b3d.png"></p>
+<p>「課金を有効にする」をクリックします。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/a9463f2fd5b4d2c2.png"></p>
+<p>請求書先のアカウントがない場合、次の画面が表示されます。「請求先アカウントを作成」をクリックし、請求書先を登録しましょう。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/35bf3d7625d61583.png"></p>
+<p>「国」と「組織またはニーズ」に該当するものを選択します。利用規約を読み、チェックをいれ「続行」をクリックしましょう。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/3125f72f920567ac.png"></p>
+<p>個人利用の場合は「アカウントの種類」で「個人」を選択します。「カードを追加」をクリックすると、クレジットカードかPaypalどちらかを選択できます。お支払い情報を設定したら「無料トライアルを開始」をクリックしましょう。</p>
+<p class="image-container"><img style="width: 536.00px" src="img/b377d0f29bfb5a10.png"></p>
+<p>既に請求書先アカウントを登録している場合は、次の画面が表示されます。請求書先アカウントを選択し「アカウントを設定」をクリックしましょう。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/bc278375e30b7c5e.png"></p>
+<p>Google Cloud Platformコンソールの Cloud Build に戻りましょう。Cloud Buildが有効になっている場合、次のように表示されます。リージョンを選択しましょう。東京リージョンは <code>asia-northeast1</code> 、大阪は <code>asia-northeast2</code> です。今回は、東京リージョンを使用します。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/94030981a60b8903.png"></p>
+<aside class="special"><h3 is-upgraded><strong>Cloud Buildサービスアカウント</strong></h3>
+<p>Cloud Buildを有効にすると、プロジェクトに<a href="https://cloud.google.com/build/docs/cloud-build-service-account?hl=ja" target="_blank">Cloud Buildサービスアカウント</a>が自動で作成されます。Cloud Buildサービスアカウントでは、ビルドの更新やログ書き込みの権限がデフォルトで付与されます。</p>
+</aside>
+
+
+      </google-codelab-step>
     
       <google-codelab-step label="サンプルコードを取得する" duration="0">
         <p>GitHub からコードラボで利用するサンプルコードを取得しましょう。</p>
