@@ -53,7 +53,7 @@
 <p><code>コードが</code>取得できたら、codelab/image-slender というディレクトリが作られていることを確認しましょう。</p>
 <pre>$ cd codelab/image-slender
 $ ls
-go.mod  go.sum  images  images.yaml  main.go  main_test.go  README.md  slender</pre>
+go.mod  go.sum  images  images.yaml  main.go  README.md  slender</pre>
 <p>ファイルの構成は以下の通りです。</p>
 <p class="image-container"><img style="width: 624.00px" src="img/caf7cdcab57a456.png"></p>
 <aside class="special"><h3 is-upgraded><strong>コマンドの説明</strong></h3>
@@ -102,7 +102,7 @@ func BenchmarkExecute(b *testing.B) {
 <p>ベンチマークの実行結果が出力されました。</p>
 <pre>goos: darwin
 goarch: amd64
-pkg: github.com/mi-bear/image-slender
+pkg: github.com/WomenWhoGoTokyo/codelab/image-slender
 BenchmarkExecute-8                  1        15800638167 ns/op
 BenchmarkExecute-8                  1        15737073630 ns/op
 BenchmarkExecute-8                  1        15742299275 ns/op
@@ -114,7 +114,7 @@ BenchmarkExecute-8                  1        15731555275 ns/op
 BenchmarkExecute-8                  1        15725556579 ns/op
 BenchmarkExecute-8                  1        15711972716 ns/op
 PASS
-ok          github.com/mi-bear/image-slender        157.465s</pre>
+ok          github.com/WomenWhoGoTokyo/codelab/image-slender        157.465s</pre>
 
 
       </google-codelab-step>
@@ -130,7 +130,7 @@ import (
         &#34;os&#34;
 
         &#34;github.com/jinzhu/configor&#34;
-        &#34;github.com/mi-bear/image-slender/slender&#34;
+        &#34;github.com/WomenWhoGoTokyo/codelab/image-slender/slender&#34;
 )
 .
 .
@@ -159,7 +159,7 @@ import (
         &#34;os&#34;
 
         &#34;github.com/jinzhu/configor&#34;
-        &#34;github.com/mi-bear/image-slender/slender&#34;
+        &#34;github.com/WomenWhoGoTokyo/codelab/image-slender/slender&#34;
         &#34;golang.org/x/sync/errgroup&#34; // 追加する
 )
 .
@@ -188,7 +188,7 @@ func execute() error {
 
 <p> 更新したプログラムを保存したら、実行してみましょう。</p>
 
-<p><code>errgroup</code> パッケージを利用したいので、<code>go mod </code>コマンドでモジュールに追加します。</p>
+<p><code>errgroup</code> パッケージを利用したいので、<code>go mod</code>コマンドでモジュールに追加します。</p>
 
 <pre>$ go mod tidy
 go: finding module for package golang.org/x/sync/errgroup
@@ -208,7 +208,7 @@ $ ./image-slender</pre>
 <p>ベンチマークの実行結果が出力されました。</p>
 <pre>goos: darwin
 goarch: amd64
-pkg: github.com/mi-bear/image-slender
+pkg: github.com/WomenWhoGoTokyo/codelab/image-slender
 BenchmarkExecute-8                  1        3426717180 ns/op
 BenchmarkExecute-8                  1        3370627914 ns/op
 BenchmarkExecute-8                  1        3379053786 ns/op
@@ -220,7 +220,7 @@ BenchmarkExecute-8                  1        3378263273 ns/op
 BenchmarkExecute-8                  1        3413634149 ns/op
 BenchmarkExecute-8                  1        3375049615 ns/op
 PASS
-ok          github.com/mi-bear/image-slender        33.929s</pre>
+ok          github.com/WomenWhoGoTokyo/codelab/image-slender        33.929s</pre>
 <p>改善前後の平均実行時間を比べてみると効果がわかります。</p>
 <p>前:</p>
 <pre>157.465s</pre>
