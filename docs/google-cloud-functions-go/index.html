@@ -82,6 +82,17 @@
 
       </google-codelab-step>
     
+      <google-codelab-step label="Cloud Firestoreのモードを選択する" duration="0">
+        <p>このコードラボでは、Firestore データベースを使用します。</p>
+        <p>新規にFirestore データベースを作成する際、はじめにデータベースインスタンスのモードを選択する必要があります。今回は「Datastore モード」を利用します。</p>
+        <p>2つのモードの特徴と差異については、公式ドキュメントの<a href="https://cloud.google.com/firestore/docs/firestore-or-datastore?hl=ja" target="_blank">「ネイティブ モードとDatastore モードからの選択」</a>に説明があります。</p>
+        <p>次の「Cloud Firestore モードの選択」をクリックします。
+            <p><a href="https://console.cloud.google.com/firestore/welcome" target="_blank"><paper-button class="colored" raised>Cloud Firestore モードの選択</paper-button></a></p>
+        <p class="image-container"><img style="width: 624.00px" src="img/image1.png"></p>
+        <p>「ロケーションを選択」から、<code>asia-norteast1(Tokyo)</code>を選択し、データベースを作成します。</p>
+        <p class="image-container"><img style="width: 624.00px" src="img/image2.png"></p>
+        </google-codelab-step>
+
       <google-codelab-step label="サンプルコードを取得する" duration="0">
         <p>GitHub からコードラボで利用するサンプルコードを取得しましょう。</p>
 <p><a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go-solo?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の手順に従って、<code>git clone</code> コマンドを実行します。</p>
@@ -123,6 +134,9 @@ require cloud.google.com/go/datastore v1.6.0
 
 
       </google-codelab-step>
+
+
+    </google-codelab-step>
     
       <google-codelab-step label="Google Cloud Functions に公開する" duration="0">
         <p>取得した Go のプログラムを <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go-solo?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go-solo?index=codelab#3" target="_blank">Google Cloud Shell で Go のプログラムを公開する</a> の手順に従って、Google Cloud Functions に公開してみましょう。</p>
