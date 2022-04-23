@@ -132,6 +132,22 @@ require cloud.google.com/go/datastore v1.6.0
 <p>以下のコマンドを実行します。</p>
 <pre><code>$ go mod tidy</code></pre>
 
+</google-codelab-step>
+
+<google-codelab-step label="GCP プロジェクトIDを設定する" duration="0">
+<p>プロイ対象となるプロジェクトIDを設定します。</p>
+<p>以前にプロジェクトを作成したことがある場合は、現在どのプロジェクトが選択されているか、次のコマンドで確認しましょう。</p>
+<pre><code>$ gcloud config configurations list</code></pre>
+<p>今回使うプロジェクトと異なるプロジェクトが表示された場合は、プロジェクトの切り替えをおこないましょう。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/image008.jpg"></p>
+<p>切り替えたいプロジェクトのIDを確認します（先程作成したプロジェクトIDを確認）。</p>
+<p class="image-container"><img style="width: 624.00px" src="img/image009.jpg"></p>
+<p>次のコマンドにプロジェクトIDを指定し、プロジェクトの設定をおこないます。</p>
+<pre><code>$ gcloud config set project {今回利用するプロジェクトID}</code></pre>
+<p class="image-container"><img style="width: 624.00px" src="img/image010.jpg"></p>
+<p>もう一度、プロジェクトの設定を確認しましょう。</p>
+<pre><code>$ gcloud config configurations list</code></pre>
+<p class="image-container"><img style="width: 624.00px" src="img/image011.jpg"></p>
 
       </google-codelab-step>
 
@@ -140,6 +156,7 @@ require cloud.google.com/go/datastore v1.6.0
     
       <google-codelab-step label="Google Cloud Functions に公開する" duration="0">
         <p>取得した Go のプログラムを <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go-solo?index=codelab" target="_blank">Google Cloud Shell で Go の開発をはじめよう</a> の <a href="https://womenwhogotokyo.github.io/codelab/google-cloud-shell-go-solo?index=codelab#3" target="_blank">Google Cloud Shell で Go のプログラムを公開する</a> の手順に従って、Google Cloud Functions に公開してみましょう。</p>
+
         <p>次のコマンドで、Google Cloud Functions に公開します。</p>
 <pre>$ gcloud functions deploy {Cloud Functions Name} \
 --runtime go116 \
