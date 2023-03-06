@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/jinzhu/configor v1.1.1
-	golang.org/x/image v0.0.0-20200119044424-58c23975cae1
+	golang.org/x/image v0.5.0
 )
 
 require (
